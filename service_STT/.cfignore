@@ -2,11 +2,15 @@
 # Date:    01 July 2019
 # Project: AsTeR
 
+# User package
+commander.py
+
 # Development
 *.ipynb
-readme.md
+README.md
 __pycache__/
 .ipynb_checkpoints/
 
 # Heavy material
 .tmp/
+figures/
