@@ -106,21 +106,16 @@ class Voice_GGC:
 
     def request(self, voice_path):
 
-        with wave.open(voice_path, 'rb') as fle: rte = fle.getframerate()
+        fle = wave.open(voice_path, 'rb')
+        rte = fle.getframerate()
+        fle.close()
+
         arg = {'language_code': 'en-US', 'enable_word_time_offsets': True}
         cfg = types.RecognitionConfig(sample_rate_hertz=rte, **arg)
 
-        out = voice_path.split('/')[-1].split('.')[0] + '_left.' + voice_path.split('/')[-1].split('.')[1]
-        out = '/'.join(voice_path.split('/')[:-1] + [out])
-        try: os.system('ffmpeg -y -i {} -map_channel 0.0.0 {}'.format(voice_path, out))
-        except: pass
-
-        with io.open(out, 'rb') as fle: fle = types.RecognitionAudio(content=fle.read())
+        raw = io.open(voice_path, 'rb')
+        fle = types.RecognitionAudio(content=raw.read())
+        raw.close()
         req = self.stt.recognize(cfg, fle)
 
         return self.request_to_vectors(req)
-
-if __name__ == '__main__':
-
-    api = Voice_IBM()
-    print(api.request('calls/call_0.wav'))
