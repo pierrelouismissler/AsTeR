@@ -1,0 +1,8 @@
+# Author:  DINDIN Meryll
+# Date:    01 July 2019
+# Project: AsTeR
+
+applications:
+ - name: serviceSTT
+   random-route: true
+   memory: 64M

@@ -2,8 +2,8 @@
 # Date:    28 June 2019
 # Project: AsTeR
 
-from service_STT.speech_apis import *
-from service_STT.endpoint_imports import *
+try: from service_STT.apis import *
+except: from apis import *
 
 # Defines the service APIs
 
@@ -16,7 +16,6 @@ api_GGC = Voice_GGC()
 if __name__ == '__main__':
 
     app = Flask('STT')
-    run_with_ngrok(app)
 
     @app.route('/speech-to-text', methods=['POST'])
     def run_service():
@@ -34,5 +33,4 @@ if __name__ == '__main__':
         arg = {'status': 200, 'mimetype': 'application/json'}
         return Response(response=json.dumps(req), **arg)
 
-    #app.run(host='127.0.0.1', port='8080', threaded=True)
-    app.run()
+    app.run(host='127.0.0.1', port='8080', threaded=True)
