@@ -5,9 +5,8 @@
 # Development
 *.ipynb
 readme.md
+__pycache__/
+.ipynb_checkpoints/
 
 # Heavy material
 .tmp/
-
-# Sensitive material
-configs/*

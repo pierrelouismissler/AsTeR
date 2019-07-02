@@ -25,5 +25,4 @@ from flask import Flask
 from flask import request
 from flask import jsonify
 from flask import Response
-from flask_ngrok import run_with_ngrok
 from werkzeug.utils import secure_filename
