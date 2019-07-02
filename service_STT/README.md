@@ -23,7 +23,7 @@ cmd = Commander('calls/call_0.wav', config=cfg)
 txt = cmd.get_transcript(api_type='IBM')
 ```
 
-There are two main entities in this folder: the endpoint + API structure, which is to be handled through the Cloud Foundry instance; the _commander.py_ script, which gives an upper-layer to the user to easily plug it. Different services are used to transform speech-to-text: 'IBM' (for the (IBM Watson)[https://www.ibm.com/watson/services/speech-to-text/]), 'GGC' (for the (Google API)[https://cloud.google.com/speech-to-text/]) and 'Rev' (for (Rev.ai)[https://www.rev.ai/]).
+There are two main entities in this folder: the endpoint + API structure, which is to be handled through the Cloud Foundry instance; the _commander.py_ script, which gives an upper-layer to the user to easily plug it. Different services are used to transform speech-to-text: 'IBM' (for the [IBM Watson](https://www.ibm.com/watson/services/speech-to-text)), 'GGC' (for the [Google API](https://cloud.google.com/speech-to-text/)) and 'Rev' (for [Rev.ai](https://www.rev.ai)).
 
 ## Example
 
