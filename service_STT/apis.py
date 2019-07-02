@@ -2,7 +2,7 @@
 # Date:    28 June 2019
 # Project: AsTeR
 
-try: from service_STT.imports import *
+try: from package.imports import *
 except: from imports import *
 
 class Voice_IBM:
@@ -122,5 +122,5 @@ class Voice_GGC:
 
 if __name__ == '__main__':
 
-    api = Voice_Rev()
+    api = Voice_IBM()
     print(api.request('calls/call_0.wav'))

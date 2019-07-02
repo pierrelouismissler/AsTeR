@@ -1,0 +1,13 @@
+# Author:  DINDIN Meryll
+# Date:    01 July 2019
+# Project: AsTeR
+
+# Development
+*.ipynb
+readme.md
+
+# Heavy material
+.tmp/
+
+# Sensitive material
+configs/*
