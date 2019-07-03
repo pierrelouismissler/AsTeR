@@ -28,14 +28,14 @@ class Commander:
         out = tmp.split('.')[0] + '_single.' + tmp.split('.')[1]
         out = '/'.join(self.voice_path.split('/')[:-1] + [out])
 
-        try: 
-            # Extract channel
-            os.system('ffmpeg -y -i {} -map_channel 0.0.0 {}'.format(self.voice_path, out))
-            # Overwrite the files
+        # Extract channels
+        try: os.system('ffmpeg -y -i {} -map_channel 0.0.0 {}'.format(self.voice_path, out))
+        except: pass
+
+        # Overwrite the files
+        if os.path.exits(out): 
             os.remove(self.voice_path)
             os.rename(out, self.voice_path)
-        except: 
-            pass
 
     def get_transcript(self, api_type='IBM'):
 
