@@ -1,0 +1,39 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    <body class="text-center">
+        <h1 class="cover-heading">Register</h1>
+        {%  from 'includes/_formhelpers.html' import render_field %}
+        <form method="POST" action="">
+{#            <div class="form-group row">#}
+{#                <label for="inputEmail3" class="col-sm-2 col-form-label">Name</label>#}
+{#                <div class="col-sm-10">#}
+{#                    <input type="name" class="form-control" id="inputEmail3" placeholder="Name">#}
+{#                </div>#}
+{#            </div>#}
+{#            <div class="form-group">#}
+{#                <label for="inputName">Name</label>#}
+{#                <input type="name" class="form-control" id="inputName" aria-describedby="nameHelp" placeholder="Enter name">#}
+{#                <small id="nameHelp" class="form-text text-muted">We'll never make fun of your name.</small>#}
+{#            </div>#}
+            <div class="form-group">
+                {{ render_field(form.name, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ render_field(form.email, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ render_field(form.username, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ render_field(form.password, class_="form-control") }}
+            </div>
+            <div class="form-group">
+                {{ render_field(form.confirm, class_="form-control") }}
+            </div>
+            <p><input type="submit" class="btn btn-primary" value="Register"></p>
+        </form>
+    </body>
+
+{% endblock %}

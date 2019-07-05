@@ -1,0 +1,35 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    <body class="text-center">
+        <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
+            <main role="main" class="inner cover" align="justify">
+                <h1 class="cover-heading" align="center">About Aster.</h1>
+                <p class="lead" >Aster is an open source project that was started by UC Berkeley students on
+                    April 27th 2019. Forest fires are frequent in California and natural disasters rise in intensity
+                    due to climate change. Ageing technologies used in unit dispatching struggle to keep the pace and
+                    do not allow efficient over-time monitoring and scalability. This is the context in which Aster
+                    was born.</p>
+                <p class="lead">During the IBM Call for Code hackathon at UC Berkeley, we decided to build a disaster
+                    manager platform to dispatch the right resources at the right time given as many inputs as there
+                    are available. Those inputs include for example:
+                    <ul class="lead">
+                        <li>
+                        Emergency calls to 911 which are analyzed in real-time. Through speech-to-text technology, we
+                            extract insights about the problem, we quantify the priority and detect the keywords
+                            related to the issue for further control.
+                        </li>
+                        <li>
+                            Pictures taken on the field by the rescue team. By passing them through image
+                            classification, encountered problems are automatically detected. It allows us to update
+                            the dispatching map (graph) in real-time, which is exploited via a Dijkstra algorithm for
+                            optimal trajectories determination.
+                        </li>
+                    </ul>
+                </p>
+            </main>
+        </div>
+    </body>
+
+{% endblock %}
