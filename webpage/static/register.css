@@ -9,16 +9,13 @@ body {
     background-color: #f5f5f5;
 }
 
-.form-signin {
+.form-register{
     width: 100%;
-    max-width: 330px;
+    max-width: 400px;
     padding: 15px;
     margin: auto;
 }
-.form-signin .checkbox {
-    font-weight: 400;
-}
-.form-signin .form-control {
+.form-register .form-control {
     position: relative;
     box-sizing: border-box;
     height: auto;
@@ -26,17 +23,29 @@ body {
     font-size: 16px;
 }
 
-.form-signin .form-control:focus {
+.form-register .form-text {
+    /*position: relative;*/
+    /*box-sizing: border-box;*/
+    height: auto;
+    margin-left: 125px;
+    /*padding: 10px;*/
+    /*font-size: 16px;*/
+}
+
+.form-register .form-control:focus {
     z-index: 2;
 }
 
-.form-signin input[type="username"] {
-    margin-bottom: -1px;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
+.form-register input[type="text"], input[type="email"] {
+    /*margin-bottom: 10px;*/
+    margin-left: 40px;
+    /*margin-top: -1px;*/
+    /*margin-bottom: -1px;*/
 }
-.form-signin input[type="password"] {
-    margin-bottom: 10px;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+
+.form-register input[type="password"] {
+    /*margin-bottom: 10px;*/
+    margin-left: 40px;
+    /*border-top-left-radius: 0;*/
+    /*border-top-right-radius: 0;*/
 }

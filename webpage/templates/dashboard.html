@@ -1,5 +1,10 @@
 {%  extends 'layout.html' %}
 
 {%  block body %}
-    <h1>Dashboard <small> Welcome {{ session.username }}</small></h1>
+
+<div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column" style="text-align: center">
+    <h1>Welcome to your dashboard, {{ session.username }}!</h1>
+    <p class="lead">Here is a short description about the dashboard and some stats.</p>
+</div>
+
 {% endblock %}
