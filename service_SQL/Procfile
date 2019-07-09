@@ -1,0 +1,1 @@
+web: python schema.py; python endpoint.py
