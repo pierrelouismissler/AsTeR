@@ -9,6 +9,7 @@ __pycache__/
 
 # Heavy material
 .tmp/
+database.db
 
 # Sensitive material
 configs/credentials.yaml
