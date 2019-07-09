@@ -1,0 +1,14 @@
+# Author:  DINDIN Meryll
+# Date:    09 July 2019
+# Project: AsTeR
+
+# Development
+*.ipynb
+__pycache__/
+.ipynb_checkpoints/
+
+# Heavy material
+.tmp/
+
+# Sensitive material
+configs/credentials.yaml

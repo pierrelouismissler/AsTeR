@@ -1,0 +1,11 @@
+# Author:  DINDIN Meryll
+# Date:    09 July 2019
+# Project: AsTeR
+
+users:
+- username: 'admin'
+  password: 'admin'
+- username: 'guest'
+  password: 'guest'
+- username: 'oskar'
+  password: 'oskar'
