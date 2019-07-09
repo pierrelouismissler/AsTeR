@@ -11,3 +11,4 @@ from flask import Flask
 from flask import request
 from flask import Response
 from flask_sqlalchemy import SQLAlchemy
+from passlib.hash import sha256_crypt

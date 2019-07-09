@@ -5,9 +5,15 @@
 try: from service_SQL.imports import *
 except: from imports import *
 
-def format_url(credentials='configs/credentials.yaml'):
+def format_url(section, credentials='configs/credentials.yaml'):
 
-    with open(credentials) as raw: crd = yaml.safe_load(raw)['postgresql']
-    arg = (crd['user'], crd['password'], crd['server'], crd['port'], crd['user'])
+    with open(credentials) as raw: crd = yaml.safe_load(raw)[section]
+
+    if section == 'postgresql':
     
-    return 'postgres://{}:{}@{}:{}/{}'.format(*arg)
+        arg = (crd['user'], crd['password'], crd['server'], crd['port'], crd['user'])
+        return 'postgres://{}:{}@{}:{}/{}'.format(*arg)
+
+    if section == 'sqlite':
+
+        return crd['path']
