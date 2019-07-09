@@ -6,7 +6,7 @@ try: from service_SQL.utils import *
 except: from utils import *
 
 con = Flask('DTB')
-con.config['SQLALCHEMY_DATABASE_URI'] = format_url()
+con.config['SQLALCHEMY_DATABASE_URI'] = format_url('sqlite')
 con.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # Set the whole structure
 dtb = SQLAlchemy(con)
