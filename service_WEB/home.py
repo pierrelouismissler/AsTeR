@@ -1,22 +1,13 @@
-# -*- coding: utf-8 -*-
+# Author:  RADERMECKER Oskar, DINDIN Meryll
+# Date:    09 July 2019
+# Project: AsTeR
 
-from flask import Flask, request, render_template, flash, redirect, url_for, session, logging
-from flask_mysqldb import MySQL
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators
-from passlib.hash import sha256_crypt
-from functools import wraps
+try: from service_WEB.imports import *
+except: from imports import *
 
-app = Flask(__name__)
-app.secret_key = 'secret123'
-
-# Config MySQL
-app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
-app.config['MYSQL_DB'] = 'asterdb'
-app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
-# Initialize MySQL
-mysql = MySQL(app)
+app = Flask('WEB')
+# Config SQL API
+SQL_URL = 'https://servicesql-comedic-wallaby.mybluemix.net'
 
 # Index
 @app.route('/')
@@ -27,16 +18,19 @@ def index():
 # About Aster
 @app.route('/about')
 def about():
+
     return render_template('about.html')
 
 # Team
 @app.route('/team')
 def team():
+
     return render_template('team.html')
 
 # Additional test environment
 @app.route('/test')
 def test():
+
     return render_template('test.html')
 
 # Register form class
@@ -53,67 +47,58 @@ class RegisterForm(Form):
 # Register page
 @app.route('/register', methods=['GET', 'POST'])
 def register():
+
+    def register_user(profile, url):
+    
+        url = '/'.join([url, 'register'])
+        prm = dict(zip(['username', 'password', 'fullname', 'emailing'], profile))
+        req = requests.post(url, params=prm)
+        return json.loads(req.content)
+
     form = RegisterForm(request.form)
+
     if request.method == 'POST' and form.validate():
+
         name = form.name.data
         email = form.email.data
         username = form.username.data
-        password = sha256_crypt.encrypt(str(form.password.data))  # encrypt the password
+        password = form.password.data
 
-        # Create cursor
-        cur = mysql.connection.cursor()
-        cur.execute("INSERT INTO users(name, email, username, password) VALUES(%s, %s, %s, %s)", (name, email,
-                                                                                                  username, password))
+        result = register_user((username, password, name, email), SQL_URL)
 
-        # Commit to db
-        mysql.connection.commit()
+        if not result['success']: 
+            return render_template('register.html', error=result['reason'])
+        else:
+            flash('You are now registered. Log in to access your simulation dashboard!', 'success')
+            return redirect(url_for('login'))
 
-        # Close connection
-        cur.close()
-        flash('You are now registered. Log in to access your simulation dashboard!', 'success')
-
-        return redirect(url_for('login'))
     return render_template('register.html', form=form)
 
 # Login page
 @app.route('/login', methods=['GET', 'POST'])
 def login():
+
+    def check_connection(profile, url):
+    
+        url = '/'.join([url, 'connect'])
+        username, password = profile
+        req = requests.post(url, params={'username': username, 'password': sha256_crypt.hash(password)})
+        return json.loads(req.content)
+
     if request.method == 'POST':
         # Get form fields
         username = request.form['username']
-        password_candidate = request.form['password']
+        password = request.form['password']
 
-        # Create Cursor
-        cur = mysql.connection.cursor()
+        result = check_connection((username, password), SQL_URL)
 
-        # Get user by username
-        result = cur.execute("SELECT * FROM users WHERE username = %s", [username])
-
-        if result > 0:
-            # Get stored hash
-            data = cur.fetchone()
-            password = data['password']
-
-            # Compare the passwords
-            if sha256_crypt.verify(password_candidate, password):
-                # Passed
-                session['logged_in'] = True
-                session['username'] = username
-
-                # Close connection with database
-                cur.close()
-
-                flash('You are now logged in!', 'success')
-                return redirect(url_for('dashboard'))
-            else:
-                error = "Invalid password."
-                return render_template('login.html', error=error)
+        if result['success']:
+            flash('You are now logged in!', 'success')
+            return redirect(url_for('dashboard'))
         else:
-            error = "Username not found."
-            return render_template('login.html', error=error)
+            return render_template('login.html', error=result['reason'])
 
     return render_template('login.html')
-
 
 # Check if user logged in
 def is_logged_in(f):
@@ -125,7 +110,6 @@ def is_logged_in(f):
             flash('You need to log in before you can access your dashboard!', 'danger')
             return redirect(url_for('login'))
     return wrap
-
 
 # User Dashboard
 @app.route('/dashboard')
@@ -140,6 +124,6 @@ def logout():
     flash('Successfully logged out', 'success')
     return redirect(url_for('index'))
 
-
 if __name__ == "__main__":
-    app.run()
+
+    app.run(host='127.0.0.1', port=8080 )
