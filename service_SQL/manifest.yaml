@@ -5,4 +5,4 @@
 applications:
  - name: serviceSQL
    random-route: true
-   memory: 64M
+   memory: 128M
