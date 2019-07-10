@@ -1,0 +1,9 @@
+# Author:  RADERMECKER Oskar, DINDIN Meryll
+# Date:    09 July 2019
+# Project: AsTeR
+
+# Sensitive materials
+config.yaml
+
+# Compiled package
+__pycache__/
