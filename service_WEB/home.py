@@ -6,8 +6,10 @@ try: from service_WEB.imports import *
 except: from imports import *
 
 app = Flask('WEB')
-# Config SQL API
-SQL_URL = 'https://servicesql-comedic-wallaby.mybluemix.net'
+# Apply static configuration
+with open('config.yaml') as raw: crd = yaml.safe_load(raw)
+app.secret_key = crd['secret_key']
+SQL_URL = crd['sql_api']
 
 # Index
 @app.route('/')
@@ -30,18 +32,22 @@ def team():
 # Features
 @app.route('/call_analysis')
 def call_analysis():
+
     return render_template('call_analysis.html')
 
 @app.route('/unit_dispatching')
 def unit_dispatching():
+
     return render_template('unit_dispatching.html')
 
 @app.route('/feedback_integration')
 def feedback_integration():
+
     return render_template('feedback_integration.html')
 
 @app.route('/backup_plans')
 def backup_plans():
+
     return render_template('backup_plans.html')
 
 # Additional test environment
@@ -52,6 +58,7 @@ def test():
 
 # Register form class
 class RegisterForm(Form):
+
     name = StringField('Name', [validators.Length(min=2, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email', [validators.Length(min=6, max=50)])
@@ -110,6 +117,8 @@ def login():
         result = check_connection((username, password), SQL_URL)
 
         if result['success']:
+            session['username'] = username
+            session['logged_in'] = True
             flash('You are now logged in!', 'success')
             return redirect(url_for('dashboard'))
         else:
