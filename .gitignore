@@ -6,6 +6,7 @@ service_STT/__pycache__/
 
 # Heavy files
 
+*.ipynb
 .tmp/
 maps/
 calls/
