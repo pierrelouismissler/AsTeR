@@ -27,6 +27,23 @@ def team():
 
     return render_template('team.html')
 
+# Features
+@app.route('/call_analysis')
+def call_analysis():
+    return render_template('call_analysis.html')
+
+@app.route('/unit_dispatching')
+def unit_dispatching():
+    return render_template('unit_dispatching.html')
+
+@app.route('/feedback_integration')
+def feedback_integration():
+    return render_template('feedback_integration.html')
+
+@app.route('/backup_plans')
+def backup_plans():
+    return render_template('backup_plans.html')
+
 # Additional test environment
 @app.route('/test')
 def test():
