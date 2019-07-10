@@ -17,3 +17,11 @@ def format_url(section, credentials='configs/credentials.yaml'):
     if section == 'sqlite':
 
         return crd['path']
+
+def parse_arguments(request):
+
+    dic = dict(request.args)
+    for key, value in dic.items():
+        if type(value) == list: dic[key] = str(value[0])
+
+    return dic

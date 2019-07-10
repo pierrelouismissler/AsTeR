@@ -16,12 +16,43 @@ if __name__ == '__main__':
     @app.route('/connect', methods=['POST'])
     def connect():
 
-        result, arg = False, dict(request.args)
-        usr = User.query.filter_by(username=arg['username']).first()
-        if not (usr is None) and sha256_crypt.verify(usr.password, arg['password']): result = True
-
+        boo, req = False, parse_arguments(request)
         arg = {'status': 200, 'mimetype': 'application/json'}
-        return Response(response=json.dumps({'allow_connection': result}), **arg)
+        usr = User.query.filter_by(username=req['username']).first()
 
-    #app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    app.run(host='127.0.0.1', port=8080)
+        if usr is None:
+            boo = False
+            err = 'Username is not registered'            
+        elif not sha256_crypt.verify(usr.password, req['password']):
+            boo = False
+            err = 'Password was wrongly inputed'
+        else:
+            boo = True
+            err = 'None'
+
+        msg = {'username': req['username'], 'success': boo, 'reason': err}
+        return Response(response=json.dumps(msg), **arg)
+
+    @app.route('/register', methods=['POST'])
+    def register():
+
+        req = parse_arguments(request)
+        arg = {'status': 200, 'mimetype': 'application/json'}
+        
+        usr = User.query.filter_by(username=req['username']).first()
+        if not usr is None:
+            msg = {'username': req['username'], 'success': False, 'reason': 'Username is already used'}
+            return Response(response=json.dumps(msg), **arg)
+
+        eml = User.query.filter_by(emailing=req['emailing']).first()
+        if not eml is None:
+            msg = {'username': req['username'], 'success': False, 'reason': 'Email adress is already used'}
+            return Response(response=json.dumps(msg), **arg)
+
+        dtb.session.add(User(**req))
+        dtb.session.commit()
+        msg = {'username': req['username'], 'success': True, 'reason': 'None'}
+        return Response(response=json.dumps(msg), **arg)
+
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    #app.run(host='127.0.0.1', port=8080)
