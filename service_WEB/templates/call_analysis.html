@@ -1,0 +1,37 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    <link href="/static/team.css" rel="stylesheet">
+
+    <body class="text-center">
+        <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
+            <main role="main" class="inner cover" align="justify">
+                <h1 class="cover-heading" align="center">Call Analysis</h1>
+                <p class="lead" >The AsTeR experience begins with the analysis of emergency calls to 911. We are using AI to understand 
+                the calls and process our prioritization algorithm. </p>
+                
+                <p class="lead">During the IBM Call for Code hackathon at UC Berkeley, we decided that the first step of our disaster
+                    manager platform will be the analysis of calls to 911 with a prioritization of emergency. The process can be described in few points:
+                    <ul class="lead">
+                        <li>
+                        Through speech-to-text technology of IBM Watson, we extract all the words in a conversation 
+                            with their timing.
+                            
+                        </li>
+                        <li>
+                        We use Natural Language Processing (NLP) models to define a prioritization for the calls.
+                            By extracting the main words of each sentence, we already have an idea of the topic and the location.
+                            Running our model with these extracting words gives us a precised view of the situation without using the help of an human.
+                        </li>
+                    </ul>
+                </p>
+                <p class="lead">The use of our system will provide an efficient way to compensate the lack of professionals in call centers 
+                during a natural disaster. We are thinking that when the amount of calls to 911 will rise in few minutes, our system will 
+                provide priorization for high emergency and help the work of the professionals on the ground. 
+                </p>               
+            </main>
+        </div>
+    </body>
+
+{% endblock %}

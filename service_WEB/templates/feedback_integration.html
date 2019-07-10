@@ -1,0 +1,37 @@
+{%  extends 'layout.html' %}
+
+{%  block body %}
+
+    <link href="/static/team.css" rel="stylesheet">
+
+    <body class="text-center">
+        <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
+            <main role="main" class="inner cover" align="justify">
+                <h1 class="cover-heading" align="center">Feedback Integration</h1>
+                <p class="lead" >The AsTeR experience provides a tool to help the units on the ground to inform about the situation.
+                Throught an app, they have just to spend few seconds to send the relevant information. </p>
+                
+                <p class="lead">The app has been created from the perspective of a firefighter. The use of the radio can be reinforced by 
+                our aggregator of information. We listed several situations which have to be communicate as quickly as possible:  
+                    <ul class="lead">
+                        <li>
+                        <b>Blocked routes:</b> When a truck can't go further or see a blocked route in the area, the information is immediately 
+                        aggregate to change the trajectories of next trucks. We are focusing mainly on the natural disaster which could 
+                        create some damages on the routes used for emergency.
+                        </li>
+                        <li>
+                        <b>Danger in the area:</b> When the unit using the app is victim or see a danger in the area. The current location will
+                        be immediately saved in our database and will affect all the trajectories for other units. 
+                        </li>
+                        <li>
+                         <b>New victims:</b>When the unit find a new victim during the operation. They could click the button and if they have 
+                         more time, the unit can save the personal information of the victim to be faster with the coordination between 
+                         emergency services. 
+                        </li>
+                    </ul>
+                             
+            </main>
+        </div>
+    </body>
+
+{% endblock %}
