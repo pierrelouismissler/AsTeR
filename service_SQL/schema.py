@@ -16,11 +16,9 @@ dtb = SQLAlchemy(con)
 class User(dtb.Model):
     
     username = dtb.Column(dtb.String(80), primary_key=True, unique=True, nullable=False)
+    fullname = dtb.Column(dtb.String(80), unique=False, nullable=False)
     password = dtb.Column(dtb.String(80), unique=False, nullable=False)
-
-    def __repr__(self):
-        
-        return 'User: %r' % self.username
+    emailing = dtb.Column(dtb.String(80), unique=True, nullable=False)
 
 if __name__ == '__main__':
 
@@ -33,9 +31,7 @@ if __name__ == '__main__':
     def populate_users(config='configs/initialization.yaml'):
 
         with open(config) as raw: pop = yaml.safe_load(raw)['users']
-        for user in pop: 
-            usr = User(username=user['username'], password=user['password'])
-            dtb.session.add(usr)
+        for user in pop: dtb.session.add(User(**user))
         dtb.session.commit()
     
     # Initialize registrations
