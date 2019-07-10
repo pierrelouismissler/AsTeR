@@ -5,5 +5,9 @@
 users:
 - username: 'admin'
   password: 'admin'
+  fullname: 'admin'
+  emailing: 'admin@berkeley.edu'
 - username: 'guest'
   password: 'guest'
+  fullname: 'guest'
+  emailing: 'guest@berkeley.edu'
