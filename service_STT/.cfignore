@@ -3,6 +3,7 @@
 # Project: AsTeR
 
 # User package
+.gitignore
 commander.py
 
 # Development
