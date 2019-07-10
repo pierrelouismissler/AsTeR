@@ -5,53 +5,53 @@
 try: from service_WEB.imports import *
 except: from imports import *
 
-app = Flask('WEB')
+application = Flask(__name__)
 # Apply static configuration
 with open('config.yaml') as raw: crd = yaml.safe_load(raw)
-app.secret_key = crd['secret_key']
+application.secret_key = crd['secret_key']
 SQL_URL = crd['sql_api']
 
 # Index
-@app.route('/')
-@app.route('/home/')
+@application.route('/')
+@application.route('/home/')
 def index():
     return render_template('home.html')
 
 # About Aster
-@app.route('/about')
+@application.route('/about')
 def about():
 
     return render_template('about.html')
 
 # Team
-@app.route('/team')
+@application.route('/team')
 def team():
 
     return render_template('team.html')
 
 # Features
-@app.route('/call_analysis')
+@application.route('/call_analysis')
 def call_analysis():
 
     return render_template('call_analysis.html')
 
-@app.route('/unit_dispatching')
+@application.route('/unit_dispatching')
 def unit_dispatching():
 
     return render_template('unit_dispatching.html')
 
-@app.route('/feedback_integration')
+@application.route('/feedback_integration')
 def feedback_integration():
 
     return render_template('feedback_integration.html')
 
-@app.route('/backup_plans')
+@application.route('/backup_plans')
 def backup_plans():
 
     return render_template('backup_plans.html')
 
 # Additional test environment
-@app.route('/test')
+@application.route('/test')
 def test():
 
     return render_template('test.html')
@@ -69,7 +69,7 @@ class RegisterForm(Form):
     confirm = PasswordField('Confirm Password')
 
 # Register page
-@app.route('/register', methods=['GET', 'POST'])
+@application.route('/register', methods=['GET', 'POST'])
 def register():
 
     def register_user(profile, url):
@@ -99,7 +99,7 @@ def register():
     return render_template('register.html', form=form)
 
 # Login page
-@app.route('/login', methods=['GET', 'POST'])
+@application.route('/login', methods=['GET', 'POST'])
 def login():
 
     def check_connection(profile, url):
@@ -138,18 +138,20 @@ def is_logged_in(f):
     return wrap
 
 # User Dashboard
-@app.route('/dashboard')
+@application.route('/dashboard')
 @is_logged_in
 def dashboard():
     return render_template('dashboard.html')
 
 # User log out page
-@app.route('/logout')
+@application.route('/logout')
 def logout():
     session.clear()
     flash('Successfully logged out', 'success')
     return redirect(url_for('index'))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
 
-    app.run(host='127.0.0.1', port=8080 )
+    # application.run(host='127.0.0.1', port=8080)
+    # application.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    application.run()
