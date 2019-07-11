@@ -145,6 +145,7 @@ def dashboard():
 
 # User log out page
 @application.route('/logout')
+@is_logged_in
 def logout():
     session.clear()
     flash('Successfully logged out', 'success')
