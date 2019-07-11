@@ -44,7 +44,7 @@ if __name__ == '__main__':
             msg = {'username': req['username'], 'success': False, 'reason': 'Username is already used'}
             return Response(response=json.dumps(msg), **arg)
 
-        eml = User.query.filter_by(emailing=req['emailing']).first()
+        eml = User.query.filter_by(email=req['email']).first()
         if not eml is None:
             msg = {'username': req['username'], 'success': False, 'reason': 'Email adress is already used'}
             return Response(response=json.dumps(msg), **arg)

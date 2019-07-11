@@ -59,7 +59,8 @@ def test():
 # Register form class
 class RegisterForm(Form):
 
-    name = StringField('Name', [validators.Length(min=2, max=50)])
+    firstname = StringField('First Name', [validators.Length(min=2, max=50)])
+    lastname = StringField('Last Name', [validators.Length(min=2, max=50)])
     username = StringField('Username', [validators.Length(min=4, max=25)])
     email = StringField('Email', [validators.Length(min=6, max=50)])
     password = PasswordField('Password', [
@@ -142,12 +143,14 @@ def is_logged_in(f):
 @application.route('/dashboard')
 @is_logged_in
 def dashboard():
+
     return render_template('dashboard.html')
 
 # User log out page
 @application.route('/logout')
 @is_logged_in
 def logout():
+
     session.clear()
     flash('Successfully logged out', 'success')
     return redirect(url_for('index'))
