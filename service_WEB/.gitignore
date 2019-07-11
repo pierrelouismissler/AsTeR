@@ -12,3 +12,9 @@ __pycache__/
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Virtual environment components
+venv/
+
+# Other
+.idea
