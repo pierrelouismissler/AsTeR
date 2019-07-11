@@ -1,4 +1,4 @@
-# Author:  RADERMECKER Oskar, DINDIN Meryll
+# Author:  RADERMECKER Oskar, DINDIN Meryll, MISSLER Pierre-Louis
 # Date:    09 July 2019
 # Project: AsTeR
 
