@@ -16,9 +16,10 @@ dtb = SQLAlchemy(con)
 class User(dtb.Model):
     
     username = dtb.Column(dtb.String(80), primary_key=True, unique=True, nullable=False)
-    fullname = dtb.Column(dtb.String(80), unique=False, nullable=False)
+    firstname = dtb.Column(dtb.String(80), unique=False, nullable=False)
+    lastname = dtb.Column(dtb.String(80), unique=False, nullable=False)
     password = dtb.Column(dtb.String(80), unique=False, nullable=False)
-    emailing = dtb.Column(dtb.String(80), unique=True, nullable=False)
+    email = dtb.Column(dtb.String(80), unique=True, nullable=False)
 
 if __name__ == '__main__':
 
