@@ -1,8 +1,5 @@
 <nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">
-{#        <img class="logo" src="/static/img/logo.png" alt="Aster logo", width="1%" height="1%">#}
-{#        <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" aria-hidden="true" class="mr-2" viewBox="0 0 24 24" focusable="false"><path d="M23 19a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h4l2-3h6l2 3h4a2 2 0 0 1 2 2z"/><circle cx="12" cy="13" r="4"/></svg>#}
-        Aster
+    <a class="navbar-brand" href="/">AsTeR
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -22,18 +19,15 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
                     <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="/home">Call analysis</a>
-                        <a class="dropdown-item" href="/home">Unit dispatching</a>
-                        <a class="dropdown-item" href="/home">Feedback integration</a>
-                        <a class="dropdown-item" href="/home">Backup plans</a>
+                        <a class="dropdown-item" href="/call_analysis">Call Analysis</a>
+                        <a class="dropdown-item" href="/unit_dispatching">Unit Dispatching</a>
+                        <a class="dropdown-item" href="/feedback_integration">Feedback Integration</a>
+                        <a class="dropdown-item" href="/backup_plans">Backup Plans</a>
                     </div>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             {% if session.logged_in %} {# show dashboard and logout buttons #}
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="/dashboard" tabindex="-1" aria-disabled="true">{{ session.username }}</a>
-                </li>
                 <li class="nav-item">
                     <a class="nav-link" href="/dashboard">Dashboard</a>
                 </li>
