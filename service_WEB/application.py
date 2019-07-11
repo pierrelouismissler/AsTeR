@@ -139,12 +139,26 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
 
-# User Dashboard
-@application.route('/dashboard')
+# Summary Dashboard
+@application.route('/dashboard/summary')
 @is_logged_in
-def dashboard():
+def dashboard_summary():
+    return render_template('dashboard/dashboard_summary.html')
 
-    return render_template('dashboard.html')
+# Calls Dashboard
+@application.route('/dashboard/calls')
+@is_logged_in
+def dashboard_calls():
+    return render_template('dashboard/dashboard_calls.html')
+
+
+# Units Dashboard
+@application.route('/dashboard/units')
+@is_logged_in
+def dashboard_units():
+    return render_template('dashboard/dashboard_units.html')
+
+
 
 # User log out page
 @application.route('/logout')
