@@ -75,7 +75,7 @@ def register():
     def register_user(profile, url):
     
         url = '/'.join([url, 'register'])
-        prm = dict(zip(['username', 'password', 'fullname', 'emailing'], profile))
+        prm = dict(zip(['username', 'password', 'first_name', 'last_name', 'email'], profile))
         req = requests.post(url, params=prm)
         return json.loads(req.content)
 
@@ -83,12 +83,13 @@ def register():
 
     if request.method == 'POST' and form.validate():
 
-        name = form.name.data
+        first_name = form.first_name.data
+        last_name = form.last_name.data
         email = form.email.data
         username = form.username.data
         password = form.password.data
 
-        result = register_user((username, password, name, email), SQL_URL)
+        result = register_user((username, password, first_name, last_name, email), SQL_URL)
 
         if not result['success']: 
             return render_template('register.html', error=result['reason'])
