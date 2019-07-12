@@ -5,11 +5,13 @@
 try: from service_WEB.imports import *
 except: from imports import *
 
-application = Flask(__name__)
-# Apply static configuration
+# Load credentials
 with open('config.yaml') as raw: crd = yaml.safe_load(raw)
-application.secret_key = crd['secret_key']
 SQL_URL = crd['sql_api']
+API_KEY = crd['api_key']
+# Secure application
+application = Flask(__name__)
+application.secret_key = crd['secret_key']
 
 # Index
 @application.route('/')
@@ -74,11 +76,13 @@ class RegisterForm(Form):
 @application.route('/register', methods=['GET', 'POST'])
 def register():
 
-    def register_user(profile, url):
-    
+    def register_user(profile, api_key, url):
+        
         url = '/'.join([url, 'register'])
-        prm = dict(zip(['username', 'password', 'first_name', 'last_name', 'email'], profile))
-        req = requests.post(url, params=prm)
+        header = {'apikey': api_key}
+        prm = dict(zip(['username', 'password', 'firstname', 'lastname', 'email'], profile))
+        req = requests.post(url, headers=header, params=prm)
+        
         return json.loads(req.content)
 
     form = RegisterForm(request.form)
@@ -91,7 +95,7 @@ def register():
         username = form.username.data
         password = form.password.data
 
-        result = register_user((username, password, first_name, last_name, email), SQL_URL)
+        result = register_user((username, password, first_name, last_name, email), API_KEY, SQL_URL)
 
         if not result['success']:
             return render_template('register.html', error=result['reason'])
@@ -105,11 +109,16 @@ def register():
 @application.route('/login', methods=['GET', 'POST'])
 def login():
 
-    def check_connection(profile, url):
-    
+    def check_connection(profile, api_key, url):
+        
+        warnings.simplefilter('ignore')
+        
         url = '/'.join([url, 'connect'])
         username, password = profile
-        req = requests.post(url, params={'username': username, 'password': sha256_crypt.hash(password)})
+        header = {'apikey': api_key}
+        params = {'username': username, 'password': sha256_crypt.hash(password)}
+        req = requests.post(url, headers=header, params=params)
+        
         return json.loads(req.content)
 
     if request.method == 'POST':
@@ -117,7 +126,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
 
-        result = check_connection((username, password), SQL_URL)
+        result = check_connection((username, password), API_KEY, SQL_URL)
 
         if result['success']:
             session['username'] = username

@@ -11,9 +11,27 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
 # Change application context to avoid conflict
 with app.app_context(): dtb.init_app(app)
 
+# API key filter
+def filter_key(function):
+
+    @wraps(function)
+    def decorated_function(*args, **kwargs):
+        # Load API keys
+        with open('configs/api_keys.yaml') as raw: keys = yaml.safe_load(raw)['keys']
+        # Check security
+        if request.headers.get('apikey') and request.headers.get('apikey') in keys:
+            return function(*args, **kwargs)
+        else: 
+            arg = {'status': 200, 'mimetype': 'application/json'}
+            msg = {'success': False, 'reason': 'Wrong api key provided'}
+            return Response(response=json.dumps(msg), **arg)
+
+    return decorated_function
+
 if __name__ == '__main__':
 
     @app.route('/connect', methods=['POST'])
+    @filter_key
     def connect():
 
         boo, req = False, parse_arguments(request)
@@ -35,6 +53,7 @@ if __name__ == '__main__':
         return Response(response=json.dumps(msg), **arg)
 
     @app.route('/register', methods=['POST'])
+    @filter_key
     def register():
 
         req = parse_arguments(request)
@@ -56,4 +75,4 @@ if __name__ == '__main__':
         return Response(response=json.dumps(msg), **arg)
 
     app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    # app.run(host='127.0.0.1', port=8080)
+    # app.run(host='127.0.0.1', port=8080, threaded=True)
