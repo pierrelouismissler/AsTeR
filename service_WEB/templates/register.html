@@ -1,6 +1,9 @@
 {%  extends 'layout.html' %}
 
 {%  block body %}
+    {% if error != NULL %}
+        {{ flash("Oops! You haven't been registered. Please check your information.", 'danger')  }}
+    {% endif %}
 
     <title>Register</title>
 

@@ -92,7 +92,7 @@ def register():
 
         result = register_user((username, password, first_name, last_name, email), SQL_URL)
 
-        if not result['success']: 
+        if not result['success']:
             return render_template('register.html', error=result['reason'])
         else:
             flash('You are now registered. Log in to access your simulation dashboard!', 'success')
@@ -120,9 +120,11 @@ def login():
 
         if result['success']:
             session['username'] = username
+            session['first_name'] = request.form['first_name']
+            session['last_name'] = request.form['last_name']
             session['logged_in'] = True
             flash('You are now logged in!', 'success')
-            return redirect(url_for('dashboard'))
+            return redirect(url_for('dashboard_summary'))
         else:
             return render_template('login.html', error=result['reason'])
 
@@ -141,7 +143,7 @@ def is_logged_in(f):
 
 # Summary Dashboard
 @application.route('/dashboard/summary')
-@is_logged_in
+# @is_logged_in
 def dashboard_summary():
     return render_template('dashboard/dashboard_summary.html')
 
