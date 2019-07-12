@@ -31,6 +31,7 @@ if __name__ == '__main__':
             err = 'None'
 
         msg = {'username': req['username'], 'success': boo, 'reason': err}
+        if boo: msg.update({'first_name': usr.firstname, 'last_name': usr.lastname})
         return Response(response=json.dumps(msg), **arg)
 
     @app.route('/register', methods=['POST'])

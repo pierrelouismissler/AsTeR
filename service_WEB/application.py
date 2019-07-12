@@ -15,6 +15,7 @@ SQL_URL = crd['sql_api']
 @application.route('/')
 @application.route('/home/')
 def index():
+
     return render_template('home.html')
 
 # About Aster
@@ -120,8 +121,8 @@ def login():
 
         if result['success']:
             session['username'] = username
-            session['first_name'] = request.form['first_name']
-            session['last_name'] = request.form['last_name']
+            session['first_name'] = result['first_name']
+            session['last_name'] = result['last_name']
             session['logged_in'] = True
             flash('You are now logged in!', 'success')
             return redirect(url_for('dashboard_summary'))
@@ -143,24 +144,24 @@ def is_logged_in(f):
 
 # Summary Dashboard
 @application.route('/dashboard/summary')
-# @is_logged_in
+@is_logged_in
 def dashboard_summary():
+
     return render_template('dashboard/dashboard_summary.html')
 
 # Calls Dashboard
 @application.route('/dashboard/calls')
 @is_logged_in
 def dashboard_calls():
-    return render_template('dashboard/dashboard_calls.html')
 
+    return render_template('dashboard/dashboard_calls.html')
 
 # Units Dashboard
 @application.route('/dashboard/units')
 @is_logged_in
 def dashboard_units():
+
     return render_template('dashboard/dashboard_units.html')
-
-
 
 # User log out page
 @application.route('/logout')
