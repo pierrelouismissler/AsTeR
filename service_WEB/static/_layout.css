@@ -2,3 +2,8 @@
 .alert{
   padding-bottom: -1rem;
 }
+
+.sidebar-brand-icon{
+  display: block;
+  padding: 10cm;
+}
