@@ -1,4 +1,4 @@
-passlib==1.7.1
 Flask==1.0.2
 Flask_SQLAlchemy==2.4.0
+passlib==1.7.1
 PyYAML==5.1.1
