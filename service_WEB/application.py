@@ -20,7 +20,7 @@ def index():
 
     return render_template('home.html')
 
-# About Aster
+# About AsTeR
 @application.route('/about')
 def about():
 
