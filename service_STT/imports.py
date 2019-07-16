@@ -22,7 +22,9 @@ from google.cloud.speech import types
 
 # Endpoint relative imports
 from flask import Flask
+from flask import abort
 from flask import request
 from flask import jsonify
 from flask import Response
+from functools import wraps
 from werkzeug.utils import secure_filename
