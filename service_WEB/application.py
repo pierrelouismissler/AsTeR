@@ -5,8 +5,6 @@
 
 try: from service_WEB.imports import *
 except: from imports import *
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
 
 # Load credentials
 with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
