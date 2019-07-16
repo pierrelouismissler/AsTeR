@@ -191,8 +191,9 @@ def dashboard_summary():
         style="height:600px;width:600px;margin:0;",
         markers=all_markers,
         streetview_control=False,
+        full_screen_control=False,
+        maptype_control=False,
         fit_markers_to_bounds=True
-        #center_on_user_location=True
     )
 
     return render_template('dashboard/dashboard_summary.html', dispatched_map=dispatched_map)
