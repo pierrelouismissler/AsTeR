@@ -11,6 +11,9 @@
     <link href="/static/sb-admin-2.min.css" rel="stylesheet">
     <meta name="description" content="AsTeR Project for IBM Call for Code">
     <meta name="author" content="Oskar Radermecker">
+    {% if "dashboard/summary" in request.path %}
+        {{dispatched_map.js}}
+    {% endif %}
 </head>
 
 <body>

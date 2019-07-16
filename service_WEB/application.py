@@ -15,6 +15,54 @@ API_KEY = crd['api_key']
 # Secure application
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
+GoogleMaps(application, key=crd['googlemaps_api'])
+
+
+class EmergencyUnit:
+    def __init__(self, unit_id, type, name, lat, lng):
+        self.unit_id = unit_id
+        self.type = type
+        self.name = name
+        self.lat = lat
+        self.lng = lng
+
+dispatched_units = (
+    EmergencyUnit(unit_id='patrol03', type='Police',      name='Patrol 3',            lat=37.419687, lng=-121.862749),
+    EmergencyUnit(unit_id='amb07',    type='Ambulance',   name='Ambulance 7',         lat=37.415902, lng=-122.142975),
+    EmergencyUnit(unit_id='fire22',   type='Firefighter', name='Firefighter Unit 22', lat=37.4300,   lng=-122.1400)
+)
+# dispatched_units_by_id={dispatched_unit.unit_id: dispatched_unit for dispatched_unit in dispatched_units}
+
+
+@application.route("/mapview")
+def mapview():
+    # creating a map in the view
+    mymap = Map(
+        identifier="view-side",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[(37.4419, -122.1419)]
+    )
+    sndmap = Map(
+        identifier="sndmap",
+        lat=37.4419,
+        lng=-122.1419,
+        markers=[
+            {
+                'icon': 'http://maps.google.com/mapfiles/ms/icons/green-dot.png',
+                'lat': 37.4419,
+                'lng': -122.1419,
+                'infobox': "<b>Hello World</b>"
+            },
+            {
+                'icon': 'http://maps.google.com/mapfiles/ms/icons/blue-dot.png',
+                'lat': 37.4300,
+                'lng': -122.1400,
+                'infobox': "<b>Hello World from other place</b>"
+            }
+        ]
+    )
+    return render_template('map.html', mymap=mymap, sndmap=sndmap)
 
 
 # Index
@@ -160,7 +208,30 @@ def is_logged_in(f):
 @is_logged_in
 def dashboard_summary():
 
-    return render_template('dashboard/dashboard_summary.html')
+    all_markers = []
+    colours = {'Police': 'blue', 'Ambulance': 'red', 'Firefighter': 'yellow'}
+
+    for dispatched_unit in dispatched_units:
+        all_markers.append(
+            {'icon': 'http://maps.google.com/mapfiles/ms/icons/{colour}-dot.png'.format(colour=colours.get(dispatched_unit.type)),
+             'lat': dispatched_unit.lat,
+             'lng': dispatched_unit.lng,
+             'infobox': "<b>" + str(dispatched_unit.name) + "</b>"}
+        )
+
+    dispatched_map = Map(
+        identifier="dispatched_units",
+        lat=37.4419,
+        lng=-122.1419,
+        maptype='TERRAIN',
+        style="height:600px;width:600px;margin:0;",
+        markers=all_markers,
+        streetview_control=False,
+        fit_markers_to_bounds=True
+        #center_on_user_location=True
+    )
+
+    return render_template('dashboard/dashboard_summary.html', dispatched_map=dispatched_map)
 
 # Calls Dashboard
 @application.route('/dashboard/calls')

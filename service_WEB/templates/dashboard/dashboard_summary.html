@@ -21,15 +21,23 @@
             {#                        </button>#}
             {#                    </div>#}
         </div>
-{#        <div class="my-4 w-50" id="map" >#}
-{#            <img src="/static/img/dashboard/temporary_map.png" alt="Map of dispatched teams">#}
-{#        </div>#}
+        {#        <div class="my-4 w-50" id="map" >#}
+        {#            <img src="/static/img/dashboard/temporary_map.png" alt="Map of dispatched teams">#}
+        {#        </div>#}
+
         <div class="row">
-            <div class="col-lg-3" id="map">
-                {{googlemap("my_awesome_map", lat=0.23234234, lng=-0.234234234, markers=[(0.12, -0.45345)])}}
+            <div class="col-lg-8" id="map">
+                {{dispatched_map.html}}
+            </div>
+            <div class="col-lg-4 id="calls>
+                <p> Some calls are displayed here. </p>
             </div>
         </div>
 
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 border-bottom"></div>
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <p class="lead"><b>Here are some statistics about recent calls.</b></p>
+        </div>
         {#                <canvas class="my-4 w-100" id="myChart" width="900" height="380"></canvas>#}
         {##}
         {#                <h2>Section title</h2>#}
