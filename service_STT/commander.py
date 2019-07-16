@@ -4,6 +4,7 @@
 
 import os
 import json
+import yaml
 import requests
 import numpy as np
 import pandas as pd
@@ -75,8 +76,10 @@ class Commander:
 
 if __name__ == '__main__':
 
+    # config = {'url': 'http://127.0.0.1:8080', }
+    config = {'url': 'http://servicestt-appreciative-swan.mybluemix.net'}
     with open('service_STT/configs/api_keys.yaml') as raw: lst = yaml.safe_load(raw)
-    config = {'url': 'http://127.0.0.1:8080', 'key': lst['keys'][0]}
+    config.update({'key': lst['keys'][0]})
     a_path = 'calls/call_0.wav'
     values = Commander(a_path, config=config).get_transcript(api_type='IBM')
     print(values)

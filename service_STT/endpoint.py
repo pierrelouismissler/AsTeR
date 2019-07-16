@@ -53,5 +53,5 @@ if __name__ == '__main__':
         arg = {'status': 200, 'mimetype': 'application/json'}
         return Response(response=json.dumps(req), **arg)
 
-    # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    app.run(host='127.0.0.1', port=8080, threaded=True)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    # app.run(host='127.0.0.1', port=8080, threaded=True)
