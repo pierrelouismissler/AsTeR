@@ -2,8 +2,11 @@
 # Date:    09 July 2019
 # Project: AsTeR
 
+
 try: from service_WEB.imports import *
 except: from imports import *
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 
 # Load credentials
 with open('config.yaml') as raw: crd = yaml.safe_load(raw)
@@ -12,6 +15,7 @@ API_KEY = crd['api_key']
 # Secure application
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
+
 
 # Index
 @application.route('/')
