@@ -2,12 +2,6 @@
 
 This submodule specifically implements the SQL API as we need it. The current micro-service is integrated on the web through a *Cloud Foundry Python Application*, which gives us some flexibility regarding network architecture. Ultimately, this service aims at gathering all the insights received before, during and after the natural disaster / emergencies. It also is the core of our dispatching strategy, by giving the right real-time overview to the dispatchers. 
 
-## SSL Context Generation
-
-```bash
-openssl genrsa 2048 > xxx.key
-openssl req -new -x509 -nodes -sha256 -days 365 -key xxx.key -out xxx.cert
-```
 
 ## Clound Foundry Application
 
