@@ -3,7 +3,7 @@
 # Project: AsTeR
 
 # Sensitive materials
-config.yaml
+configs/*
 
 # Compiled package
 __pycache__/

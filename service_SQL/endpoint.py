@@ -28,6 +28,16 @@ def filter_key(function):
 
     return decorated_function
 
+# Obtain the transcript from the STT service
+def get_transcript(audio_path, key):
+
+    fle = {'audio_file': open(audio_path, 'rb')}
+    url = '/'.join(['http://servicesql-comedic-wallaby.mybluemix.net', 'run'])
+    req = requests.post(url, headers={'apikey': key}, files=fle, params={'api_type': 'IBM'})
+
+    try: return json.loads(req.content)
+    except: return None
+
 if __name__ == '__main__':
 
     @app.route('/connect', methods=['POST'])
@@ -74,5 +84,37 @@ if __name__ == '__main__':
         msg = {'username': req['username'], 'success': True, 'reason': 'None'}
         return Response(response=json.dumps(msg), **arg)
 
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    # app.run(host='127.0.0.1', port=8080, threaded=True)
+    @app.route('/analyze', methods=['POST'])
+    @filter_key
+    def analyze():
+
+        # Defines where to store the calls
+        if not os.path.exists('storage'): os.mkdir('storage')
+        # Load the audio file
+        fle = request.files['audio_file']
+        # Extract the key
+        key = request.headers.get('apikey')
+        if not os.path.exists('/'.join(['storage', key])): os.mkdir('/'.join(['storage', key]))
+        # Serialize the call
+        idx = uuid.uuid4().hex
+        fle.save('/'.join(['storage', key, idx]))
+
+        # Launch the analysis
+        res = get_transcript('/'.join(['storage', key, idx]), key)
+
+        if res is None:
+            msg = {'id': idx, 'success': False, 'reason': 'Issue with speech-to-text technology'}
+            return Response(response=json.dumps(msg), **arg)
+
+        else:
+            req = parse_arguments(request)
+            req.update({'call_id': '-'.join([key, idx]), 'length': max(res['ends'])})
+            req.update({'transcript': ' '.join(res['words']), 'priority': 1.0})
+            # Update the database
+            dtb.session.add(Call(**req))
+            dtb.session.commit()
+            msg = {'id': idx, 'success': True}
+            return Response(response=json.dumps(msg), **arg)
+
+    # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    app.run(host='127.0.0.1', port=8080, threaded=True)

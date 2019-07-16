@@ -9,7 +9,7 @@ from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
 
 # Load credentials
-with open('config.yaml') as raw: crd = yaml.safe_load(raw)
+with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
 SQL_URL = crd['sql_api']
 API_KEY = crd['api_key']
 # Secure application
@@ -259,5 +259,4 @@ def logout():
 if __name__ == '__main__':
 
     # application.run(host='127.0.0.1', port=8080)
-    # application.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
     application.run(debug=True)

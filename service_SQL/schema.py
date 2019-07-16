@@ -21,6 +21,16 @@ class User(dtb.Model):
     password = dtb.Column(dtb.String(80), unique=False, nullable=False)
     email = dtb.Column(dtb.String(80), unique=True, nullable=False)
 
+class Call(dtb.Model):
+
+    call_id = dtb.Column(dtb.String(80), primary_key=True, unique=True, nullable=False)
+    length = dtb.Column(dtb.Float, unique=False, nullable=False)
+    timestamp = dtb.Column(dtb.Integer, unique=False, nullable=False)
+    longitude = dtb.Column(dtb.Float, unique=False, nullable=False)
+    latitude = dtb.Column(dtb.Float, unique=False, nullable=False)
+    transcript = dtb.Column(dtb.Text, unique=False, nullable=True)
+    priority = dtb.Columns(dtb.Float, unique=False, nullable=True)
+
 if __name__ == '__main__':
 
     # Initialize structure
