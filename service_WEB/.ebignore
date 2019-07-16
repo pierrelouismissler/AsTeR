@@ -5,3 +5,6 @@
 # Development files
 .gitignore
 __pycache__/
+
+# Sensitive material
+configs/host*
