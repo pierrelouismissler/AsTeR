@@ -24,8 +24,8 @@ class EmergencyUnit:
         self.lng = lng
 
 dispatched_units = (
-    EmergencyUnit(unit_id='patrol03', type='Police',      name='Patrol 3',            lat=37.419687, lng=-121.862749),
-    EmergencyUnit(unit_id='amb07',    type='Ambulance',   name='Ambulance 7',         lat=37.415902, lng=-122.142975),
+    EmergencyUnit(unit_id='patrol03', type='Police',      name='Police Patrol 3',     lat=37.419687, lng=-121.862749),
+    EmergencyUnit(unit_id='amb07',    type='Ambulance',   name='Ambulance Unit 7',    lat=37.415902, lng=-122.142975),
     EmergencyUnit(unit_id='fire22',   type='Firefighter', name='Firefighter Unit 22', lat=37.4300,   lng=-122.1400)
 )
 
