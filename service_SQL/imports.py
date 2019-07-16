@@ -3,6 +3,7 @@
 # Project: AsTeR
 
 import os
+import uuid
 import json
 import yaml
 import warnings
