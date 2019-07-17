@@ -14,4 +14,3 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 from flask_googlemaps import GoogleMaps
 from flask_googlemaps import Map
-

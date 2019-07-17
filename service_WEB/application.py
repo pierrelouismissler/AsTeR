@@ -2,7 +2,6 @@
 # Date:    09 July 2019
 # Project: AsTeR
 
-
 try: from service_WEB.imports import *
 except: from imports import *
 
@@ -17,7 +16,9 @@ application.secret_key = crd['secret_key']
 GoogleMaps(application, key=crd['googlemaps_api'])
 
 class EmergencyUnit:
+
     def __init__(self, unit_id, type, name, lat, lng):
+
         self.unit_id = unit_id
         self.type = type
         self.name = name
@@ -33,6 +34,7 @@ dispatched_units = (
 # Index
 @application.route('/')
 @application.route('/home/')
+
 def index():
 
     return render_template('home.html')
