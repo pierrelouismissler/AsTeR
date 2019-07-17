@@ -6,10 +6,6 @@
 try: from service_WEB.imports import *
 except: from imports import *
 
-# from map_attributes import GoogleMaps
-# from map_attributes import Map
-from flask_googlemaps import GoogleMaps
-from flask_googlemaps import Map
 
 # Load credentials
 with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
@@ -75,10 +71,10 @@ def backup_plans():
     return render_template('backup_plans.html')
 
 # Additional test environment
-@application.route('/test')
-def test():
-
-    return render_template('test.html')
+# MASK WHEN NOT IN USE AND BEFORE DEPLOYMENT
+# @application.route('/test')
+# def test():
+#     return render_template('test.html')
 
 # Register form class
 class RegisterForm(Form):
