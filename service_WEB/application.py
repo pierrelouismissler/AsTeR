@@ -185,13 +185,13 @@ def dashboard_summary():
              'infobox': "<b>" + str(dispatched_unit.name) + "</b>"}
         )
 
-    routeCoordinates = []
+    route_coordinates = []
     for t in open('route_coordinates.txt').read().split('\n'):
         a, b = t.strip('()').split(',')
-        routeCoordinates.append((float(b), float(a)))
+        route_coordinates.append((float(b), float(a)))
 
-    flightPath = [{
-        'path': routeCoordinates,
+    path = [{
+        'path': route_coordinates,
         'geodesic': True,
         'strokeColor': '#FF0000',
         'strokeOpacity': 1.0,
@@ -205,14 +205,12 @@ def dashboard_summary():
         maptype='TERRAIN',
         style="height:600px;width:600px;margin:0;",
         markers=all_markers,
-        polylines=flightPath,
+        polylines=path,
         streetview_control=False,
         full_screen_control=False,
         maptype_control=False,
         fit_markers_to_bounds=True
     )
-
-
 
     return render_template('dashboard/dashboard_summary.html', dispatched_map=dispatched_map)
 
@@ -220,26 +218,22 @@ def dashboard_summary():
 @application.route('/dashboard/calls')
 @is_logged_in
 def dashboard_calls():
-
     return render_template('dashboard/dashboard_calls.html')
 
 # Units Dashboard
 @application.route('/dashboard/units')
 @is_logged_in
 def dashboard_units():
-
     return render_template('dashboard/dashboard_units.html')
 
 # User log out page
 @application.route('/logout')
 @is_logged_in
 def logout():
-
     session.clear()
     flash('Successfully logged out', 'success')
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-
     # application.run(host='127.0.0.1', port=8080)
     application.run(debug=True)
