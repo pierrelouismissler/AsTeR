@@ -181,7 +181,7 @@ def dashboard_summary():
             'name': dispatched_unit.name,
             'lat': dispatched_unit.lat,
             'lng': dispatched_unit.lng,
-            'infobox': "<b>" + str(dispatched_unit.name) + "</b>"
+            'infobox': ""  # Place for additional information on each unit. Will be displayed in pop-up on map.
         })
 
     route_coordinates = []

@@ -13,7 +13,8 @@
         </div>
 
         <div class="row">
-            <div class="col-lg-8" id={{ map_parameters.identifier }}>
+            <div class="col-lg-10" >
+                <div id={{ map_parameters.identifier }}>
                 {#                {% block map_block %}{% endblock %}#}
 
                 <script>
@@ -153,23 +154,57 @@
                             };
 
                         // Create the markers array.
-                        var markers = [];
+                        var dispatched_units = [];
                         for (var i=0; i < map_parameters.units.length; i++) {
                             var unit = map_parameters.units[i];
-                            markers.push({
+                            dispatched_units.push({
                                 position: new google.maps.LatLng(unit.lat, unit.lng),
-                                type: unit.type
-                                // Add other parameters
+                                type: unit.type,
+                                name: unit.name,
+                                content: '<div id="content"><div id="siteNotice"></div>'+
+                                        '<h5 id="firstHeading" class="firstHeading">'+unit.name+'</h5>'+
+                                        '<div id="bodyContent"><p><b>Unit ID: </b>'+unit.id+'</p>' +
+                                        '<p>'+unit.infobox+'</p></div></div>'
                             });
                         }
 
+                        var currentinfowindow = null; // To keep only one window open (see below in add listener)
+
                         // Put the markers on the map.
-                        markers.forEach(function(feature) {
+                        dispatched_units.forEach(function(unit) {
                             var marker = new google.maps.Marker({
-                                position: feature.position,
-                                icon: icons[feature.type].icon,
+                                position: unit.position,
+                                title: unit.name,
+                                icon: icons[unit.type].icon,
                                 map: map
                             });
+                            var content = unit.content;
+                            var infowindow = new google.maps.InfoWindow();
+
+                            marker.addListener('click', (function() {
+                                return function () {
+                                    infowindow.setContent(content);
+                                    if (currentinfowindow)
+                                        currentinfowindow.close();
+                                    infowindow.open(map, marker);
+                                    currentinfowindow = infowindow;
+                                };
+                            })(marker, content, infowindow));
+
+                            // To have the infowindow displayed during mouseover only. Nice now but might not be practical
+                            // when the markers are moving!
+                            {#marker.addListener('mouseover', (function() {#}
+                            {#    return function () {#}
+                            {#        infowindow.setContent(content);#}
+                            {#        infowindow.open(map, marker);#}
+                            {#    };#}
+                            {# })(marker, content, infowindow));#}
+                            {##}
+                            {#marker.addListener('mouseout', (function() {#}
+                            {#    return function () {#}
+                            {#        infowindow.close();#}
+                            {#    };#}
+                            {# })(infowindow));#}
                         });
 
                         // Create the legend
@@ -216,7 +251,8 @@
                 </script>
             </div>
             <div id="legend"><h5>Legend</h5></div>
-            <div class="col-lg-4 id="calls>
+            </div>
+            <div class="col-lg-2 id="calls>
                 <p> Some calls are displayed here. </p>
             </div>
         </div>
