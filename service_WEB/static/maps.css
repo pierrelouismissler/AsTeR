@@ -19,6 +19,7 @@ html, body {
     padding: 10px;
     margin: 10px;
     border: 1px #4f4c49;
+    box-shadow: 1px 1px rgba(116, 112, 111, 0.44);
 }
 #legend h3 {
     margin-top: 0;

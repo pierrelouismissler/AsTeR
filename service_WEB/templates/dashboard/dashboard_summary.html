@@ -19,26 +19,6 @@
                 <script>
                     var map_parameters = JSON.parse('{{map_parameters | tojson}}');
 
-                    {##}
-                    {#function setMarkers(map) {#}
-                    {#    for (var i=0; i < map_parameters.markers.length; i++) {#}
-                    {#        var indiv_marker = map_parameters.markers[i];#}
-                    {#        var marker = new google.maps.Marker({#}
-                    {#            position: {lat:indiv_marker.lat, lng:indiv_marker.lng},#}
-                    {#            icon: {#}
-                    {#                path: google.maps.SymbolPath.CIRCLE,#}
-                    {#                scale: 7,#}
-                    {#                fillColor: indiv_marker.icon_color,#}
-                    {#strokeColor: indiv_marker.icon_color,#}
-                    {#                fillOpacity: 0.8,#}
-                    {#                strokeOpacity: 0.8,#}
-                    {#                strokeWeight: 0.8#}
-                    {#            },#}
-                    {#            map: map#}
-                    {#        });#}
-                    {#    }#}
-                    {# }#}
-
                     // Initialize and add the map
                     function initMap() {
 
@@ -142,62 +122,49 @@
                         //Associate the night mode map with the MapTypeId and set it to display.
                         map.mapTypes.set('night_map', nightMapType);
 
-                        // Sets all the markers on the app
-                        {#setMarkers(map);#}
+                        // Defines the icon parameters (circles)
+                        function set_icon_parameters(color) {
+                            var icon_parameters = {
+                                path: google.maps.SymbolPath.CIRCLE,
+                                scale: 7,
+                                fillOpacity: 0.8,
+                                strokeOpacity: 0.8,
+                                strokeWeight: 0.8
+                            };
+                            icon_parameters.fillColor = color;
+                            {#icon_parameters.strokeColor: color,#}
+                            return icon_parameters
+                        }
 
-                        // Create the icons array.
+                        // Creates the icons array.
                         var icons = {
                             police: {
                                 name: 'Police Unit',
-                                icon: {
-                                    path: google.maps.SymbolPath.CIRCLE,
-                                    scale: 7,
-                                    fillColor: '#484ed5',
-                                    {#strokeColor: indiv_marker.icon_color,#}
-                                    fillOpacity: 0.8,
-                                    strokeOpacity: 0.8,
-                                    strokeWeight: 0.8
-                                }
+                                icon: set_icon_parameters('#484ed5')
                             },
                             ambulance: {
                                 name: 'Ambulance',
-                                icon: {
-                                    path: google.maps.SymbolPath.CIRCLE,
-                                    scale: 7,
-                                    fillColor: '#d51f13',
-                                    {#strokeColor: indiv_marker.icon_color,#}
-                                    fillOpacity: 0.8,
-                                    strokeOpacity: 0.8,
-                                    strokeWeight: 0.8
-                                }
+                                icon: set_icon_parameters('#d51f13')
                             },
                             firefighter: {
                                 name: 'Firefighter Unit',
-                                icon: {
-                                    path: google.maps.SymbolPath.CIRCLE,
-                                    scale: 7,
-                                    fillColor: '#d57600',
-                                    {#strokeColor: indiv_marker.icon_color,#}
-                                    fillOpacity: 0.8,
-                                    strokeOpacity: 0.8,
-                                    strokeWeight: 0.8
+                                icon: set_icon_parameters('#d57600')
                                 }
-                            }
-                        };
+                            };
 
-                        // Create the features (markers) array.
-                        var features = [];
+                        // Create the markers array.
+                        var markers = [];
                         for (var i=0; i < map_parameters.units.length; i++) {
                             var unit = map_parameters.units[i];
-                            features.push({
+                            markers.push({
                                 position: new google.maps.LatLng(unit.lat, unit.lng),
                                 type: unit.type
-                                // Add the other parameters
+                                // Add other parameters
                             });
                         }
 
-                        // Create markers.
-                        features.forEach(function(feature) {
+                        // Put the markers on the map.
+                        markers.forEach(function(feature) {
                             var marker = new google.maps.Marker({
                                 position: feature.position,
                                 icon: icons[feature.type].icon,
@@ -216,8 +183,10 @@
                             legend.appendChild(div);
                         }
 
+                        // Add the legend on the map
                         map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
 
+                        // Allow the map to be centered on the user's location
                         if (map_parameters.center_on_user_location) {
                             if (navigator.geolocation) {
                                 navigator.geolocation.getCurrentPosition(function(position) {
@@ -246,7 +215,7 @@
                     }
                 </script>
             </div>
-            <div id="legend"><h3>Legend</h3></div>
+            <div id="legend"><h5>Legend</h5></div>
             <div class="col-lg-4 id="calls>
                 <p> Some calls are displayed here. </p>
             </div>
