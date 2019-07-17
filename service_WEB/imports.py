@@ -12,6 +12,6 @@ from flask import Flask, request, render_template, flash, redirect, url_for, ses
 from wtforms import Form, StringField, TextAreaField, PasswordField, validators
 from passlib.hash import sha256_crypt
 from functools import wraps
-#from flask_googlemaps import GoogleMaps
-#from flask_googlemaps import Map
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
 
