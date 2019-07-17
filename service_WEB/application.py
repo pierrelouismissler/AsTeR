@@ -5,7 +5,6 @@
 try: from service_WEB.imports import *
 except: from imports import *
 
-
 # Load credentials
 with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
 SQL_URL = crd['sql_api']
@@ -169,7 +168,6 @@ def is_logged_in(f):
             flash('You need to log in before you can access your dashboard!', 'danger')
             return redirect(url_for('login'))
     return wrap
-
 
 # Summary Dashboard
 @application.route('/dashboard/summary')
