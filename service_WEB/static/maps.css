@@ -3,7 +3,8 @@
 * element that contains the map. */
 #emergency_map {
     height: 600px;
-    width: 600px;
+    /*width: 900px;*/
+    width: 100%;
     margin: 0;
 }
 /* Optional: Makes the sample page fill the window. */
