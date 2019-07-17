@@ -202,7 +202,6 @@ def dashboard_summary():
         'lat': 37.4419,
         'lng': -122.1419,
         'maptype': 'terrain',
-        # 'markers': all_markers,
         'units': units,
         'polylines': path,
         'streetview_control': False,
@@ -212,7 +211,7 @@ def dashboard_summary():
         'center_on_user_location': True
     }
 
-    # return render_template('dashboard/map_page.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
+    # return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
     return render_template('dashboard/dashboard_summary.html', map_parameters=map_parameters)
 
 # Calls Dashboard
