@@ -12,12 +12,11 @@ API_KEY = crd['api_key']
 # Secure application
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
-GoogleMaps(application, key=crd['googlemaps_api'])
+# GoogleMaps(application, key=crd['googlemaps_api'])
 
 class EmergencyUnit:
 
     def __init__(self, unit_id, type, name, lat, lng):
-
         self.unit_id = unit_id
         self.type = type
         self.name = name
@@ -25,9 +24,9 @@ class EmergencyUnit:
         self.lng = lng
 
 dispatched_units = (
-    EmergencyUnit(unit_id='patrol03', type='Police',      name='Police Patrol 3',     lat=37.419687, lng=-121.862749),
-    EmergencyUnit(unit_id='amb07',    type='Ambulance',   name='Ambulance Unit 7',    lat=37.415902, lng=-122.142975),
-    EmergencyUnit(unit_id='fire22',   type='Firefighter', name='Firefighter Unit 22', lat=37.4300,   lng=-122.1400)
+    EmergencyUnit(unit_id='patrol03', type='police',      name='Police Patrol 3',     lat=37.419687, lng=-121.862749),
+    EmergencyUnit(unit_id='amb07',    type='ambulance',   name='Ambulance Unit 7',    lat=37.415902, lng=-122.142975),
+    EmergencyUnit(unit_id='fire22',   type='firefighter', name='Firefighter Unit 22', lat=37.4300,   lng=-122.1400)
 )
 
 # Index
@@ -95,12 +94,12 @@ class RegisterForm(Form):
 def register():
 
     def register_user(profile, api_key, url):
-        
+
         url = '/'.join([url, 'register'])
         header = {'apikey': api_key}
         prm = dict(zip(['username', 'password', 'firstname', 'lastname', 'email'], profile))
         req = requests.post(url, headers=header, params=prm)
-        
+
         return json.loads(req.content)
 
     form = RegisterForm(request.form)
@@ -128,15 +127,15 @@ def register():
 def login():
 
     def check_connection(profile, api_key, url):
-        
+
         warnings.simplefilter('ignore')
-        
+
         url = '/'.join([url, 'connect'])
         username, password = profile
         header = {'apikey': api_key}
         params = {'username': username, 'password': sha256_crypt.hash(password)}
         req = requests.post(url, headers=header, params=params)
-        
+
         return json.loads(req.content)
 
     if request.method == 'POST':
@@ -174,22 +173,21 @@ def is_logged_in(f):
 @is_logged_in
 def dashboard_summary():
 
-    all_markers = []
-    colours = {'Police': 'blue', 'Ambulance': 'red', 'Firefighter': 'yellow'}
-
+    units = []
     for dispatched_unit in dispatched_units:
-        all_markers.append(
-            {'icon': 'http://maps.google.com/mapfiles/ms/icons/{colour}-dot.png'.format(colour=colours.get(dispatched_unit.type)),
-             'lat': dispatched_unit.lat,
-             'lng': dispatched_unit.lng,
-             'infobox': "<b>" + str(dispatched_unit.name) + "</b>"}
-        )
+        units.append({
+            'id': dispatched_unit.unit_id,
+            'type': dispatched_unit.type,
+            'name': dispatched_unit.name,
+            'lat': dispatched_unit.lat,
+            'lng': dispatched_unit.lng,
+            'infobox': "<b>" + str(dispatched_unit.name) + "</b>"
+        })
 
     route_coordinates = []
     for t in open('route_coordinates.txt').read().split('\n'):
         a, b = t.strip('()').split(',')
         route_coordinates.append((float(b), float(a)))
-
     path = [{
         'path': route_coordinates,
         'geodesic': True,
@@ -198,21 +196,24 @@ def dashboard_summary():
         'strokeWeight': 2
     }]
 
-    dispatched_map = Map(
-        identifier="dispatched_units",
-        lat=37.4419,
-        lng=-122.1419,
-        maptype='TERRAIN',
-        style="height:600px;width:600px;margin:0;",
-        markers=all_markers,
-        polylines=path,
-        streetview_control=False,
-        full_screen_control=False,
-        maptype_control=False,
-        fit_markers_to_bounds=True
-    )
+    map_parameters = {
+        'identifier': "emergency_map",
+        'zoom': 11,
+        'lat': 37.4419,
+        'lng': -122.1419,
+        'maptype': 'terrain',
+        # 'markers': all_markers,
+        'units': units,
+        'polylines': path,
+        'streetview_control': False,
+        'full_screen_control': False,
+        'maptype_control': False,
+        'fit_markers_to_bounds': True,
+        'center_on_user_location': True
+    }
 
-    return render_template('dashboard/dashboard_summary.html', dispatched_map=dispatched_map)
+    # return render_template('dashboard/map_page.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
+    return render_template('dashboard/dashboard_summary.html', map_parameters=map_parameters)
 
 # Calls Dashboard
 @application.route('/dashboard/calls')

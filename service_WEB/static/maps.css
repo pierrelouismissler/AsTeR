@@ -1,0 +1,28 @@
+
+/* Always set the map height explicitly to define the size of the div
+* element that contains the map. */
+#emergency_map {
+    height: 600px;
+    width: 600px;
+    margin: 0;
+}
+/* Optional: Makes the sample page fill the window. */
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+#legend {
+    background: #fff;
+    border-radius: 3px;
+    padding: 10px;
+    margin: 10px;
+    border: 1px #4f4c49;
+}
+#legend h3 {
+    margin-top: 0;
+}
+#legend img {
+    vertical-align: middle;
+}
