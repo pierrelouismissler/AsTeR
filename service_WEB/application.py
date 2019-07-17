@@ -187,13 +187,10 @@ def dashboard_summary():
     route_coordinates = []
     for t in open('route_coordinates.txt').read().split('\n'):
         a, b = t.strip('()').split(',')
-        route_coordinates.append((float(b), float(a)))
+        route_coordinates.append({'lat': float(b), 'lng': float(a)})
     path = [{
-        'path': route_coordinates,
-        'geodesic': True,
-        'strokeColor': '#FF0000',
-        'strokeOpacity': 1.0,
-        'strokeWeight': 2
+        'coordinates': route_coordinates,
+        'type': 'police',
     }]
 
     map_parameters = {
@@ -201,11 +198,11 @@ def dashboard_summary():
         'zoom': 11,
         'lat': 37.4419,
         'lng': -122.1419,
-        'maptype': 'terrain',
+        'mapType': 'terrain',
         'units': units,
-        'polylines': path,
+        'djikstra_path': path,
         'streetview_control': False,
-        'full_screen_control': False,
+        'fullscreen_control': False,
         'maptype_control': False,
         'fit_markers_to_bounds': True,
         'center_on_user_location': True
