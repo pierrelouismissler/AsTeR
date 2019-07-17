@@ -6,6 +6,11 @@
 try: from service_WEB.imports import *
 except: from imports import *
 
+# from map_attributes import GoogleMaps
+# from map_attributes import Map
+from flask_googlemaps import GoogleMaps
+from flask_googlemaps import Map
+
 # Load credentials
 with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
 SQL_URL = crd['sql_api']
@@ -167,6 +172,7 @@ def is_logged_in(f):
             return redirect(url_for('login'))
     return wrap
 
+
 # Summary Dashboard
 @application.route('/dashboard/summary')
 @is_logged_in
@@ -183,6 +189,19 @@ def dashboard_summary():
              'infobox': "<b>" + str(dispatched_unit.name) + "</b>"}
         )
 
+    routeCoordinates = []
+    for t in open('route_coordinates.txt').read().split('\n'):
+        a, b = t.strip('()').split(',')
+        routeCoordinates.append((float(b), float(a)))
+
+    flightPath = [{
+        'path': routeCoordinates,
+        'geodesic': True,
+        'strokeColor': '#FF0000',
+        'strokeOpacity': 1.0,
+        'strokeWeight': 2
+    }]
+
     dispatched_map = Map(
         identifier="dispatched_units",
         lat=37.4419,
@@ -190,11 +209,14 @@ def dashboard_summary():
         maptype='TERRAIN',
         style="height:600px;width:600px;margin:0;",
         markers=all_markers,
+        polylines=flightPath,
         streetview_control=False,
         full_screen_control=False,
         maptype_control=False,
         fit_markers_to_bounds=True
     )
+
+
 
     return render_template('dashboard/dashboard_summary.html', dispatched_map=dispatched_map)
 
