@@ -15,13 +15,14 @@
         <div class="row">
             <div class="col-lg-10" >
                 <div id={{ map_parameters.identifier }}>
-                {#                {% block map_block %}{% endblock %}#}
-
+{#                    {% block map_block %}{% endblock %}#}
                 <script>
                     var map_parameters = JSON.parse('{{map_parameters | tojson}}');
 
                     // Initialize and add the map
                     function initMap() {
+
+                        //////////////////////////  Map styles  ///////////////////
 
                         {# Night mode #}
                         var nightMapType = new google.maps.StyledMapType(
@@ -112,9 +113,9 @@
                             document.getElementById(map_parameters.identifier), {
                                 zoom: map_parameters.zoom,
                                 center: {lat: map_parameters.lat, lng: map_parameters.lng},
-                                mapTypeId: map_parameters.maptype,
-                                streetViewControl: false,
-                                fullscreenControl: false,
+                                mapTypeId: map_parameters.mapType,
+                                streetViewControl: map_parameters.streetview_control,
+                                fullscreenControl: map_parameters.fullscreen_control,
                                 mapTypeControlOptions: {
                                     mapTypeIds: ['terrain','night_map']
                                 }
@@ -122,6 +123,8 @@
 
                         //Associate the night mode map with the MapTypeId and set it to display.
                         map.mapTypes.set('night_map', nightMapType);
+
+                        //////////////////////////  Markers  ///////////////////
 
                         // Defines the icon parameters (circles)
                         function set_icon_parameters(color) {
@@ -138,7 +141,7 @@
                         }
 
                         // Creates the icons array.
-                        var icons = {
+                        const icons = {
                             police: {
                                 name: 'Police Unit',
                                 icon: set_icon_parameters('#484ed5')
@@ -155,7 +158,7 @@
 
                         // Create the markers array.
                         var dispatched_units = [];
-                        for (var i=0; i < map_parameters.units.length; i++) {
+                        for (i=0; i < map_parameters.units.length; i++) {
                             var unit = map_parameters.units[i];
                             dispatched_units.push({
                                 position: new google.maps.LatLng(unit.lat, unit.lng),
@@ -169,6 +172,7 @@
                         }
 
                         var currentinfowindow = null; // To keep only one window open (see below in add listener)
+                        var mouseover_on = false;
 
                         // Put the markers on the map.
                         dispatched_units.forEach(function(unit) {
@@ -180,7 +184,6 @@
                             });
                             var content = unit.content;
                             var infowindow = new google.maps.InfoWindow();
-
                             marker.addListener('click', (function() {
                                 return function () {
                                     infowindow.setContent(content);
@@ -193,19 +196,23 @@
 
                             // To have the infowindow displayed during mouseover only. Nice now but might not be practical
                             // when the markers are moving!
-                            {#marker.addListener('mouseover', (function() {#}
-                            {#    return function () {#}
-                            {#        infowindow.setContent(content);#}
-                            {#        infowindow.open(map, marker);#}
-                            {#    };#}
-                            {# })(marker, content, infowindow));#}
-                            {##}
-                            {#marker.addListener('mouseout', (function() {#}
-                            {#    return function () {#}
-                            {#        infowindow.close();#}
-                            {#    };#}
-                            {# })(infowindow));#}
+                            if (mouseover_on) {
+                                marker.addListener('mouseover', (function() {
+                                return function () {
+                                    infowindow.setContent(content);
+                                    infowindow.open(map, marker);
+                                };
+                             })(marker, content, infowindow));
+
+                            marker.addListener('mouseout', (function() {
+                                return function () {
+                                    infowindow.close();
+                                };
+                             })(infowindow));
+                            }
                         });
+
+                        //////////////////////////  Legend ///////////////////
 
                         // Create the legend
                         var legend = document.getElementById('legend');
@@ -220,6 +227,22 @@
 
                         // Add the legend on the map
                         map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
+
+                        //////////////////////////  Djikstra Paths ///////////////////
+
+                        for (var i=0;i < map_parameters.djikstra_path.length;i++) {
+                            var path_information = map_parameters.djikstra_path[i];
+                            var djikstraPath = new google.maps.Polyline({
+                                path: path_information.coordinates,
+                                geodesic: true,
+                                strokeColor: icons[path_information.type].icon.fillColor,
+                                strokeOpacity: 0.8,
+                                strokeWeight: 3
+                            });
+                            djikstraPath.setMap(map);
+                         }
+
+                        //////////////////////////  Center on user  ///////////////////
 
                         // Allow the map to be centered on the user's location
                         if (map_parameters.center_on_user_location) {
