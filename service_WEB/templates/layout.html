@@ -7,11 +7,12 @@
     <link href="/static/img/logo.png" rel="icon">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
     <link href="https://lipis.github.io/bootstrap-social/assets/css/font-awesome.css" rel="stylesheet">
+{#    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">#}
     <link href="/static/sb-admin-2.min.css" rel="stylesheet">
     <meta name="description" content="AsTeR Project for IBM Call for Code">
     <meta name="author" content="Oskar Radermecker">
     {% if "dashboard/summary" in request.path %}
-        {{dispatched_map.js}}
+        <link href="/static/maps.css" rel="stylesheet">
     {% endif %}
 </head>
 
@@ -26,7 +27,7 @@
         <div id="content">
             {% include 'includes/_navbar.html' %}
             {% include 'includes/_messages.html' %}
-            {% block body  %}{% endblock %}
+            {% block body %}{% endblock %}
         </div>
         <!-- FOOTER -->
         <footer class="container" >
@@ -38,12 +39,16 @@
     </div>
 </div>
 
+{#    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>#}
 <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="/static/includes/_messages.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/feather-icons/4.9.0/feather.min.js" ></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.min.js" ></script>
+{#<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNsoiLFkRl30I86koSR2wQeH8ff3AjtxE&callback=initMap" type="text/javascript"></script>#}
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBU3-CY-MAfSJuM9leFwucUT5Rm31NeAz8&callback=initMap"></script>
+{#<script src="/static/includes/dashboard.js" ></script>#}
 
 </body>
 </html>
