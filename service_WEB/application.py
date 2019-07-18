@@ -12,7 +12,9 @@ API_KEY = crd['api_key']
 # Secure application
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
-# GoogleMaps(application, key=crd['googlemaps_api'])
+@application.context_processor
+def inject_stage_and_region():
+    return dict(googlemaps_key=crd['googlemaps_api'])
 
 class EmergencyUnit:
 
