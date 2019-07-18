@@ -149,12 +149,12 @@
                         for (i=0; i < map_parameters.units.length; i++) {
                             var unit = map_parameters.units[i];
                             dispatched_units.push({
-                                position: new google.maps.LatLng(unit.lat, unit.lng),
-                                type: unit.type,
-                                name: unit.name,
+                                position: new google.maps.LatLng(unit.latitude, unit.longitude),
+                                type: unit.unit_type,
+                                name: unit.unit_name,
                                 content: '<div id="content"><div id="siteNotice"></div>'+
-                                        '<h5 id="firstHeading" class="firstHeading">'+unit.name+'</h5>'+
-                                        '<div id="bodyContent"><p><b>Unit ID: </b>'+unit.id+'</p>' +
+                                        '<h5 id="firstHeading" class="firstHeading">'+unit.unit_name+'</h5>'+
+                                        '<div id="bodyContent"><p><b>Unit ID: </b>'+unit.unit_id+'</p>' +
                                         '<p>'+unit.infobox+'</p></div></div>'
                             });
                         }
