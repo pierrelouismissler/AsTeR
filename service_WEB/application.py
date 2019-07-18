@@ -14,7 +14,7 @@ application = Flask(__name__)
 application.secret_key = crd['secret_key']
 
 @application.context_processor
-def inject_stage_and_region():
+def inject_api_keys():
 
     return dict(googlemaps_key=crd['googlemaps_api'])
 
@@ -199,10 +199,7 @@ def dashboard_summary():
         'center_on_user_location': True
     }
 
-    #if we want to make it cleaner in the future
-    # return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters) 
-    
-    return render_template('dashboard/dashboard_summary.html', map_parameters=map_parameters)
+    return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters)
 
 # Calls Dashboard
 @application.route('/dashboard/calls')
