@@ -13,7 +13,7 @@ API_KEY = crd['api_key']
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
 @application.context_processor
-def inject_stage_and_region():
+def inject_api_keys():
     return dict(googlemaps_key=crd['googlemaps_api'])
 
 class EmergencyUnit:
@@ -197,7 +197,7 @@ def dashboard_summary():
 
     map_parameters = {
         'identifier': "emergency_map",
-        'zoom': 11,
+        'zoom': 13,
         'lat': 37.4419,
         'lng': -122.1419,
         'mapType': 'terrain',
