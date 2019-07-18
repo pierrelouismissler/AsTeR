@@ -9,6 +9,7 @@ __pycache__/
 
 # Heavy material
 .tmp/
+graphs/
 database.db
 
 # Sensitive material
