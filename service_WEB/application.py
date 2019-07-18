@@ -210,8 +210,7 @@ def dashboard_summary():
         'center_on_user_location': True
     }
 
-    # return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
-    return render_template('dashboard/dashboard_summary.html', map_parameters=map_parameters)
+    return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
 
 # Calls Dashboard
 @application.route('/dashboard/calls')
