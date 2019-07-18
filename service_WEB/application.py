@@ -176,19 +176,19 @@ def dashboard_summary():
 
     def format_path(unit):
 
-        pth = np.asarray([e.split(':') for e in unit.path.split('|')]).astype('float')
-        pth = [{'lgn': e[0], 'lat': e[1]} for e in pth]
+        pth = np.asarray([e.split(':') for e in unit['path'].split('|')]).astype('float')
+        pth = [{'lng': e[0], 'lat': e[1]} for e in pth]
 
-        return {'coordinates': pth, 'type': unit.unit_type, 'unit_id': unit.unit_id}
+        return {'coordinates': pth, 'type': unit['unit_type'], 'unit_id': unit['unit_id']}
 
     units = [format_unit(k, v) for k, v in list_units(API_KEY, SQL_URL).items()]
-    paths = [format_path(unit) for unit in units if unit.path != 'none']
+    paths = [format_path(unit) for unit in units if unit['path'] != 'none']
 
     map_parameters = {
         'identifier': "emergency_map",
         'zoom': 11,
-        'lat': 39.759132,
-        'lng': -121.619311,
+        'lat': 37.75597125375025,
+        'lng': -122.43792638691008,
         'mapType': 'terrain',
         'units': units,
         'djikstra_path': paths,
@@ -225,5 +225,6 @@ def logout():
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # application.run(host='127.0.0.1', port=8080)
-    application.run(debug=True)
+
+    application.run(host='127.0.0.1', port=8080)
+    # application.run(debug=True)
