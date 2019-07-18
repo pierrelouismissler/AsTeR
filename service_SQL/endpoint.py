@@ -5,6 +5,9 @@
 try: from service_SQL.schema import *
 except: from schema import *
 
+try: from service_SQL.graphs import *
+except: from graphs import *
+
 app = Flask('SQL')
 app.config['SQLALCHEMY_DATABASE_URI'] = format_url('sqlite')
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = True
@@ -37,6 +40,9 @@ def get_transcript(audio_path, key):
 
     try: return json.loads(req.content)
     except: return None
+
+# Determines and updates the paths
+grp = Trajectory('graphs/sanfrancisco.jb')
 
 if __name__ == '__main__':
 
@@ -84,9 +90,9 @@ if __name__ == '__main__':
         msg = {'username': req['username'], 'success': True, 'reason': 'None'}
         return Response(response=json.dumps(msg), **arg)
 
-    @app.route('/analyze', methods=['POST'])
+    @app.route('/add_call', methods=['POST'])
     @filter_key
-    def analyze():
+    def add_call():
 
         # Defines where to store the calls
         if not os.path.exists('storage'): os.mkdir('storage')
@@ -115,6 +121,51 @@ if __name__ == '__main__':
             dtb.session.commit()
             msg = {'id': idx, 'success': True}
             return Response(response=json.dumps(msg), **arg)
+
+    @app.route('/get_unit', methods=['POST'])
+    @filter_key
+    def get_unit():
+
+        def update_units():
+
+            lst = Unit.query.all()
+            for unit in [unit for unit in lst if unit.target != 'none']:
+                pos = grp.closest_key(unit.latitude, unit.longitude)
+                obj = grp.closest_key(*[float(x) for x in unit.target.split(':')])
+                # Update object
+                setattr(unit, 'path', '|'.join(grp.shortest_path(pos, obj)))
+                dtb.session.add(unit)
+                dtb.session.commit()
+                # Memory efficiency
+                del pos, obj
+
+        update_units()
+        res, lst = dict(), Unit.query.all()
+
+        for unit in lst:
+            req = unit.__dict__.copy()
+            for key in ['unit_id', '_sa_instance_state']: del req[key]
+            res[unit.unit_id] = req
+
+        arg = {'status': 200, 'mimetype': 'application/json'}
+        return Response(response=json.dumps(res), **arg)
+
+    @app.route('/add_unit', methods=['POST'])
+    @filter_key
+    def add_unit():
+
+        req = parse_arguments(request)
+        arg = {'status': 200, 'mimetype': 'application/json'}
+
+        unt = Unit.query.filter_by(unit_id=req['unit_id']).first()
+        if not unt is None: 
+            msg = {'success': False, 'reason': 'Unit ID is already used'}
+            return Response(response=json.dumps(msg), **arg)
+
+        dtb.session.add(Unit(**req))
+        dtb.session.commit()
+        msg = {'unit_id': req['unit_id'], 'success': True, 'reason': 'None'}
+        return Response(response=json.dumps(msg), **arg)
 
     # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
     app.run(host='127.0.0.1', port=8080, threaded=True)
