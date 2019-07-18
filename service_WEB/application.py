@@ -208,7 +208,8 @@ def dashboard_summary():
         'maptype_control': False,
         'fit_markers_to_bounds': True,
         'center_on_user_location': True,
-        'night_mode': False
+        'night_mode': False,
+        'info_on_mouseover': False
     }
 
     return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
