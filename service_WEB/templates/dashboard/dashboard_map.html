@@ -242,9 +242,6 @@
 
             // Get the earthquake data (JSONP format)
             // Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-            {#map.data.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500');#}
-            {#map.data.setStyle(styleEarthquake);#}
-
             earthquakeMap = new google.maps.Data( {});
             earthquakeMap.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500')
             earthquakeMap.setStyle(styleEarthquake);
@@ -272,7 +269,6 @@
             {#     map.data.setStyle({visible: true});#}
             {# });#}
 
-
             //////////////////////////  Center on user  ///////////////////
 
             // Allow the map to be centered on the user's location
@@ -294,7 +290,6 @@
                 }
             }
 
-
             //////////////////////////  Fit window to all markers  ///////////////////
             {% if map_parameters.fit_markers_to_bounds %}
                 // fit all markers in bounds
@@ -311,8 +306,8 @@
             map.data.addGeoJson(data);
         }
 
-        function toggleHeatmap() {
-            heatmap.setMap(heatmap.getMap() ? null : map);
+        function toggleEarthquakes() {
+            earthquakeMap.setMap(earthquakeMap.getMap() ? null : map);
         }
 
         function styleEarthquake(feature) {

@@ -195,7 +195,7 @@ def dashboard_summary():
         'streetview_control': False,
         'fullscreen_control': False,
         'maptype_control': False,
-        'fit_markers_to_bounds': True,
+        'fit_markers_to_bounds': False,
         'center_on_user_location': False,
         'night_mode': False,
         'info_on_mouseover': False
