@@ -29,7 +29,18 @@ class Call(dtb.Model):
     longitude = dtb.Column(dtb.Float, unique=False, nullable=False)
     latitude = dtb.Column(dtb.Float, unique=False, nullable=False)
     transcript = dtb.Column(dtb.Text, unique=False, nullable=True)
-    priority = dtb.Columns(dtb.Float, unique=False, nullable=True)
+    priority = dtb.Column(dtb.Float, unique=False, nullable=True)
+
+class Unit(dtb.Model):
+
+    unit_id = dtb.Column(dtb.String(80), primary_key=True, unique=True, nullable=False)
+    target = dtb.Column(dtb.String(80), unique=False, nullable=False)
+    path = dtb.Column(dtb.Text, unique=False, nullable=False)
+    longitude = dtb.Column(dtb.Float, unique=False, nullable=False)
+    latitude = dtb.Column(dtb.Float, unique=False, nullable=False)
+    unit_type = dtb.Column(dtb.String(80), unique=False, nullable=False)
+    unit_name = dtb.Column(dtb.String(80), unique=False, nullable=False)
+    status = dtb.Column(dtb.String(80), unique=False, nullable=False)
 
 if __name__ == '__main__':
 
@@ -44,6 +55,14 @@ if __name__ == '__main__':
         with open(config) as raw: pop = yaml.safe_load(raw)['users']
         for user in pop: dtb.session.add(User(**user))
         dtb.session.commit()
-    
+
+    # Run iterative population
+    def populate_units(config='configs/initialization.yaml'):
+
+        with open(config) as raw: pop = yaml.safe_load(raw)['units']
+        for unit in pop: dtb.session.add(Unit(**unit))
+        dtb.session.commit()
+
     # Initialize registrations
     populate_users()
+    populate_units()
