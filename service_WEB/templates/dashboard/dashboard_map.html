@@ -166,7 +166,6 @@
             }
 
             var currentinfowindow = null; // To keep only one window open (see below in add listener)
-            var mouseover_on = false;
 
             // Put the markers on the map.
             dispatched_units.forEach(function(unit) {
@@ -190,7 +189,7 @@
 
                 // To have the infowindow displayed during mouseover only. Nice now but might not be practical
                 // when the markers are moving!
-                if (mouseover_on) {
+                if (map_parameters.info_on_mouseover) {
                     marker.addListener('mouseover', (function() {
                         return function () {
                             infowindow.setContent(content);
@@ -240,17 +239,13 @@
             //////////////////////////  Earthquake information ///////////////////
 
             map.data.setStyle(styleFeature);
-
             // Get the earthquake data (JSONP format)
             // Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
             var script = document.createElement('script');
             script.setAttribute(
                 'src',
-                {#'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=1000');#}
-                'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&callback=eqfeed_callback&latitude=37.4419&longitude=-122.1419&maxradiuskm=500',
-                {#'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojsonp'#}
+                'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&callback=eqfeed_callback&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500',
             );
-
             document.getElementsByTagName('head')[0].appendChild(script);
 
             //////////////////////////  Center on user  ///////////////////
@@ -298,7 +293,7 @@
                     path: google.maps.SymbolPath.CIRCLE,
                     strokeWeight: 0.5,
                     strokeColor: '#fff',
-                    fillColor: 'red',
+                    fillColor: 'red', // future update: change the color to alert level.
                     fillOpacity: 2 / magnitude,
                     scale: Math.pow(2, magnitude) / 2
                 },
