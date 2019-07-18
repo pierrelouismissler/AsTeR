@@ -17,7 +17,7 @@
                 <div id={{ map_parameters.identifier }}>
 {#                    {% block map_block %}{% endblock %}#}
                 <script>
-                    var map_parameters = JSON.parse('{{map_parameters | tojson}}');
+                    var map_parameters = JSON.parse('{{map_parameters|tojson|safe}}');
 
                     // Initialize and add the map
                     function initMap() {
@@ -117,12 +117,12 @@
                                 streetViewControl: map_parameters.streetview_control,
                                 fullscreenControl: map_parameters.fullscreen_control,
                                 mapTypeControlOptions: {
-                                    mapTypeIds: ['terrain','night_map']
-                                }
+                                    mapTypeIds: ['roadmap','terrain']//,'night_map']
+                                 }
                             });
 
                         //Associate the night mode map with the MapTypeId and set it to display.
-                        map.mapTypes.set('night_map', nightMapType);
+                        {#map.mapTypes.set('night_map', nightMapType);#}
 
                         //////////////////////////  Markers  ///////////////////
 
@@ -242,7 +242,35 @@
                             djikstraPath.setMap(map);
                          }
 
-                        //////////////////////////  Center on user  ///////////////////
+
+                        //////////////////////////  Earthquake information ///////////////////
+
+                        //   Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
+                        var script = document.createElement('script');
+                        script.setAttribute(
+                            'src',
+                            'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/4.5_week.geojson');
+                        document.getElementsByTagName('head')[0].appendChild(script);
+
+                        // Add a basic style.
+                        map.data.setStyle(function(feature) {
+                            var mag = Math.exp(parseFloat(feature.getProperty('mag'))) * 0.1;
+                            return /** @type {google.maps.Data.StyleOptions} */({
+                                icon: {
+                                    path: google.maps.SymbolPath.CIRCLE,
+                                    scale: mag,
+                                    fillColor: '#f00',
+                                    fillOpacity: 0.35,
+                                    strokeWeight: 0
+                                }
+                            });
+                        });
+
+                        // Defines the callback function referenced in the jsonp file.
+                        function eqfeed_callback(data) {
+                            map.data.addGeoJson(data);
+
+                            //////////////////////////  Center on user  ///////////////////
 
                         // Allow the map to be centered on the user's location
                         if (map_parameters.center_on_user_location) {
@@ -262,6 +290,17 @@
                                 handleLocationError(false, infoWindow, map.getCenter());
                             }
                         }
+
+
+                        //////////////////////////  Fit window to all markers  ///////////////////
+                        {% if map_parameters.fit_markers_to_bounds %}
+                            // fit all markers in bounds
+                            var map_bounds = new google.maps.LatLngBounds();
+                            for(i=0; i<map_markers.length;i++) {
+                                map_bounds.extend(map_markers[i].getPosition());
+                            }
+                            map.fitBounds(map_bounds);
+                        {% endif %}
                     }
 
                     function handleLocationError(browserHasGeolocation, infoWindow, pos) {
