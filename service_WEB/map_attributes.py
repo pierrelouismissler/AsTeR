@@ -6,11 +6,13 @@ DEFAULT_ICON = 'http://maps.google.com/mapfiles/ms/icons/red-dot.png'
 
 
 class Map(object):
+
     def __init__(self, identifier, lat, lng,
                  zoom=13, maptype="ROADMAP", markers=None,
                  varname='map',
                  style="height:300px;width:300px;margin:0;",
                  cls="map", **kwargs):
+
         self.cls = cls
         self.style = style
         self.varname = varname
@@ -21,6 +23,7 @@ class Map(object):
         if isinstance(markers, list):
             self.markers = {DEFAULT_ICON: markers}
         self.identifier = identifier
+        
         if 'infobox' in kwargs:
             self.infobox = kwargs['infobox']
             # jinja2 has no builtin for type so a flag is set to check if infobox is

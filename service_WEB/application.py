@@ -12,29 +12,15 @@ API_KEY = crd['api_key']
 # Secure application
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
+
 @application.context_processor
 def inject_api_keys():
+
     return dict(googlemaps_key=crd['googlemaps_api'])
-
-class EmergencyUnit:
-
-    def __init__(self, unit_id, type, name, lat, lng):
-        self.unit_id = unit_id
-        self.type = type
-        self.name = name
-        self.lat = lat
-        self.lng = lng
-
-dispatched_units = (
-    EmergencyUnit(unit_id='patrol03', type='police',      name='Police Patrol 3',     lat=37.419687, lng=-121.862749),
-    EmergencyUnit(unit_id='amb07',    type='ambulance',   name='Ambulance Unit 7',    lat=37.415902, lng=-122.142975),
-    EmergencyUnit(unit_id='fire22',   type='firefighter', name='Firefighter Unit 22', lat=37.4300,   lng=-122.1400)
-)
 
 # Index
 @application.route('/')
 @application.route('/home/')
-
 def index():
 
     return render_template('home.html')
@@ -175,34 +161,37 @@ def is_logged_in(f):
 @is_logged_in
 def dashboard_summary():
 
-    units = []
-    for dispatched_unit in dispatched_units:
-        units.append({
-            'id': dispatched_unit.unit_id,
-            'type': dispatched_unit.type,
-            'name': dispatched_unit.name,
-            'lat': dispatched_unit.lat,
-            'lng': dispatched_unit.lng,
-            'infobox': ""  # Place for additional information on each unit. Will be displayed in pop-up on map.
-        })
+    def list_units(api_key, url):
+    
+        url = '/'.join([url, 'get_unit'])
+        header = {'apikey': api_key}
+        req = requests.post(url, headers=header)
+        
+        return json.loads(req.content)
 
-    route_coordinates = []
-    for t in open('route_coordinates.txt').read().split('\n'):
-        a, b = t.strip('()').split(',')
-        route_coordinates.append({'lat': float(b), 'lng': float(a)})
-    path = [{
-        'coordinates': route_coordinates,
-        'type': 'police',
-    }]
+    def format_unit(idx, dic, key_name='unit_id'):
+    
+        dic.update({'unit_id': idx})
+        return dic
+
+    def format_path(unit):
+
+        pth = np.asarray([e.split(':') for e in unit['path'].split('|')]).astype('float')
+        pth = [{'lng': e[0], 'lat': e[1]} for e in pth]
+
+        return {'coordinates': pth, 'type': unit['unit_type'], 'unit_id': unit['unit_id']}
+
+    units = [format_unit(k, v) for k, v in list_units(API_KEY, SQL_URL).items()]
+    paths = [format_path(unit) for unit in units if unit['path'] != 'none']
 
     map_parameters = {
         'identifier': "emergency_map",
-        'zoom': 13,
-        'lat': 37.4419,
-        'lng': -122.1419,
+        'zoom': 11,
+        'lat': 37.75597125375025,
+        'lng': -122.43792638691008,
         'mapType': 'terrain',
         'units': units,
-        'djikstra_path': path,
+        'djikstra_path': paths,
         'streetview_control': False,
         'fullscreen_control': False,
         'maptype_control': False,
@@ -212,28 +201,32 @@ def dashboard_summary():
         'info_on_mouseover': False
     }
 
-    return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters) #if we want to make it cleaner in the future
+    return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters)
 
 # Calls Dashboard
 @application.route('/dashboard/calls')
 @is_logged_in
 def dashboard_calls():
+
     return render_template('dashboard/dashboard_calls.html')
 
 # Units Dashboard
 @application.route('/dashboard/units')
 @is_logged_in
 def dashboard_units():
+
     return render_template('dashboard/dashboard_units.html')
 
 # User log out page
 @application.route('/logout')
 @is_logged_in
 def logout():
+
     session.clear()
     flash('Successfully logged out', 'success')
     return redirect(url_for('index'))
 
 if __name__ == '__main__':
-    # application.run(host='127.0.0.1', port=8080)
-    application.run(debug=True)
+
+    application.run(host='127.0.0.1', port=8080)
+    # application.run(debug=True)
