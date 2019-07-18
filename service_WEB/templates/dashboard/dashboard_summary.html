@@ -5,18 +5,29 @@
     <link href="/static/dashboard.css" rel="stylesheet">
 
     <main role="main" class="p-1 pl-3 ml-sm-auto px-4">
-        <div class="cover-container" style="text-align: left">
-            <h1>Welcome, {{ session.username }}!</h1>
-        </div>
-        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+{#            <h1>Welcome, {{ session.username }}!</h1>#}
             {#            <p class="lead">Here is a short description of the dashboard and some stats.</p>#}
         </div>
 
         <div class="row">
             <div class="col-lg-10" >
+                <div id="floating-panel">
+                    <button onclick="toggleEarthquakes()">Toggle Earthquakes</button>
+                </div>
+                <div id="style-selector-control" class="map-control">
+                    <input type="radio" name="show-hide" id="hide-poi"
+                           class="selector-control">
+                    <label for="hide-poi">Hide</label>
+                    <input type="radio" name="show-hide" id="show-poi"
+                           class="selector-control" checked="checked">
+                    <label for="show-poi">Show</label>
+                </div>
                 <div id={{ map_parameters.identifier }}></div>
+
                 {% block map_block %}{% endblock %}
                 <div id="legend"><h5>Legend</h5></div>
+
             </div>
             <div class="col-lg-2 id="calls>
                 <p> Some calls are displayed here. </p>

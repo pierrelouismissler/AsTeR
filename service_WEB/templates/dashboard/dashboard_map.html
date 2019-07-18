@@ -5,37 +5,7 @@
     <script>
         var map_parameters = JSON.parse('{{map_parameters|tojson|safe}}');
         var map;
-
-                        // Creates the icons array.
-                        const icons = {
-                            police: {
-                                name: 'Police Unit',
-                                icon: set_icon_parameters('#484ed5')
-                            },
-                            ambulance: {
-                                name: 'Ambulance',
-                                icon: set_icon_parameters('#d51f13')
-                            },
-                            firefighter: {
-                                name: 'Firefighter Unit',
-                                icon: set_icon_parameters('#d57600')
-                                }
-                            };
-
-                        // Create the markers array.
-                        var dispatched_units = [];
-                        for (i=0; i < map_parameters.units.length; i++) {
-                            var unit = map_parameters.units[i];
-                            dispatched_units.push({
-                                position: new google.maps.LatLng(unit.latitude, unit.longitude),
-                                type: unit.unit_type,
-                                name: unit.unit_name,
-                                content: '<div id="content"><div id="siteNotice"></div>'+
-                                        '<h5 id="firstHeading" class="firstHeading">'+unit.unit_name+'</h5>'+
-                                        '<div id="bodyContent"><p><b>Unit ID: </b>'+unit.unit_id+'</p>' +
-                                        '<p>'+unit.infobox+'</p></div></div>'
-                            });
-                        }
+        var earthquakeMap;
 
         // Initialize and add the map
         function initMap() {
@@ -44,13 +14,13 @@
 
             map_options = {
                 zoom: map_parameters.zoom,
-                    center: {lat: map_parameters.lat, lng: map_parameters.lng},
-                    mapTypeId: map_parameters.mapType,
-                    streetViewControl: map_parameters.streetview_control,
-                    fullscreenControl: map_parameters.fullscreen_control,
-                    mapTypeControlOptions: {
-                        mapTypeIds: ['roadmap','terrain']//,'night_map']
-                    },
+                center: {lat: map_parameters.lat, lng: map_parameters.lng},
+                mapTypeId: map_parameters.mapType,
+                streetViewControl: map_parameters.streetview_control,
+                fullscreenControl: map_parameters.fullscreen_control,
+                mapTypeControlOptions: {
+                    mapTypeIds: ['roadmap','terrain']
+                },
             };
 
             {# Normal day mode #}
@@ -165,7 +135,6 @@
                 return icon_parameters
             }
 
-            // Creates the icons array.
             const icons = {
                 police: {
                     name: 'Police Unit',
@@ -179,15 +148,16 @@
                     name: 'Firefighter Unit',
                     icon: set_icon_parameters('#d57600')
                 }
-            };
+            }; // Creates the icons array.
 
             // Create the markers array.
             var dispatched_units = [];
+            var all_markers = [];
             for (i=0; i < map_parameters.units.length; i++) {
                 var unit = map_parameters.units[i];
                 dispatched_units.push({
-                    position: new google.maps.LatLng(unit.lat, unit.lng),
-                    type: unit.type,
+                    position: new google.maps.LatLng(unit.latitude, unit.longitude),
+                    type: unit.unit_type,
                     name: unit.name,
                     content: '<div id="content"><div id="siteNotice"></div>'+
                         '<h5 id="firstHeading" class="firstHeading">'+unit.name+'</h5>'+
@@ -206,6 +176,7 @@
                     icon: icons[unit.type].icon,
                     map: map
                 });
+                all_markers.push(marker);
                 var content = unit.content;
                 var infowindow = new google.maps.InfoWindow();
                 marker.addListener('click', (function() {
@@ -266,18 +237,41 @@
                 djikstraPath.setMap(map);
             }
 
-
             //////////////////////////  Earthquake information ///////////////////
 
-            map.data.setStyle(styleFeature);
+
             // Get the earthquake data (JSONP format)
             // Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-            var script = document.createElement('script');
-            script.setAttribute(
-                'src',
-                'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&callback=eqfeed_callback&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500',
-            );
-            document.getElementsByTagName('head')[0].appendChild(script);
+            {#map.data.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500');#}
+            {#map.data.setStyle(styleEarthquake);#}
+
+            earthquakeMap = new google.maps.Data( {});
+            earthquakeMap.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500')
+            earthquakeMap.setStyle(styleEarthquake);
+            earthquakeMap.setMap(map);
+
+            {#var script = document.createElement('script');#}
+            {#script.setAttribute(#}
+            {#    'src',#}
+            {#    'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&callback=eqfeed_callback&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500',#}
+            {#);#}
+            {##}
+            {#document.getElementsByTagName('head')[0].appendChild(script);#}
+            {#map.data.setStyle(styleEarthquake);#}
+
+
+            {#// Add controls to the map, allowing users to hide/show features.#}
+            {#var earthquakeControl = document.getElementById('style-selector-control');#}
+            {#map.controls[google.maps.ControlPosition.TOP_LEFT].push(earthquakeControl);#}
+            {##}
+            {#// Apply new JSON when the user chooses to hide/show features.#}
+            {#document.getElementById('hide-poi').addEventListener('click', function() {#}
+            {#     map.data.setStyle({visible: false});#}
+            {# });#}
+            {#document.getElementById('show-poi').addEventListener('click', function() {#}
+            {#     map.data.setStyle({visible: true});#}
+            {# });#}
+
 
             //////////////////////////  Center on user  ///////////////////
 
@@ -305,8 +299,8 @@
             {% if map_parameters.fit_markers_to_bounds %}
                 // fit all markers in bounds
                 var map_bounds = new google.maps.LatLngBounds();
-                for(i=0; i<map_markers.length;i++) {
-                    map_bounds.extend(map_markers[i].getPosition());
+                for(i=0; i<all_markers.length;i++) {
+                    map_bounds.extend(all_markers[i].getPosition());
                 }
                 map.fitBounds(map_bounds);
             {% endif %}
@@ -317,7 +311,11 @@
             map.data.addGeoJson(data);
         }
 
-        function styleFeature(feature) {
+        function toggleHeatmap() {
+            heatmap.setMap(heatmap.getMap() ? null : map);
+        }
+
+        function styleEarthquake(feature) {
             var magnitude = feature.getProperty('mag');
             return {
                 icon: {

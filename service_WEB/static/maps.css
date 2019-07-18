@@ -28,3 +28,37 @@ html, body {
 #legend img {
     vertical-align: middle;
 }
+
+#floating-panel {
+    position: absolute;
+    top: 10px;
+    left: 25%;
+    z-index: 5;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid #999;
+    text-align: center;
+    font-family: 'Roboto','sans-serif';
+    line-height: 30px;
+    padding-left: 10px;
+}
+
+.map-control {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 2px rgba(33, 33, 33, 0.4);
+    font-family: 'Roboto','sans-serif';
+    margin: 10px;
+    padding-right: 5px;
+    /* Hide the control initially, to prevent it from appearing
+       before the map loads. */
+    display: none;
+}
+/* Display the control once it is inside the map. */
+#map .map-control { display: block; }
+
+.selector-control {
+    font-size: 14px;
+    line-height: 30px;
+    vertical-align: baseline;
+}
