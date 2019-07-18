@@ -187,8 +187,8 @@ def dashboard_summary():
     map_parameters = {
         'identifier': "emergency_map",
         'zoom': 11,
-        'lat': 37.75597125375025,
-        'lng': -122.43792638691008,
+        'lat': 37.7649,  # San Francisco Coordinates
+        'lng': -122.4194,
         'mapType': 'terrain',
         'units': units,
         'djikstra_path': paths,
@@ -196,7 +196,7 @@ def dashboard_summary():
         'fullscreen_control': False,
         'maptype_control': False,
         'fit_markers_to_bounds': True,
-        'center_on_user_location': True,
+        'center_on_user_location': False,
         'night_mode': False,
         'info_on_mouseover': False
     }
