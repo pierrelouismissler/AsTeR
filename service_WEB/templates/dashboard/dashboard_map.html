@@ -18,9 +18,10 @@
                 mapTypeId: map_parameters.mapType,
                 streetViewControl: map_parameters.streetview_control,
                 fullscreenControl: map_parameters.fullscreen_control,
-                mapTypeControlOptions: {
-                    mapTypeIds: ['roadmap','terrain']
-                },
+                {#mapTypeControlOptions: {#}
+                {#    mapTypeIds: ['roadmap','terrain']#}
+                {# },#}
+                mapTypeControl: false
             };
 
             {# Normal day mode #}
@@ -311,8 +312,8 @@
             map.data.addGeoJson(data);
         }
 
-        function toggleHeatmap() {
-            heatmap.setMap(heatmap.getMap() ? null : map);
+        function toggleEarthquakes() {
+            earthquakeMap.setMap(earthquakeMap.getMap() ? null : map);
         }
 
         function styleEarthquake(feature) {
