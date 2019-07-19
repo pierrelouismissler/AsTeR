@@ -244,31 +244,35 @@
             // Get the earthquake data (JSONP format)
             // Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
             earthquakeMap = new google.maps.Data( {});
-            earthquakeMap.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500')
+            {#earthquakeMap.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500')#}
+            loadEarthquakes(earthquakeMap);
             earthquakeMap.setStyle(styleEarthquake);
             earthquakeMap.setMap(map);
 
-            {#var script = document.createElement('script');#}
-            {#script.setAttribute(#}
-            {#    'src',#}
-            {#    'https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&callback=eqfeed_callback&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500',#}
-            {#);#}
-            {##}
-            {#document.getElementsByTagName('head')[0].appendChild(script);#}
-            {#map.data.setStyle(styleEarthquake);#}
+            // To do: take as input radius and user's location.
+            function loadEarthquakes(map){
 
+                // Load the GeoJSON
+                $.getJSON('https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/2.5_week.geojson', function (data) {
 
-            {#// Add controls to the map, allowing users to hide/show features.#}
-            {#var earthquakeControl = document.getElementById('style-selector-control');#}
-            {#map.controls[google.maps.ControlPosition.TOP_LEFT].push(earthquakeControl);#}
-            {##}
-            {#// Apply new JSON when the user chooses to hide/show features.#}
-            {#document.getElementById('hide-poi').addEventListener('click', function() {#}
-            {#     map.data.setStyle({visible: false});#}
-            {# });#}
-            {#document.getElementById('show-poi').addEventListener('click', function() {#}
-            {#     map.data.setStyle({visible: true});#}
-            {# });#}
+                    var features = data.features;
+                    var next_to_user = [];
+
+                    const max_lat = 48.5721;
+                    const min_lat = 23.9821;
+                    const min_lng = - 128.7768;
+                    const max_lng = -77.6569;
+
+                    for (var i = 0; i < features.length; i++) {
+                        var lat = features[i].geometry.coordinates[1];
+                        var lng = features[i].geometry.coordinates[0];
+                        if (min_lat<lat && lat<max_lat && min_lng<lng && lng<max_lng)
+                            next_to_user.push(features[i])
+                    }
+                    data.features = next_to_user;
+                    map.addGeoJson(data)
+                });
+            }
 
             //////////////////////////  Center on user  ///////////////////
 
