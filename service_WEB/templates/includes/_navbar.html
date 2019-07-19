@@ -179,10 +179,21 @@
                     </div>
                 </li>
             </ul>
-
-            <form class="form-inline my-2 my-lg-0">
-                <input class="form-control form-control-dark mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <td>
+            <form class="form-inline bg-dark ml-auto" action="https://search.freefind.com/find.html" method="get" accept-charset="utf-8" target="_self">
+                <div class="md-form my-0">
+                 <input class="form-control  " type="text" placeholder="Search" aria-label="Search" name="query">
+                 <input type="hidden" name="si" value="5021737">
+                <input type="hidden" name="pid" value="r">
+                <input type="hidden" name="n" value="0">
+                <input type="hidden" name="_charset_" value="">
+                <input type="hidden" name="bcd" value="&#247;">
+             </div>
             </form>
+            </td>
+            </div>
+
 
             <ul class="nav navbar-nav navbar-right">
                 {% if session.logged_in %} {# show dashboard and logout buttons #}
