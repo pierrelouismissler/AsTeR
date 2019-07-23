@@ -58,6 +58,11 @@ def backup_plans():
 
     return render_template('backup_plans.html')
 
+@application.route('/record')
+def record():
+
+    return render_template('record.html')
+
 # Additional test environment
 # MASK WHEN NOT IN USE AND BEFORE DEPLOYMENT
 # @application.route('/test')
@@ -229,4 +234,4 @@ def logout():
 if __name__ == '__main__':
 
     application.run(host='127.0.0.1', port=8080)
-    # application.run(debug=True)
+    #application.run()
