@@ -146,7 +146,7 @@
                     icon: set_icon_parameters('#d51f13')
                 },
                 firefighter: {
-                    name: 'Firefighter Unit',
+                    name: 'Firefighter',
                     icon: set_icon_parameters('#d57600')
                 }
             }; // Creates the icons array.
@@ -243,7 +243,7 @@
 
             // Get the earthquake data (JSONP format)
             // Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
-            earthquakeMap = new google.maps.Data( {});
+            earthquakeMap = new google.maps.Data( {} );
             {#earthquakeMap.loadGeoJson('https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2019-07-11&minmagnitude=4&latitude='+map_parameters.lat+'&longitude='+map_parameters.lng+'&maxradiuskm=500')#}
             loadEarthquakes(earthquakeMap);
             earthquakeMap.setStyle(styleEarthquake);
