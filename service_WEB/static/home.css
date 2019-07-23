@@ -15,6 +15,9 @@ body {
 /* Carousel base class */
 .carousel {
   margin-bottom: 4rem;
+  width:100%;
+  margin:auto;
+  height:auto;
 }
 
 /* Since positioning the image, we need to help out the caption */
@@ -26,16 +29,17 @@ body {
 
 /* Declare heights because of positioning of img element */
 .carousel-item {
-  height: 32rem;
+  width:100%;
+  height: auto;
 }
 
 .carousel-item > img {
-  position: absolute;
+  text-align: center;
+  width: 100%;
+  position: relative;
   top: 0;
   left: 0px;
-  min-width: 100%;
   height: auto;
-  width: 100%;
   display: inline-block;
 }
 /*.item1 {
