@@ -1,29 +1,5 @@
 {% if "dashboard" in request.path %}
 
-    {#    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">#}
-    {#        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">AsTeR</a>#}
-    {#        <input class="form-control form-control-dark w-75" type="text" placeholder="Search" aria-label="Search">#}
-    {#        <ul class="navbar-nav px-3">#}
-    {#            <li class="nav-item">#}
-    {#                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ session.username }}</a>#}
-    {#            </li>#}
-    {#            <li {%- if request.path == "/dashboard"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>#}
-    {#                <a class="nav-link" href="/dashboard/summary">Dashboard</a>#}
-    {#            </li>#}
-    {#            <li class="nav-item text-nowrap">#}
-    {#                <a class="nav-link" href="/logout">Log out</a>#}
-    {#            </li>#}
-    {#            <li class="nav-item dropdown">#}
-    {#                <a class="nav-link dropdown-toggle" href="/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ session.first_name}}</a>#}
-    {#                <div class="dropdown-menu" aria-labelledby="dropdown01">#}
-    {#                    <a class="dropdown-item" href="/dashboard/summary">Dashboard</a>#}
-    {#                    <a class="dropdown-item" href="/logout">Log out</a>#}
-    {#                </div>#}
-    {#            </li>#}
-    {#        </ul>#}
-    {#    </nav>#}
-
-
     <!-- Topbar -->
     <nav class="navbar navbar-expand navbar-dark bg-dark topbar mb-4 static-top shadow">
 
@@ -71,7 +47,7 @@
                 <!-- Dropdown - Alerts -->
                 <div class="dropdown-list dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="alertsDropdown">
                     <h6 class="dropdown-header">
-                        Alerts Center
+                        Alerts
                     </h6>
                     <a class="dropdown-item d-flex align-items-center" href="#">
                         <div class="mr-3">
@@ -81,7 +57,7 @@
                         </div>
                         <div>
                             <div class="small text-gray-500">December 12, 2019</div>
-                            <span class="font-weight-bold">A new monthly report is ready to download!</span>
+                            <span class="font-weight-bold">A new report has been generated.</span>
                         </div>
                     </a>
                     <a class="dropdown-item d-flex align-items-center" href="#">
@@ -92,7 +68,7 @@
                         </div>
                         <div>
                             <div class="small text-gray-500">December 7, 2019</div>
-                            $290.29 has been deposited into your account!
+                            An earthquake occured 3.2 miles away from your position.
                         </div>
                     </a>
                     <a class="dropdown-item d-flex align-items-center" href="#">
@@ -103,10 +79,10 @@
                         </div>
                         <div>
                             <div class="small text-gray-500">December 2, 2019</div>
-                            Spending Alert: We've noticed unusually high spending for your account.
+                            Unusual sismic activity from South San Francisco.
                         </div>
                     </a>
-                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All Alerts</a>
+                    <a class="dropdown-item text-center small text-gray-500" href="#">Show All</a>
                 </div>
             </li>
 
@@ -115,8 +91,7 @@
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    <span class="mr-2 d-none d-lg-inline text-gray-100 small bold"><b>Oskar Radermecker</b></span>
-                    <img class="img-profile rounded-circle" src="/static/img/team/oskar.jpg">
+                    <span class="mr-2 d-none d-lg-inline text-gray-100 small bold"><b>{{ session.username }}</b></span>
                 </a>
                 <!-- Dropdown - User Information -->
                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="userDropdown">
@@ -217,4 +192,5 @@
             </ul>
         </div>
     </nav>
+
 {% endif %}
