@@ -2,13 +2,14 @@
 
 {%  block body %}
 
+    <link href="/static/record.css" rel="stylesheet">
     <link href="/static/dashboard.css" rel="stylesheet">
 
     <main role="main" class="p-1 pl-3 ml-sm-auto px-4">
 
         <div class="row">
 
-            <div class="col-lg-10" >
+            <div class="col-lg-10">
                 <div id="floating-panel">
                     <button class="earthquake_button" onclick="toggleEarthquakes()"><b>Toggle Earthquakes</b></button>
                 </div>
@@ -18,8 +19,26 @@
                 <div id="legend"><h5>Legend</h5></div>
             </div>
 
-            <div class="col-lg-2 id="calls>
-                <p> Some calls are displayed here. </p>
+            <div class="col-lg-2" id="calls">
+
+                <div class="mycontainer">
+                    <div class="mywebapp"> 
+                        <div class="input">
+                            <textarea id="textbox" rows="4"></textarea>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-4">
+                            <button class="record" id="start-btn"></button>
+                            </div>
+                            <div class="col-lg-8" style="margin-top: 22px;">
+                            <h5>Simulation</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 border-bottom"></div>
             </div>
 
         </div>
