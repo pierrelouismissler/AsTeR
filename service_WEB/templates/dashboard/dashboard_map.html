@@ -148,12 +148,28 @@
                 firefighter: {
                     name: 'Firefighter',
                     icon: set_icon_parameters('#d57600')
+                },
+                calls: {
+                    name: '911 Calls',
+                    icon: set_icon_parameters('#6AF508')
                 }
             }; // Creates the icons array.
 
+            // Defines markers for the calls
+            var emergency_calls = [];
+            for (i=0; i < map_parameters.calls.length; i++) {
+                var call = map_parameters.calls[i];
+                emergency_calls.push({
+                    position: new google.maps.LatLng(call.latitude, call.longitude),
+                    name: call.phone_number,
+                    content: '<div id="content"><div id="siteNotice"></div>'+
+                        '<h5 id="firstHeading" class="firstHeading">'+call.phone_number+'</h5>'+
+                        '<div id="bodyContent"><p><b>Unit ID: </b>'+call.id+'</p></div></div>'
+                });
+            }
+
             // Create the markers array.
             var dispatched_units = [];
-            var all_markers = [];
             for (i=0; i < map_parameters.units.length; i++) {
                 var unit = map_parameters.units[i];
                 dispatched_units.push({
@@ -169,6 +185,7 @@
 
             var currentinfowindow = null; // To keep only one window open (see below in add listener)
 
+            var all_markers = [];
             // Put the markers on the map.
             dispatched_units.forEach(function(unit) {
                 var marker = new google.maps.Marker({
@@ -178,6 +195,7 @@
                     map: map
                 });
                 all_markers.push(marker);
+
                 var content = unit.content;
                 var infowindow = new google.maps.InfoWindow();
                 marker.addListener('click', (function() {
@@ -192,7 +210,7 @@
 
                 // To have the infowindow displayed during mouseover only. Nice now but might not be practical
                 // when the markers are moving!
-                if (map_parameters.info_on_mouseover) {
+                /*if (map_parameters.info_on_mouseover) {
                     marker.addListener('mouseover', (function() {
                         return function () {
                             infowindow.setContent(content);
@@ -205,7 +223,28 @@
                             infowindow.close();
                         };
                     })(infowindow));
-                }
+                }*/
+            });
+            emergency_calls.forEach(function(call) {
+                var marker = new google.maps.Marker({
+                    position: call.position,
+                    title: call.name,
+                    icon: icons['calls'].icon,
+                    map: map
+                });
+                all_markers.push(marker);
+
+                var content = call.content;
+                var infowindow = new google.maps.InfoWindow();
+                marker.addListener('click', (function() {
+                    return function () {
+                        infowindow.setContent(content);
+                        if (currentinfowindow)
+                            currentinfowindow.close();
+                        infowindow.open(map, marker);
+                        currentinfowindow = infowindow;
+                    };
+                })(marker, content, infowindow));
             });
 
             //////////////////////////  Legend ///////////////////
@@ -224,22 +263,7 @@
             // Add the legend on the map
             map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
 
-            //////////////////////////  Djikstra Paths ///////////////////
-
-/*            for (var i=0;i < map_parameters.djikstra_path.length;i++) {
-                var path_information = map_parameters.djikstra_path[i];
-                var djikstraPath = new google.maps.Polyline({
-                    path: path_information.coordinates,
-                    geodesic: true,
-                    strokeColor: icons[path_information.type].icon.fillColor,
-                    strokeOpacity: 0.8,
-                    strokeWeight: 3
-                });
-                djikstraPath.setMap(map);
-            }*/
-
             //////////////////////////  Earthquake information ///////////////////
-
 
             // Get the earthquake data (JSONP format)
             // Source: http://earthquake.usgs.gov/earthquakes/feed/v1.0/geojson.php
