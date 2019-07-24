@@ -90,37 +90,20 @@ if __name__ == '__main__':
         msg = {'username': req['username'], 'success': True, 'reason': 'None'}
         return Response(response=json.dumps(msg), **arg)
 
-    @app.route('/add_call', methods=['POST'])
+    @app.route('/get_call', methods=['POST'])
     @filter_key
-    def add_call():
+    def get_call():
 
-        # Defines where to store the calls
-        if not os.path.exists('storage'): os.mkdir('storage')
-        # Load the audio file
-        fle = request.files['audio_file']
-        # Extract the key
-        key = request.headers.get('apikey')
-        if not os.path.exists('/'.join(['storage', key])): os.mkdir('/'.join(['storage', key]))
-        # Serialize the call
-        idx = uuid.uuid4().hex
-        fle.save('/'.join(['storage', key, idx]))
+        res, arg = dict(), parse_arguments(request)
+        lst = Call.query.filter(Call.occurence <= arg['timing'])
 
-        # Launch the analysis
-        res = get_transcript('/'.join(['storage', key, idx]), key)
+        for call in lst:
+            req = call.__dict__.copy()
+            for key in ['call_id', '_sa_instance_state']: del req[key]
+            res[call.call_id] = req
 
-        if res is None:
-            msg = {'id': idx, 'success': False, 'reason': 'Issue with speech-to-text technology'}
-            return Response(response=json.dumps(msg), **arg)
-
-        else:
-            req = parse_arguments(request)
-            req.update({'call_id': '-'.join([key, idx]), 'length': max(res['ends'])})
-            req.update({'transcript': ' '.join(res['words']), 'priority': 1.0})
-            # Update the database
-            dtb.session.add(Call(**req))
-            dtb.session.commit()
-            msg = {'id': idx, 'success': True}
-            return Response(response=json.dumps(msg), **arg)
+        arg = {'status': 200, 'mimetype': 'application/json'}
+        return Response(response=json.dumps(res), **arg)
 
     @app.route('/get_unit', methods=['POST'])
     @filter_key

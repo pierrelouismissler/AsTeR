@@ -24,12 +24,12 @@ class User(dtb.Model):
 class Call(dtb.Model):
 
     call_id = dtb.Column(dtb.String(80), primary_key=True, unique=True, nullable=False)
-    length = dtb.Column(dtb.Float, unique=False, nullable=False)
-    timestamp = dtb.Column(dtb.Integer, unique=False, nullable=False)
+    # length = dtb.Column(dtb.Float, unique=False, nullable=False)
+    occurence = dtb.Column(dtb.Float, unique=False, nullable=False)
     longitude = dtb.Column(dtb.Float, unique=False, nullable=False)
     latitude = dtb.Column(dtb.Float, unique=False, nullable=False)
-    transcript = dtb.Column(dtb.Text, unique=False, nullable=True)
-    priority = dtb.Column(dtb.Float, unique=False, nullable=True)
+    # transcript = dtb.Column(dtb.Text, unique=False, nullable=True)
+    # priority = dtb.Column(dtb.Float, unique=False, nullable=True)
 
 class Unit(dtb.Model):
 
@@ -63,6 +63,14 @@ if __name__ == '__main__':
         for unit in pop: dtb.session.add(Unit(**unit))
         dtb.session.commit()
 
+    # Run iterative population
+    def populate_calls(config='configs/initialization.yaml'):
+
+        with open(config) as raw: pop = yaml.safe_load(raw)['calls']
+        for call in pop: dtb.session.add(Call(**call))
+        dtb.session.commit()
+
     # Initialize registrations
     populate_users()
     populate_units()
+    populate_calls()
