@@ -14,7 +14,14 @@
 
         <div class="carousel-inner">
             <div class="active carousel-item">
-                <img class="first-slide" class="d-block w-100" src="/static/img/home/wildfire_1.jpg" style="height: 100%;" alt="Wild Fire">
+                <picture>
+                    <source media="(min-width: 900px)" srcset="/static/img/home/wildfire_1.jpg"  style="height: : 100%;">
+                    <source media="(min-width: 550px)" srcset="/static/img/home/wildfire_tablet.jpg"  style="width: : 100%;">
+                    <img class="first-slide" class="d-block w-80" src="/static/img/home/wildfire_phone.jpg" 
+                    style="width: 100%;" alt="Wild Fire">
+                </picture>
+                <!-- <img class="first-slide" class="d-block w-100" src="/static/img/home/wildfire_1.jpg" style="width: 100%;" alt="Wild Fire"> -->
+                
                 <div class="container">
                     <div class="carousel-caption text-left">
                     
@@ -26,7 +33,12 @@
             </div>
 
             <div class="carousel-item">
-                <img class="second-slide" class="d-block w-100" src="/static/img/home/modularity_2.jpg" style="height: 100%;" alt="modularity">
+                <picture>
+                    <source media="(min-width: 900px)" srcset="/static/img/home/modularity_desktop.jpg" style="height: 100%;">
+                    <source media="(min-width: 550px)" srcset="/static/img/home/modularity_tablet_1.jpg" style="width: 100%;">
+                    <img class="second-slide" class="d-block w-80" src="/static/img/home/modularity_phone.jpg" style="width: 100%" alt="modularity">
+                </picture>
+                <!-- <img class="second-slide" class="d-block w-100" media="(min-width: 800px)" src="/static/img/home/modularity_2.jpg" style="height: 100%;" alt="modularity"> -->
                 <div class="container">
                     <div class="carousel-caption">
                         <h1>Focus on modularity.</h1>
@@ -37,7 +49,12 @@
             </div>
 
             <div class="carousel-item">
-                <img class="third-slide"  src="/static/img/home/bulb_1.jpg" style="height: 100%;" alt="smart">
+                <picture>
+                    <source media="(min-width: 900px)" srcset="/static/img/home/bulb_desktop.jpg" style="height: 100%;">
+                    <source media="(min-width: 550px)" srcset="/static/img/home/bulb_tablet.jpg" style="width: 100%;">
+                    <img class="third-slide" class="d-block w-80" src="/static/img/home/bulb_phone.jpg" style="width: 100%;" alt="smart">
+                </picture>
+                <!-- <img class="third-slide" class="d-block w-100"  media="(min-width: 800px)" src="/static/img/home/bulb_1.jpg" style="height: 100%;" alt="smart"> -->
                 <div class="container">
                     <div class="carousel-caption text-right">
                         <h1>AsTeR is not only intuitive. It is smart. </h1>
