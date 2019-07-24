@@ -174,11 +174,6 @@ def dashboard_summary():
         
         return json.loads(req.content)
 
-    def format_unit(idx, dic, key_name='unit_id'):
-    
-        dic.update({'unit_id': idx})
-        return dic
-
     def format_path(unit):
 
         pth = np.asarray([e.split(':') for e in unit['path'].split('|')]).astype('float')
@@ -186,8 +181,22 @@ def dashboard_summary():
 
         return {'coordinates': pth, 'type': unit['unit_type'], 'unit_id': unit['unit_id']}
 
-    units = [format_unit(k, v) for k, v in list_units(API_KEY, SQL_URL).items()]
+    def list_calls(api_key, url, time=10.0):
+
+        url = '/'.join([url, 'get_call'])
+        header = {'apikey': api_key}
+        req = requests.post(url, headers=header, params={'timing': time})
+
+        return json.loads(req.content)
+
+    def formatting(idx, dic, key_name='unit_id'):
+    
+        dic.update({key_name: idx})
+        return dic
+
+    units = [formatting(k, v, key_name='unit_id') for k, v in list_units(API_KEY, SQL_URL).items()]
     paths = [format_path(unit) for unit in units if unit['path'] != 'none']
+    calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL).items()]
 
     map_parameters = {
         'identifier': "emergency_map",
@@ -196,6 +205,7 @@ def dashboard_summary():
         'lng': -122.4194,
         'mapType': 'terrain',
         'units': units,
+        'calls': calls,
         'djikstra_path': paths,
         'streetview_control': False,
         'fullscreen_control': False,
