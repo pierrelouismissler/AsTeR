@@ -28,6 +28,7 @@ class Call(dtb.Model):
     occurence = dtb.Column(dtb.Float, unique=False, nullable=False)
     longitude = dtb.Column(dtb.Float, unique=False, nullable=False)
     latitude = dtb.Column(dtb.Float, unique=False, nullable=False)
+    phone_number = dtb.Column(dtb.String(80), unique=True, nullable=False)
     # transcript = dtb.Column(dtb.Text, unique=False, nullable=True)
     # priority = dtb.Column(dtb.Float, unique=False, nullable=True)
 

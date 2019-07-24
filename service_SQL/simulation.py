@@ -120,31 +120,40 @@ class BayAreaFilter:
         
         return simulations[np.asarray(res)]
     
+    @staticmethod
+    def random_phone():
+        n = '0000000000'
+        a = str(np.random.choice([747, 213, 310, 323, 818, 424]))
+        b = '{:03d}'.format(np.random.randint(0, 1000))
+        c = '{:04d}'.format(np.random.randint(0, 10000))
+        return a + '-' + b + '-' + c
+
     def yamlify(self, simulations):
         
         for i, row in simulations.iterrows():
             print('- call_id: {}'.format(uuid.uuid4().hex))
+            print('  phone_number: {}'.format(self.random_phone()))
             print('  longitude: {}'.format(row.longitude))
             print('  latitude: {}'.format(row.latitude))
             print('  occurence: {}'.format(row.time))
 
 if __name__ == '__main__':
 
-	map_radius = 5e-4
-	map_center = (37.7649, -122.4194)
-	call_centers = {'Central Richmond': (37.778453, -122.491263),
-	                'Bernal Heights': (37.737023, -122.4165579),
-	                'Daly City': (37.687242, -122.470412),
-	                'Russian Hill': (37.800439, -122.419592),
-	                'Sausalito': (37.858326, -122.485150),
-	                'Oakland': (37.805166, -122.273354),
-	                'Piedmont': (37.825557, -122.232404),
-	                'Berkeley': (37.867640, -122.267804)}
-	epicenters = {'Central Richmond': (37.778453, -122.491263)}
+    map_radius = 5e-4
+    map_center = (37.7649, -122.4194)
+    call_centers = {'Central Richmond': (37.778453, -122.491263),
+                    'Bernal Heights': (37.737023, -122.4165579),
+                    'Daly City': (37.687242, -122.470412),
+                    'Russian Hill': (37.800439, -122.419592),
+                    'Sausalito': (37.858326, -122.485150),
+                    'Oakland': (37.805166, -122.273354),
+                    'Piedmont': (37.825557, -122.232404),
+                    'Berkeley': (37.867640, -122.267804)}
+    epicenters = {'Central Richmond': (37.778453, -122.491263)}
 
-	arg = {'call_centers': call_centers, 'background_call_centers': epicenters}
-	sim = SimulationCalls(map_center, map_radius, 100, max_calls=500, **arg)
-	dtf = sim.run()
-	flt = BayAreaFilter(shape_file='graphs/bayarea.json')
-	dtf = flt.run(dtf)
-	flt.yamlify(dtf)
+    arg = {'call_centers': call_centers, 'background_call_centers': epicenters}
+    sim = SimulationCalls(map_center, map_radius, 100, max_calls=500, **arg)
+    dtf = sim.run()
+    flt = BayAreaFilter(shape_file='graphs/bayarea.json')
+    dtf = flt.run(dtf)
+    flt.yamlify(dtf)
