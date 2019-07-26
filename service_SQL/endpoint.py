@@ -95,7 +95,7 @@ if __name__ == '__main__':
     def get_call():
 
         res, arg = dict(), parse_arguments(request)
-        lst = Call.query.filter(Call.occurence <= arg['timing'])
+        lst = Call.query.filter(Call.time <= arg['timing'])
 
         for call in lst:
             req = call.__dict__.copy()
@@ -150,5 +150,5 @@ if __name__ == '__main__':
         msg = {'unit_id': req['unit_id'], 'success': True, 'reason': 'None'}
         return Response(response=json.dumps(msg), **arg)
 
-    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    # app.run(host='127.0.0.1', port=8080, threaded=True)
+    # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    app.run(host='127.0.0.1', port=8080, threaded=True)

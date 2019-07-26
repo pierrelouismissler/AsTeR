@@ -1,0 +1,17 @@
+{
+  "map_radius": 5e-4,
+  "map_center": [37.7649, -122.4194],
+  "call_centers": {
+    "Central Richmond": [37.778453, -122.491263],
+    "Bernal Heights": [37.737023, -122.4165579],
+    "Daly City": [37.687242, -122.470412],
+    "Russian Hill": [37.800439, -122.419592],
+    "Sausalito": [37.858326, -122.485150],
+    "Oakland": [37.805166, -122.273354],
+    "Piedmont": [37.825557, -122.232404],
+    "Berkeley": [37.867640, -122.267804]
+  },
+  "background_call_centers": {
+    "Central Richmond": [37.778453, -122.491263]
+  }
+}
