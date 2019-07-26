@@ -150,5 +150,5 @@ if __name__ == '__main__':
         msg = {'unit_id': req['unit_id'], 'success': True, 'reason': 'None'}
         return Response(response=json.dumps(msg), **arg)
 
-    # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    app.run(host='127.0.0.1', port=8080, threaded=True)
+    app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    # app.run(host='127.0.0.1', port=8080, threaded=True)
