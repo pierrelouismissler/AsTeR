@@ -145,7 +145,7 @@ if __name__ == '__main__':
 
     # Load call simulation configuration
     with open('configs/calls_config.json') as raw: cfg = json.load(raw)
-    sim = SimulationCalls(1000, max_calls=500, **cfg)
+    sim = SimulationCalls(3600, max_calls=500, **cfg)
     dtf = sim.run()
     # Filter based on shape file of the bay area
     flt = BayAreaFilter(shape_file='graphs/bayarea.json')

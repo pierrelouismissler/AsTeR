@@ -13,9 +13,3 @@ __pycache__/
 database.db
 figures/
 configs/simulation.json
-
-# Unneeded material
-graphs.py
-graphs/sanfrancisco.jb
-
-
