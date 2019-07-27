@@ -63,12 +63,6 @@ def record():
 
     return render_template('record.html')
 
-# Additional test environment
-# MASK WHEN NOT IN USE AND BEFORE DEPLOYMENT
-# @application.route('/test')
-# def test():
-#     return render_template('test.html')
-
 # Register form class
 class RegisterForm(Form):
 
@@ -194,15 +188,16 @@ def dashboard_summary():
         dic.update({key_name: idx})
         return dic
 
+    times = datetime.now().minute*60 + datetime.now().second
     units = [formatting(k, v, key_name='unit_id') for k, v in list_units(API_KEY, SQL_URL).items()]
     paths = [format_path(unit) for unit in units if unit['path'] != 'none']
-    calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL).items()]
+    calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
 
     map_parameters = {
         'identifier': "emergency_map",
-        'zoom': 11,
-        'lat': 37.7649,  # San Francisco Coordinates
-        'lng': -122.4194,
+        'zoom': 11.5,
+        'lat': 37.8212,  # San Francisco Coordinates
+        'lng': -122.3709,
         'mapType': 'terrain',
         'units': units,
         'calls': calls,
@@ -217,6 +212,28 @@ def dashboard_summary():
     }
 
     return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters)
+
+@application.route('/calls_content')
+@is_logged_in
+def return_content():
+
+    def list_calls(api_key, url, time=0.0):
+
+        url = '/'.join([url, 'get_call'])
+        header = {'apikey': api_key}
+        req = requests.post(url, headers=header, params={'timing': time})
+
+        return json.loads(req.content)
+
+    def formatting(idx, dic, key_name='unit_id'):
+    
+        dic.update({key_name: idx})
+        return dic
+
+    times = (datetime.now().minute*60 + datetime.now().second) * 2
+    calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
+
+    return jsonify(calls=calls)
 
 # Calls Dashboard
 @application.route('/dashboard/calls')
