@@ -6,6 +6,10 @@
         var map_parameters = JSON.parse('{{map_parameters|tojson|safe}}');
         var map;
         var earthquakeMap;
+        var icons;
+        var used_ids = [];
+        var all_markers = [];
+        var currentinfowindow = null; 
 
         // Initialize and add the map
         function initMap() {
@@ -18,107 +22,10 @@
                 mapTypeId: map_parameters.mapType,
                 streetViewControl: map_parameters.streetview_control,
                 fullscreenControl: map_parameters.fullscreen_control,
-                {#mapTypeControlOptions: {#}
-                {#    mapTypeIds: ['roadmap','terrain']#}
-                {# },#}
                 mapTypeControl: false
             };
 
-            {# Normal day mode #}
             map = new google.maps.Map(document.getElementById(map_parameters.identifier), map_options);
-
-            if (map_parameters.night_mode) {
-
-                {# Night mode #}
-                var nightMapType = new google.maps.StyledMapType(
-                    [
-                        {elementType: 'geometry', stylers: [{color: '#242f3e'}]},
-                        {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]},
-                        {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]},
-                        {
-                            featureType: 'administrative.locality',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#d59563'}]
-                        },
-                        {
-                            featureType: 'poi',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#d59563'}]
-                        },
-                        {
-                            featureType: 'poi.park',
-                            elementType: 'geometry',
-                            stylers: [{color: '#263c3f'}]
-                        },
-                        {
-                            featureType: 'poi.park',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#6b9a76'}]
-                        },
-                        {
-                            featureType: 'road',
-                            elementType: 'geometry',
-                            stylers: [{color: '#38414e'}]
-                        },
-                        {
-                            featureType: 'road',
-                            elementType: 'geometry.stroke',
-                            stylers: [{color: '#212a37'}]
-                        },
-                        {
-                            featureType: 'road',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#9ca5b3'}]
-                        },
-                        {
-                            featureType: 'road.highway',
-                            elementType: 'geometry',
-                            stylers: [{color: '#746855'}]
-                        },
-                        {
-                            featureType: 'road.highway',
-                            elementType: 'geometry.stroke',
-                            stylers: [{color: '#1f2835'}]
-                        },
-                        {
-                            featureType: 'road.highway',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#f3d19c'}]
-                        },
-                        {
-                            featureType: 'transit',
-                            elementType: 'geometry',
-                            stylers: [{color: '#2f3948'}]
-                        },
-                        {
-                            featureType: 'transit.station',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#d59563'}]
-                        },
-                        {
-                            featureType: 'water',
-                            elementType: 'geometry',
-                            stylers: [{color: '#17263c'}]
-                        },
-                        {
-                            featureType: 'water',
-                            elementType: 'labels.text.fill',
-                            stylers: [{color: '#515c6d'}]
-                        },
-                        {
-                            featureType: 'water',
-                            elementType: 'labels.text.stroke',
-                            stylers: [{color: '#17263c'}]
-                        }
-                    ],
-                    {name: 'Night mode'});
-
-                map_options.mapTypeControlOptions = { mapTypeIds: ['roadmap','terrain','night_map']};
-                map.setOptions(map_options);
-
-                //Associate the night mode map with the MapTypeId and set it to display.
-                map.mapTypes.set('night_map', nightMapType);
-            }
 
             //////////////////////////  Markers  ///////////////////
 
@@ -134,118 +41,23 @@
                 icon_parameters.fillColor = color;
                 {#icon_parameters.strokeColor: color,#}
                 return icon_parameters
-            }
+                };
 
-            const icons = {
-                police: {
-                    name: 'Police Unit',
-                    icon: set_icon_parameters('#484ed5')
-                },
-                ambulance: {
-                    name: 'Ambulance',
-                    icon: set_icon_parameters('#d51f13')
-                },
-                firefighter: {
-                    name: 'Firefighter',
-                    icon: set_icon_parameters('#d57600')
-                },
-                calls: {
-                    name: '911 Calls',
+            // Creates the icons array.
+            icons = {
+                calls_low: {
+                    name: 'Calls - Low',
                     icon: set_icon_parameters('#6AF508')
+                },
+                calls_medium: {
+                    name: 'Calls - Medium',
+                    icon: set_icon_parameters('#FF5733')
+                },
+                calls_top: {
+                    name: 'Calls - Top',
+                    icon: set_icon_parameters('#A92408')
                 }
-            }; // Creates the icons array.
-
-            // Defines markers for the calls
-            var emergency_calls = [];
-            for (i=0; i < map_parameters.calls.length; i++) {
-                var call = map_parameters.calls[i];
-                emergency_calls.push({
-                    position: new google.maps.LatLng(call.latitude, call.longitude),
-                    name: call.phone_number,
-                    content: '<div id="content"><div id="siteNotice"></div>'+
-                        '<h5 id="firstHeading" class="firstHeading">'+call.phone_number+'</h5>'+
-                        '<div id="bodyContent"><p><b>Unit ID: </b>'+call.id+'</p></div></div>'
-                });
-            }
-
-            // Create the markers array.
-            var dispatched_units = [];
-            for (i=0; i < map_parameters.units.length; i++) {
-                var unit = map_parameters.units[i];
-                dispatched_units.push({
-                    position: new google.maps.LatLng(unit.latitude, unit.longitude),
-                    type: unit.unit_type,
-                    name: unit.name,
-                    content: '<div id="content"><div id="siteNotice"></div>'+
-                        '<h5 id="firstHeading" class="firstHeading">'+unit.name+'</h5>'+
-                        '<div id="bodyContent"><p><b>Unit ID: </b>'+unit.id+'</p>' +
-                        '<p>'+unit.infobox+'</p></div></div>'
-                });
-            }
-
-            var currentinfowindow = null; // To keep only one window open (see below in add listener)
-
-            var all_markers = [];
-            // Put the markers on the map.
-            dispatched_units.forEach(function(unit) {
-                var marker = new google.maps.Marker({
-                    position: unit.position,
-                    title: unit.name,
-                    icon: icons[unit.type].icon,
-                    map: map
-                });
-                all_markers.push(marker);
-
-                var content = unit.content;
-                var infowindow = new google.maps.InfoWindow();
-                marker.addListener('click', (function() {
-                    return function () {
-                        infowindow.setContent(content);
-                        if (currentinfowindow)
-                            currentinfowindow.close();
-                        infowindow.open(map, marker);
-                        currentinfowindow = infowindow;
-                    };
-                })(marker, content, infowindow));
-
-                // To have the infowindow displayed during mouseover only. Nice now but might not be practical
-                // when the markers are moving!
-                /*if (map_parameters.info_on_mouseover) {
-                    marker.addListener('mouseover', (function() {
-                        return function () {
-                            infowindow.setContent(content);
-                            infowindow.open(map, marker);
-                        };
-                    })(marker, content, infowindow));
-
-                    marker.addListener('mouseout', (function() {
-                        return function () {
-                            infowindow.close();
-                        };
-                    })(infowindow));
-                }*/
-            });
-            emergency_calls.forEach(function(call) {
-                var marker = new google.maps.Marker({
-                    position: call.position,
-                    title: call.name,
-                    icon: icons['calls'].icon,
-                    map: map
-                });
-                all_markers.push(marker);
-
-                var content = call.content;
-                var infowindow = new google.maps.InfoWindow();
-                marker.addListener('click', (function() {
-                    return function () {
-                        infowindow.setContent(content);
-                        if (currentinfowindow)
-                            currentinfowindow.close();
-                        infowindow.open(map, marker);
-                        currentinfowindow = infowindow;
-                    };
-                })(marker, content, infowindow));
-            });
+                }; 
 
             //////////////////////////  Legend ///////////////////
 
@@ -258,7 +70,7 @@
                 var div = document.createElement('div');
                 div.innerHTML = '<svg height="20" width="20"><circle cx="10" cy="10" r="7.5" stroke="black" stroke-width="1" fill="'+color+'"/></svg><b>' + name + '</b>';
                 legend.appendChild(div);
-            }
+                };
 
             // Add the legend on the map
             map.controls[google.maps.ControlPosition.RIGHT_TOP].push(legend);
@@ -301,7 +113,7 @@
             //////////////////////////  Center on user  ///////////////////
 
             // Allow the map to be centered on the user's location
-            if (map_parameters.center_on_user_location) {
+                if (map_parameters.center_on_user_location) {
                 if (navigator.geolocation) {
                     navigator.geolocation.getCurrentPosition(function(position) {
                         var pos = {
@@ -328,6 +140,82 @@
                 }
                 map.fitBounds(map_bounds);
             {% endif %}
+        }
+
+        // Clear all markers on map
+/*        setInterval("clearOverlays();", 300000)
+        function clearOverlays() {
+          for (var i = 0; i < all_markers.length; i++ ) {
+            all_markers[i].setMap(null);
+          }
+          all_markers.length = 0;
+          used_ids.length = 0;
+        }*/
+
+        // Update the list of calls
+        setInterval("update_values();", 3000);
+        function update_values() {
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            $.getJSON($SCRIPT_ROOT+"/calls_content",
+                function(data) {
+                    map_parameters.calls = data['calls'];
+                });
+        }
+
+        // Display the markers
+        setInterval("display_markers();", 3000);
+        function display_markers() {
+
+            function define_emergency_type(call){
+
+                  if(call.priority < 1){
+                    return "calls_low";
+                  } else if(call.priority < 2){
+                    return "calls_medium";
+                  } else if(call.priority < 3){
+                    return "calls_top";
+                  }
+            }
+
+            // Defines markers for the calls
+            var emergency_calls = [];
+            for (i=0; i < map_parameters.calls.length; i++) {
+                var call = map_parameters.calls[i];
+                used_ids.push(call.call_id);
+                emergency_calls.push({
+                    position: new google.maps.LatLng(call.latitude, call.longitude),
+                    name: call.phone_number,
+                    type: define_emergency_type(call),
+                    content: '<div id="content"><div id="siteNotice"></div>'+
+                        '<h5 id="firstHeading" class="firstHeading">On +'+call.phone_number+'</h5>'+
+                        '<div id="bodyContent">' + 
+                        '<p><b>Estimated Priority: </b>'+call.priority+'</p></div></div>'
+                });
+            }
+
+            // Display each emergency call
+            emergency_calls.forEach(function(call) {
+                var marker = new google.maps.Marker({
+                    position: call.position,
+                    title: call.name,
+                    icon: icons[call.type].icon,
+                    map: map
+                });
+                all_markers.push(marker);
+
+                var content = call.content;
+                var infowindow = new google.maps.InfoWindow();
+
+                marker.addListener('click', (function() {
+                    return function () {
+                        infowindow.setContent(content);
+                        if (currentinfowindow)
+                            currentinfowindow.close();
+                        infowindow.open(map, marker);
+                        currentinfowindow = infowindow;
+                    };
+                })(marker, content, infowindow));
+            })
         }
 
         // Defines the callback function referenced in the jsonp file.
