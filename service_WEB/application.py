@@ -241,6 +241,59 @@ def logout():
     flash('Successfully logged out', 'success')
     return redirect(url_for('index'))
 
+
+
+
+# Contact form class
+class ContactForm(Form):
+    name = StringField('Name', [validators.Length(min=2, max=50), validators.DataRequired("Please enter your name.")])
+    email = StringField('Email', [validators.Length(min=2, max=50), validators.DataRequired("Please enter your email address."), validators.Email("Please enter your email address.")])
+    subject = StringField('Subject', [validators.Length(min=2, max=100), validators.DataRequired("Please enter a subject.")])
+    message = TextAreaField('Message', [validators.Length(min=2, max=1000), validators.DataRequired("Please enter a message.")])
+    submit = SubmitField("Send")
+
+# Contact page
+@application.route('/contact', methods=['GET', 'POST'])
+
+def contact():
+  form = ContactForm(request.form)
+ 
+  if request.method == 'POST':
+    if form.validate() == False:
+        flash('All fields are required.')
+        return render_template('contact.html', form=form)
+    else:
+        msg = Message(subject=form.subject.data, sender='aster0project@gmail.com', recipients=['aster0project@gmail.com'])
+        msg.body = """
+        From: %s 
+        <%s>
+        Subject: %s
+
+        -Message throught the contact page of www.project-aster.com-
+
+        %s
+        """ % (form.name.data,form.subject.data, form.email.data, form.message.data)
+        mail.send(msg)
+        # flash('Thank you for your message. We will get back to you shortly.', 'success' )
+        return render_template('contact.html', success=True)
+ 
+  elif request.method == 'GET':
+        return render_template('contact.html', form=form)
+
+application.config.update(
+    DEBUG=True,
+    #EMAIL SETTINGS
+    MAIL_SERVER = "smtp.gmail.com",
+    MAIL_PORT = 587,
+    MAIL_USE_SSL = False,
+    MAIL_USE_TLS = True,
+    MAIL_USERNAME = 'aster0project',
+    MAIL_PASSWORD = 'AsTeRproject'
+    )
+
+mail=Mail(application)
+
+
 if __name__ == '__main__':
 
     application.run(host='127.0.0.1', port=8080)
