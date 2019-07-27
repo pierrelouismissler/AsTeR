@@ -9,6 +9,8 @@ except: from imports import *
 with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
 SQL_URL = crd['sql_api']
 API_KEY = crd['api_key']
+MAIL_PASSWORD = crd['mail_password']
+
 # Secure application
 application = Flask(__name__)
 application.secret_key = crd['secret_key']
@@ -288,7 +290,7 @@ application.config.update(
     MAIL_USE_SSL = False,
     MAIL_USE_TLS = True,
     MAIL_USERNAME = 'aster0project',
-    MAIL_PASSWORD = 'AsTeRproject'
+    MAIL_PASSWORD = MAIL_PASSWORD
     )
 
 mail=Mail(application)
