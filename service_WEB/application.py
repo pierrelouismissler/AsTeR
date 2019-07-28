@@ -31,23 +31,10 @@ mail = Mail(application)
 # Contact form class
 class ContactForm(Form):
     name = StringField('Name', [validators.Length(min=2, max=50), validators.DataRequired("Please enter your name.")])
-    email = StringField('Email', [validators.Length(min=2, max=50), validators.DataRequired("Please enter your email address."), validators.Email("Please enter your email address.")])
+    email = StringField('Email', [validators.Length(min=2, max=50), validators.DataRequired("Please enter your email address."), validators.Email("Please enter a correct email address.")])
     subject = StringField('Subject', [validators.Length(min=2, max=100), validators.DataRequired("Please enter a subject.")])
     message = TextAreaField('Message', [validators.Length(min=2, max=1000), validators.DataRequired("Please enter a message.")])
     submit = SubmitField("Send")
-
-# Register form class
-class RegisterForm(Form):
-    firstname = StringField('First Name', [validators.Length(min=2, max=50)])
-    lastname = StringField('Last Name', [validators.Length(min=2, max=50)])
-    username = StringField('Username', [validators.Length(min=4, max=25)])
-    email = StringField('Email', [validators.Length(min=6, max=50)])
-    password = PasswordField('Password', [
-        validators.data_required(),
-        validators.equal_to('confirm', message='Passwords do not match')
-    ])
-    confirm = PasswordField('Confirm Password')
-
 
 @application.context_processor
 def inject_api_keys():
@@ -121,7 +108,6 @@ def dashboard_summary():
         return {'coordinates': pth, 'type': unit['unit_type'], 'unit_id': unit['unit_id']}
 
     def list_calls(api_key, url, time=10.0):
-
         url = '/'.join([url, 'get_call'])
         header = {'apikey': api_key}
         req = requests.post(url, headers=header, params={'timing': time})
@@ -129,7 +115,6 @@ def dashboard_summary():
         return json.loads(req.content)
 
     def formatting(idx, dic, key_name='unit_id'):
-
         dic.update({key_name: idx})
         return dic
 
@@ -176,16 +161,6 @@ def return_content():
     times = (datetime.now().minute*60 + datetime.now().second) * 2
     calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
     return jsonify(calls=calls)
-
-# Calls Dashboard
-@application.route('/dashboard/calls')
-def dashboard_calls():
-    return render_template('dashboard/dashboard_calls.html')
-
-# Units Dashboard
-@application.route('/dashboard/units')
-def dashboard_units():
-    return render_template('dashboard/dashboard_units.html')
 
 if __name__ == '__main__':
     application.run(host='127.0.0.1', port=8080)

@@ -1,3 +1,4 @@
+
 /* GLOBAL STYLES
 -------------------------------------------------- */
 /* Padding below the footer and lighter body text */
@@ -42,23 +43,7 @@ body {
   height: auto;
   display: inline-block;
 }
-/*.item1 {
-    background: url('/static/img/home/wildfire_1.jpg') no-repeat center center fixed;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-}
 
-.carousel-inner > .item > img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  min-width: 50%;
-  height: none;
-  /*height: 500px;*/
-}*/
-}
 .btn .btn-youtube{
      border: none;
      color: grey;
@@ -134,4 +119,19 @@ body {
   .featurette-heading {
     margin-top: 1rem;
   }
+}
+
+
+
+/* Custom animation */
+.fancybox-fx-slide-in-out.fancybox-slide--previous {
+  transform: translateX(-100%);
+}
+
+.fancybox-fx-slide-in-out.fancybox-slide--next {
+  transform: translateX(100%);
+}
+
+.fancybox-fx-slide-in-out.fancybox-slide--current {
+  transform: translateX(0);
 }
