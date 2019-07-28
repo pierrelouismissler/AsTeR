@@ -1,0 +1,6 @@
+pandas==0.23.4
+nltk==3.3
+requests==2.21.0
+joblib==0.13.0
+numpy==1.16.4
+watson_developer_cloud==2.7.0

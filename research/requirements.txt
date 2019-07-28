@@ -1,0 +1,3 @@
+# pip install the following
+
+python-twitter
