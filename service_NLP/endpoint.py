@@ -6,7 +6,7 @@ try: from service_NLP.runner import *
 except: from runner import *
 
 # Run Flask local server
-app = Flask('NLP')
+application = Flask('NLP')
 # Defines the API
 api = AnalyzeTranscript()
 
@@ -29,7 +29,7 @@ def filter_key(function):
 
 if __name__ == '__main__':
 
-    @app.route('/run', methods=['POST'])
+    @application.route('/run', methods=['POST'])
     @filter_key
     def run_service():
 
@@ -42,5 +42,6 @@ if __name__ == '__main__':
         arg = {'status': 200, 'mimetype': 'application/json'}
         return Response(response=json.dumps(req), **arg)
 
+    application.run()
     # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    app.run(host='127.0.0.1', port=8080, threaded=True)
+    # app.run(host='127.0.0.1', port=8080, threaded=True)

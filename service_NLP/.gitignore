@@ -13,3 +13,7 @@ configs/key_rapidai.json
 # Heavy file
 models/rf_model.jb
 models/stopwords.jb
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
