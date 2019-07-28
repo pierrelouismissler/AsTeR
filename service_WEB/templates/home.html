@@ -329,8 +329,7 @@
                     </div>
                 </div>
 
-<<<<<<< HEAD
-                <div class="container">
+                <div class="container-marketing">
                     <div class="row">
                         <div class="col-md"></div>
                         <div class="col-md-10">
@@ -339,10 +338,10 @@
                                     {{ form.name(class="form-control", placeholder="Your name", **{'data-validation':'required'}) }}
                                 </div>
                                 <div class="md-form mb-4">
-                                    {{ form.subject(class="form-control", placeholder="The subject of your message", **{'data-validation':'required'}) }}
+                                    {{ form.email(class="form-control", placeholder="Your email address", **{'data-validation':'required'}) }}
                                 </div>
                                 <div class="md-form mb-4">
-                                    {{ form.email(class="form-control", placeholder="Your email address", **{'data-validation':'required'}) }}
+                                    {{ form.subject(class="form-control", placeholder="Subject ", **{'data-validation':'required'}) }}
                                 </div>
                                 <div class="md-form mb-4">
                                     {{ form.message(class="form-control", placeholder="Write your message here! Surprise us!", **{'data-validation':'required'}) }}
