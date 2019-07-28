@@ -43,5 +43,4 @@ def run_service():
 if __name__ == '__main__':
 
     application.run()
-    # application.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
     # application.run(host='127.0.0.1', port=8080, threaded=True)
