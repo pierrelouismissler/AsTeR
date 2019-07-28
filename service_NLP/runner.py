@@ -65,6 +65,7 @@ class AnalyzeTranscript:
         self.rai = KeyWd_RAI(credentials='/'.join([directory, 'configs/key_rapidai.json']))
         self.cls = GetClass(directory='/'.join([directory, 'models']))
         self.voc = pd.read_parquet('/'.join([directory, 'models/vocabulary.pq']))
+        self.stp = set(joblib.load('/'.join([directory, 'models/stopwords.jb'])))
         
     @staticmethod
     def relevance_map(request):
@@ -87,8 +88,7 @@ class AnalyzeTranscript:
         res = res.encode('ascii', 'ignore').decode('ascii')
 
         lst = res.split() 
-        stp = set(stopwords.words("english"))
-        lst = [w for w in lst if not w in stp]
+        lst = [w for w in lst if not w in self.stp]
         res = ' '.join(lst)
 
         return res
