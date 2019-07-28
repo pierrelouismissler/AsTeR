@@ -11,7 +11,7 @@ import numpy as np
 
 from datetime import datetime
 from flask import Flask, request, render_template, flash, redirect, url_for, session, logging, jsonify
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SubmitField
+from wtforms import Form, StringField, TextAreaField, PasswordField, validators, SubmitField, ValidationError
 from passlib.hash import sha256_crypt
 from functools import wraps
-from flask_mail import Mail
+from flask_mail import Mail, Message
