@@ -1,0 +1,13 @@
+# Author:  DINDIN Meryll
+# Date:    27 July 2019
+# Project: AsTeR
+
+# Development files
+__pycache__/
+
+# Sensitive material
+configs/key_ibm.json
+configs/key_rapidai.json
+
+# Heavy file
+models/rf_model.jb

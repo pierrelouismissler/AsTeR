@@ -2,6 +2,10 @@
 
 .ipynb_checkpoints/
 process/__pycache__/
+
+# Heavy files
+
+.ipynb
 service_STT/__pycache__/
 
 # Heavy files
@@ -11,6 +15,7 @@ service_STT/__pycache__/
 maps/
 calls/
 !calls/*.wav
+research/data
 
 # Sensitive data
 
