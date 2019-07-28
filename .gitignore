@@ -2,7 +2,6 @@
 
 .ipynb_checkpoints/
 process/__pycache__/
-service_STT/__pycache__/
 
 # Heavy files
 
