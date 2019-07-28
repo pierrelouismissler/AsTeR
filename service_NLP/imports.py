@@ -3,6 +3,7 @@
 # Project: AsTeR
 
 import requests
+import yaml
 import json
 import joblib
 import string
