@@ -5,8 +5,14 @@
     <link href="/static/record.css" rel="stylesheet">
     <link href="/static/dashboard.css" rel="stylesheet">
 
-    <main role="main" class="p-1 pl-3 ml-sm-auto px-4">
-
+    <main role="main" class="p-1 pl-3 ml-sm-auto px-4 ">
+        <div><nav aria-label="simulation_pages">
+            <ul class="pagination justify-content-center">
+                <li class="page-item"><a class="page-link" href="/dashboard">Automatic Simulation</a></li>
+                <li class="page-item"><a class="page-link" href="/dashboard/simulate_calls">Manual Simulation</a></li>
+            </ul>
+        </nav>
+        </div>
         <div class="row">
             <div class="col-lg-10">
                 <div id="floating-panel">

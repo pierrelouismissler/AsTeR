@@ -92,6 +92,11 @@ def backup_plans():
     return render_template('backup_plans.html')
 
 # Summary Dashboard
+@application.route('/dashboard/simulate_calls')
+def dashboard_calls():
+    return render_template('dashboard/dashboard_calls.html')
+
+# Summary Dashboard
 @application.route('/dashboard')
 def dashboard_summary():
     def list_units(api_key, url):
@@ -140,7 +145,6 @@ def dashboard_summary():
         'night_mode': False,
         'info_on_mouseover': False
     }
-
     return render_template('dashboard/dashboard_map.html', map_parameters=map_parameters)
 
 @application.route('/calls_content')

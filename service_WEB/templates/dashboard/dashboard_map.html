@@ -153,7 +153,7 @@
         }*/
 
         // Update the list of calls
-        setInterval("update_values();", 3000);
+        {#setInterval("update_values();", 3000);#}
         function update_values() {
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
             $.getJSON($SCRIPT_ROOT+"/calls_content",
@@ -163,7 +163,7 @@
         }
 
         // Display the markers
-        setInterval("display_markers();", 3000);
+        {#setInterval("display_markers();", 3000);#}
         function display_markers() {
 
             function define_emergency_type(call){

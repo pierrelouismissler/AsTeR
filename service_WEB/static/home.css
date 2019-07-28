@@ -123,6 +123,8 @@ body {
 
 .card-body {
   padding-bottom: 3rem;
-  background-color: #dadada;
+  background-color: #fafafa;
+  border-radius: 20px;
 }
+
 
