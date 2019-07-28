@@ -5,11 +5,12 @@ process/__pycache__/
 
 # Heavy files
 
-*.ipynb
+.ipynb
 .tmp/
 maps/
 calls/
 !calls/*.wav
+research/data
 
 # Sensitive data
 
