@@ -4,12 +4,14 @@
 
 # Compiled files
 
+process/__pycache__/
 .ipynb_checkpoints/
 
 # Heavy files
 
 *.ipynb
 calls/
+research/data/
 
 # Sensitive data
 
