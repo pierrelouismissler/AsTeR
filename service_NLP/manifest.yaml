@@ -1,0 +1,8 @@
+# Author:  DINDIN Meryll
+# Date:    27 July 2019
+# Project: AsTeR
+
+applications:
+ - name: serviceNLP
+   random-route: true
+   memory: 128M
