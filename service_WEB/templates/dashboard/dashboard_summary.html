@@ -14,36 +14,18 @@
         </nav>
         </div>
         <div class="row">
-            <div class="col-lg-10">
+            <div class="col-lg-9">
                 <div id="floating-panel">
                     <button class="earthquake_button" onclick="toggleEarthquakes()"><b>Toggle Earthquakes</b></button>
                 </div>
-                
                 <div id={{ map_parameters.identifier }}></div>
                 {% block map_block %}{% endblock %}
                 <div id="legend"><h5>Legend</h5></div>
             </div>
+            <div class="col-lg-3" id="calls">
+                <h1 class="text-center">Calls</h1>
+                <hr>
 
-            <div class="col-lg-2" id="calls">
-
-                <div class="mycontainer">
-                    <div class="mywebapp"> 
-                        <div class="input">
-                            <textarea id="textbox" rows="4"></textarea>
-                        </div>
-                        
-                        <div class="row">
-                            <div class="col-lg-4">
-                            <button class="record" id="start-btn"></button>
-                            </div>
-                            <div class="col-lg-8" style="margin-top: 22px;">
-                            <h5>Try It Yourself!</h5>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 border-bottom"></div>
             </div>
         </div>
 
