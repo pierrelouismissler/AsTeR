@@ -28,7 +28,7 @@
                 <li class="nav-item">
                     <a class="nav-link" target="_blank" href="https://github.com/Coricos/AsTeR"><img src="/static/img/home/github_logo.png"  width="15" height="15" class="d-inline-block align-center"> GitHub</a>
                 </li>
-                <li class="nav-item text-nowrap">
+                <li {% if "dashboard" in request.path %} class="nav-item text-nowrap active" {% else %} class="nav-item text-nowrap"{% endif %}>
                     <a class="nav-link" href="/dashboard">Simulation</a>
                 </li>
             </ul>

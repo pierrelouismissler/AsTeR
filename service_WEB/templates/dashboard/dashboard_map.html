@@ -39,23 +39,23 @@
                     strokeWeight: 0.8
                 };
                 icon_parameters.fillColor = color;
-                {#icon_parameters.strokeColor: color,#}
+                icon_parameters.strokeColor = color;
                 return icon_parameters
-                };
+                }
 
             // Creates the icons array.
             icons = {
                 calls_low: {
                     name: 'Calls - Low',
-                    icon: set_icon_parameters('#6AF508')
+                    icon: set_icon_parameters('#4b9e2d')
                 },
                 calls_medium: {
                     name: 'Calls - Medium',
-                    icon: set_icon_parameters('#FF5733')
+                    icon: set_icon_parameters('#de0006')
                 },
                 calls_top: {
                     name: 'Calls - Top',
-                    icon: set_icon_parameters('#A92408')
+                    icon: set_icon_parameters('#000000')
                 }
                 }; 
 
