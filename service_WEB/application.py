@@ -8,6 +8,7 @@ except: from imports import *
 # Load credentials
 with open('configs/config.yaml') as raw: crd = yaml.safe_load(raw)
 SQL_URL = crd['sql_api']
+NLP_URL = crd['nlp_api']
 API_KEY = crd['api_key']
 MAIL_PASSWORD = crd['mail_password']
 
@@ -67,7 +68,6 @@ def index():
 
     elif request.method == 'GET':
         return render_template('home.html', form=form)
-
 
 # About AsTeR
 @application.route('/about')
@@ -149,6 +149,7 @@ def dashboard_summary():
 
 @application.route('/calls_content')
 def return_content():
+
     def list_calls(api_key, url, time=0.0):
 
         url = '/'.join([url, 'get_call'])
@@ -165,6 +166,24 @@ def return_content():
     times = (datetime.now().minute*60 + datetime.now().second) * 2
     calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
     return jsonify(calls=calls)
+
+@application.route('/nlp_analysis')
+def nlp_analysis():
+
+    warnings.simplefilter('ignore')
+    
+    header = {'apikey': API_KEY}
+    params = {'message': request.args.get('message')}
+
+    req = requests.post('/'.join([NLP_URL, 'run']), headers=header, params=params)
+    arg = {'status': 200, 'mimetype': 'application/json'}
+    
+    try: 
+        req = json.loads(req.content)
+        req['score'] = 100*req['score']
+        return Response(response=json.dumps(req), **arg)
+    except: 
+        return Response(response=json.dumps({'emotion': 0.0, 'score': 0.0, 'keysections': [], 'class': 'unknown'}), **arg)
 
 if __name__ == '__main__':
     application.run(host='127.0.0.1', port=8080)

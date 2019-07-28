@@ -6,35 +6,85 @@
     <link href="/static/dashboard.css" rel="stylesheet">
 
     <main role="main" class="p-1 pl-3 ml-sm-auto px-4">
-        <div><nav aria-label="simulation_pages">
-            <ul class="pagination justify-content-center">
-                <li class="page-item"><a class="page-link" href="/dashboard">Automatic Simulation</a></li>
-                <li class="page-item"><a class="page-link" href="/dashboard/simulate_calls">Manual Simulation</a></li>
-            </ul>
-        </nav>
+
+        <div>
+            <nav aria-label="simulation_pages">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="/dashboard">Automatic Simulation</a></li>
+                    <li class="page-item"><a class="page-link" href="/dashboard/simulate_calls">Manual Simulation</a></li>
+                </ul>
+            </nav>
         </div>
 
-        <div class="row">
-            <div class="col-lg-5" id="calls">
+        <div class="row text-center">
+            <div class="col-lg-2" style="margin-top:10px;"></div>
+            <div class="col-lg-8" id="calls" style="margin-top:10px;">
                 <div class="mycontainer">
                     <div class="mywebapp">
-                        <div class="input">
-                            <textarea id="textbox" rows="4"></textarea>
-                        </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                            <button class="record" id="start-btn"></button>
-                            </div>
-                            <div class="col-lg-8" style="margin-top: 22px;">
-                            <h5>Make a call!</h5>
-                            </div>
+                        <div class="readonly input">
+                            <textarea id="textbox" rows="3" placeholder="Either write or loudly say your message, and launch the analysis!" style="border-radius:10px; text-align:center; padding-top:40px; padding-bottom: 40px;"></textarea>
                         </div>
                     </div>
                 </div>
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 border-bottom"></div>
+                <div class="row text-center">
+                <p><a class="btn btn-secondary start-btn" id="start-btn" role="button" style="width:180px; height:40px; border-radius:10px;display:inline-block;text-align:center;margin-left:50px;margin-top:10px;">LAUNCH RECORDING</a></p>
+                <p><a class="btn btn-secondary" id="launch-analysis" role="button" style="width:180px; height:40px; border-radius:10px;display:inline-block;text-align:center;margin-right:50px;position:absolute;right:0px;margin-top:10px;    ">LAUNCH ANALYSIS</a></p>
+                </div>
             </div>
+            <div class="col-lg-2" style="margin-top:10px;"></div>
         </div>
+
+        <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 border-bottom" style="padding-top:20px; padding-bottom: 10px;"></div>
+
+        <div class="row text-center">
+            <div class="col-lg-2" style="margin-top:10px;"></div>
+            <div class="col-lg-4" id="calls" style="margin-top:20px;padding-top:10px;margin-bottom:20px;">
+                <h5>Key Segments</h5>
+                <div class="segments" id="display-segments"></div>
+            </div>
+            <div class="col-lg-4" id="calls" style="margin-top:20px;padding-top:10px;margin-bottom:20px;">
+                <h5>Defined Class</h5>
+                <div class="class" id="display-class"></div>
+            </div>
+            <div class="col-lg-2" style="margin-top:10px;"></div>
+        </div>
+        <div class="row text-center">
+            <div class="col-lg-2" style="margin-top:10px;"></div>
+            <div class="col-lg-4" id="calls" style="margin-top:20px;padding-top:10px;margin-bottom:20px;">
+                <h5>Determined Emotion</h5>
+                <div class="emotion" id="display-emotion"></div>
+            </div>
+            <div class="col-lg-4" id="calls" style="margin-top:20px;padding-top:10px;margin-bottom:20px;">
+                <h5>Estimated Urgency</h5>
+                <div class="urgency" id="display-urgency"></div>
+            </div>
+            <div class="col-lg-2" style="margin-top:10px;"></div>
+        </div>
+
         <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 border-bottom"></div>
     </main>
+
+    <script>
+
+        var $segments = document.getElementById('display-segments');
+        var $class = document.getElementById('display-class');
+        var $urgency = document.getElementById('display-urgency');
+        var $emotion = document.getElementById('display-emotion');
+
+        document.getElementById('launch-analysis').addEventListener('click', function(event){
+
+            var message = document.getElementById("textbox").value;
+
+            $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+            $.getJSON($SCRIPT_ROOT+"/nlp_analysis?message="+message, function(data) {
+                $segments.innerHTML = data.keysections;
+                $class.innerHTML = data.class;
+                $urgency.innerHTML = data.score;
+                $emotion.innerHTML = data.emotion;;
+            });
+
+        }, false);
+
+    </script>
 
 {% endblock %}
