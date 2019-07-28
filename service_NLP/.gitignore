@@ -6,6 +6,7 @@
 __pycache__/
 
 # Sensitive material
+configs/api_keys.yaml
 configs/key_ibm.json
 configs/key_rapidai.json
 
