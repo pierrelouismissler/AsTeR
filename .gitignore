@@ -5,7 +5,7 @@ process/__pycache__/
 
 # Heavy files
 
-.ipynb
+*.ipynb
 service_STT/__pycache__/
 
 # Heavy files
