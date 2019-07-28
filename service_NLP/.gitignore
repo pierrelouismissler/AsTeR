@@ -8,3 +8,6 @@ __pycache__/
 # Sensitive material
 configs/key_ibm.json
 configs/key_rapidai.json
+
+# Heavy file
+models/rf_model.jb
