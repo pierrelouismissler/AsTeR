@@ -77,8 +77,7 @@ class AnalyzeTranscript:
 
         return res
 
-    @staticmethod
-    def preprocess(message):
+    def preprocess(self, message):
         
         # remove punctation
         res = message.translate(str.maketrans('', '', string.punctuation))
