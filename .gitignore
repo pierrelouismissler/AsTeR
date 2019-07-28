@@ -1,23 +1,16 @@
+# Author:  DINDIN Meryll
+# Date:    27 July 2019
+# Project: AsTeR
+
 # Compiled files
 
 .ipynb_checkpoints/
-process/__pycache__/
 
 # Heavy files
 
 *.ipynb
-service_STT/__pycache__/
-
-# Heavy files
-
-*.ipynb
-.tmp/
-maps/
 calls/
-!calls/*.wav
-research/data
 
 # Sensitive data
 
-configs/credentials.yaml
-configs/google-cloud.json
+.elasticbeanstalk/

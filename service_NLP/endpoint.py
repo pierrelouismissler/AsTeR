@@ -27,21 +27,21 @@ def filter_key(function):
 
     return decorated_function
 
+@application.route('/run', methods=['POST'])
+@filter_key
+def run_service():
+
+    arg = dict(request.args)['message']
+    if len(arg) == 1: arg = str(arg[0])
+
+    # Get the analysis running
+    req = api.run(arg)
+
+    arg = {'status': 200, 'mimetype': 'application/json'}
+    return Response(response=json.dumps(req), **arg)
+
 if __name__ == '__main__':
 
-    @application.route('/run', methods=['POST'])
-    @filter_key
-    def run_service():
-
-        arg = dict(request.args)['message']
-        if len(arg) == 1: arg = str(arg[0])
-
-        # Get the analysis running
-        req = api.run(arg)
-
-        arg = {'status': 200, 'mimetype': 'application/json'}
-        return Response(response=json.dumps(req), **arg)
-
     application.run()
-    # app.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
-    # app.run(host='127.0.0.1', port=8080, threaded=True)
+    # application.run(host='0.0.0.0', port=int(os.getenv('PORT', 8000)), threaded=True)
+    # application.run(host='127.0.0.1', port=8080, threaded=True)
