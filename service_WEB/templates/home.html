@@ -79,18 +79,41 @@
 
         <!-- Marketing messaging
         ================================================== -->
+
+        {#        <p>#}
+        {#            <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample1" role="button" aria-expanded="false" aria-controls="multiCollapseExample1">Toggle first element</a>#}
+        {#            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#multiCollapseExample2" aria-expanded="false" aria-controls="multiCollapseExample2">Toggle second element</button>#}
+        {#            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target=".multi-collapse" aria-expanded="false" aria-controls="multiCollapseExample1 multiCollapseExample2">Toggle both elements</button>#}
+        {#        </p>#}
+
+
         <div class="container marketing">
             <div class="row" style="padding-top:6rem;">
                 <div class="col-lg-4">
                     <img class="marketing-pics" src="/static/img/home/svg/voice-message.svg" alt="Voice analysis" width="100" height="100">
                     <h2>Call analysis</h2>
                     <p>Calls are analyzed in real time through latest NLP technologies to extract relevant information and evaluate the urgency of the required intervention. </p>
-                    <p><a class="btn btn-secondary" role="button" data-fancybox data-ratio="2" data-touch="false" autoDimensions='false' data-src="#call_analysis" href="javascript:;">View details &raquo;</a></p>
+                    <p><a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapse1" role="button" aria-expanded="false" aria-controls="multiCollapse1">View details &raquo;</a></p>
                 </div>
-                <div style="display: none;" id="call_analysis">
-                    <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
-                        <main role="main"class="inner cover" align="justify">
-                            <h1 class="cover-heading" align="center">Call Analysis</h1>
+
+                <div class="col-lg-4">
+                    <img class="marketing-pics" src="/static/img/home/svg/route.svg" alt="Navigation" width="100" height="100">
+                    <h2>Unit dispatching</h2>
+                    <p>Using Djikstra algorithms, emergency units are dispatched in the most efficient way possible. Emergencies are when time is the most valuable. </p>
+                    <p><a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapse2" role="button" aria-expanded="false" aria-controls="multiCollapse2">View details &raquo;</a></p>
+                </div>
+
+                <div class="col-lg-4">
+                    <img class="marketing-pics" src="/static/img/home/svg/telemarketer.svg" alt="Feedback" width="100" height="100">
+                    <h2>Smart feedback</h2>
+                    <p>With AsTeR, all communication is integrated, intuitive and smart. AsTeR allows sharing new information from and to the dispatching center in just one touch. </p>
+                    <p><a class="btn btn-secondary" data-toggle="collapse" href="#multiCollapse3" role="button" aria-expanded="false" aria-controls="multiCollapse3">View details &raquo;</a></p>
+                </div>
+
+                <div class="row">
+                    <div class="collapse multi-collapse" id="multiCollapse1">
+                        <div class="card card-body container-marketing d-flex flex-column text-center">
+                            <h1 class="cover-heading">Call Analysis</h1>
                             <p> </p>
                             <p >The AsTeR experience begins with the analysis of emergency calls to 911. We are using AI to understand
                                 the calls and process our prioritization algorithm. </p>
@@ -115,20 +138,10 @@
                                     <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width=100% height=100% src="/static/img/home/KeyWordExtraction_HighLevel.png">
                                 </div>
                             </div>
-                        </main>
+                        </div>
                     </div>
-                </div>
-
-                <div class="col-lg-4">
-                    <img class="marketing-pics" src="/static/img/home/svg/route.svg" alt="Navigation" width="100" height="100">
-                    <h2>Unit dispatching</h2>
-                    <p>Using Djikstra algorithms, emergency units are dispatched in the most efficient way possible. Emergencies are when time is the most valuable. </p>
-                    <p><a class="btn btn-secondary" role="button" data-fancybox data-ratio="2" data-touch="false" autoDimensions='false' data-src="#unit_dispatching" href="javascript:;">View details &raquo;</a></p>
-                </div>
-
-                <div style="display: none;" id="unit_dispatching">
-                    <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
-                        <main role="main" class="inner cover" align="justify">
+                    <div class="collapse multi-collapse" id="multiCollapse2">
+                        <div class="card card-body container-marketing d-flex flex-column text-center">
                             <h1 class="cover-heading" align="center">Unit Dispatching</h1>
                             <p> </p>
                             <p> AsTeR is made to help the firefighters and the emergency forces on the ground. By leading them
@@ -139,72 +152,66 @@
                             <p> The units are sharing their location in real time, which will give us a way to manage the different
                                 units on a specific area. After natural disasters, the efficiency of emergency services is possible if everyone have
                                 the right information. AsTeR provide a convenient solution to manage a lot of units in the time during crisis. </p>
-                        </main>
+
+                        </div>
                     </div>
-                </div>
+                    <div class="collapse multi-collapse" id="multiCollapse3">
+                        <div class="card card-body container-marketing d-flex flex-column text-center">
 
-                <div class="col-lg-4">
-                    <img class="marketing-pics" src="/static/img/home/svg/telemarketer.svg" alt="Feedback" width="100" height="100">
-                    <h2>Smart feedback</h2>
-                    <p>With AsTeR, all communication is integrated, intuitive and smart. AsTeR allows sharing new information from and to the dispatching center in just one touch. </p>
-                    <p><a class="btn btn-secondary" role="button" data-fancybox data-ratio="2" data-touch="false" autoDimensions='false' data-src="#feedback_integration" href="javascript:;">View details &raquo;</a></p>
-                </div>
-
-                <div style="display: none;" id="feedback_integration">
-                    <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center">
-                        <h1 class="cover-heading" align="center">Feedback Integration</h1>
-                        <p>The AsTeR experience provides a tool to help the units on the ground to inform about the situation.
-                            Through an app, they have just to spend few seconds to send the relevant information. </p>
-                        <p>The app has been created from the perspective of a firefighter. The use of the radio can be reinforced by
-                            our aggregator of information. We listed several situations which have to be communicate as quickly as possible:</p>
-                        <div class="row featurette">
-                            <div class="col-md-5">
-                                <b>Blocked routes:</b> <p>When a truck can't go further or see a blocked route in the area, the information is immediately
-                                aggregate to change the trajectories of next trucks. We are focusing mainly on the natural disaster which could
-                                create some damages on the routes used for emergency.</p>
+                            <h1 class="cover-heading" align="center">Feedback Integration</h1>
+                            <p>The AsTeR experience provides a tool to help the units on the ground to inform about the situation.
+                                Through an app, they have just to spend few seconds to send the relevant information. </p>
+                            <p>The app has been created from the perspective of a firefighter. The use of the radio can be reinforced by
+                                our aggregator of information. We listed several situations which have to be communicate as quickly as possible:</p>
+                            <div class="row featurette">
+                                <div class="col-md-5">
+                                    <b>Blocked routes:</b> <p>When a truck can't go further or see a blocked route in the area, the information is immediately
+                                    aggregate to change the trajectories of next trucks. We are focusing mainly on the natural disaster which could
+                                    create some damages on the routes used for emergency.</p>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="/static/img/features/blocked_route.jpg">
+                                </div>
                             </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="/static/img/features/blocked_route.jpg">
+                            <hr class="featurette-divider">
+                            <div class="row featurette">
+                                <div class="col-md-5 order-md-4">
+                                    <p> </p>
+                                    <b>Danger in the area:</b> <p>When the unit using the app is victim or see a danger in the area. The current location will
+                                    be immediately saved in our database and will affect all the trajectories for other units.</p>
+                                </div>
+                                <div class="col-md-1 order-md-3"></div>
+                                <div class="col-md-5 order-md-2">
+                                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" src="/static/img/features/danger.jpg">
+                                </div>
                             </div>
+                            <hr class="featurette-divider">
+                            <div class="row featurette">
+                                <div class="col-md-5">
+                                    <b>New victims:</b><p>When the unit find a new victim during the operation. They could click the button and if they have
+                                    more time, the unit can save the personal information of the victim to be faster with the coordination between
+                                    emergency services. </p>
+                                </div>
+                                <div class="col-md-1"></div>
+                                <div class="col-md-5">
+                                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="/static/img/features/new_victims.jpg">
+                                </div>
+                            </div>
+                            <hr class="featurette-divider">
+                            <div class="row featurette">
+                                <div class="col-md-6 order-md-4">
+                                    <b>Image classification:</b><p>Pictures taken on the field by the rescue team. By passing them through image
+                                    classification, encountered problems are automatically detected. It allows us to update
+                                    the dispatching map (graph) in real-time, which is exploited via a Dijkstra algorithm for
+                                    optimal trajectories determination.</p>
+                                </div>
+                                <div class="col-md-5 order-md-2">
+                                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" src="/static/img/about/picture_classification.png">
+                                </div>
+                            </div>
+                            <hr class="featurette-divider">
                         </div>
-                        <hr class="featurette-divider">
-                        <div class="row featurette">
-                            <div class="col-md-5 order-md-4">
-                                <p> </p>
-                                <b>Danger in the area:</b> <p>When the unit using the app is victim or see a danger in the area. The current location will
-                                be immediately saved in our database and will affect all the trajectories for other units.</p>
-                            </div>
-                            <div class="col-md-1 order-md-3"></div>
-                            <div class="col-md-5 order-md-2">
-                                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" src="/static/img/features/danger.jpg">
-                            </div>
-                        </div>
-                        <hr class="featurette-divider">
-                        <div class="row featurette">
-                            <div class="col-md-5">
-                                <b>New victims:</b><p>When the unit find a new victim during the operation. They could click the button and if they have
-                                more time, the unit can save the personal information of the victim to be faster with the coordination between
-                                emergency services. </p>
-                            </div>
-                            <div class="col-md-1"></div>
-                            <div class="col-md-5">
-                                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="/static/img/features/new_victims.jpg">
-                            </div>
-                        </div>
-                        <hr class="featurette-divider">
-                        <div class="row featurette">
-                            <div class="col-md-6 order-md-4">
-                                <b>Image classification:</b><p>Pictures taken on the field by the rescue team. By passing them through image
-                                classification, encountered problems are automatically detected. It allows us to update
-                                the dispatching map (graph) in real-time, which is exploited via a Dijkstra algorithm for
-                                optimal trajectories determination.</p>
-                            </div>
-                            <div class="col-md-5 order-md-2">
-                                <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="250" height="250" src="/static/img/about/picture_classification.png">
-                            </div>
-                        </div>
-                        <hr class="featurette-divider">
                     </div>
                 </div>
             </div>

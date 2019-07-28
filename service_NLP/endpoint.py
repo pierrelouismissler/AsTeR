@@ -5,7 +5,6 @@
 try: from service_NLP.runner import *
 except: from runner import *
 
-nltk.download('stopwords')
 # Run Flask local server
 app = Flask('NLP')
 # Defines the API
