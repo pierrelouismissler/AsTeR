@@ -97,7 +97,7 @@
                 <hr>
                 <h1 class="text-center">Incoming calls</h1>
                 <div class="table-container">
-                    <table class="table" id="emergency_calls">
+                    <table class="table table-dark" id="emergency_calls">
                         <thead>
                         <tr>
                             <th scope="col">Phone number</th>
@@ -111,7 +111,7 @@
                             {#elmnt.button('loading');#}
                             var valueInterval = setInterval("update_values();", 1000);
                             var markerInterval = setInterval("display_markers();", 1000);
-                            setTimeout(function stopSimulation() {clearInterval(valueInterval); clearInterval(markerInterval)}, 10000);
+                            setTimeout(function stopSimulation() {clearInterval(valueInterval); clearInterval(markerInterval)}, 30000);
                         }
                     </script>
                 </div>

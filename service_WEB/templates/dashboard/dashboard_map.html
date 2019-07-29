@@ -48,15 +48,15 @@
             icons = {
                 calls_low: {
                     name: 'Low priority',
-                    icon: set_icon_parameters('#3e8a28')
+                    icon: set_icon_parameters('#1cc88a')
                 },
                 calls_medium: {
                     name: 'Medium priority',
-                    icon: set_icon_parameters('#de0006')
+                    icon: set_icon_parameters('#f6c23e')
                 },
                 calls_top: {
                     name: 'High priority',
-                    icon: set_icon_parameters('#000000')
+                    icon: set_icon_parameters('#d23520')
                 }
             };
 
@@ -180,11 +180,11 @@
 
             function returnClass(call) { /* Similar to function above, can be merged in the future*/
                 if (call.priority < 1) {
-                    return "table-success";
+                    return "bg-success";
                 } else if (call.priority < 2) {
-                    return "table-danger";
+                    return "bg-warning";
                 } else if (call.priority < 3) {
-                    return "table-active";
+                    return "bg-danger";
                 }
             }
 
