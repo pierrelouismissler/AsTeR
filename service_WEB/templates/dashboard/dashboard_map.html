@@ -196,7 +196,7 @@
             }
 
             function addCallToTable(table, call) {
-                const index = 0; /* index can be set such as to keep the table in order*/
+                const index = returnIndex(table, call.priority);
                 let row = table.insertRow(index);
                 let cell1 = row.insertCell(0);
                 let cell2 = row.insertCell(1);
