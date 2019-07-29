@@ -181,7 +181,7 @@ def nlp_analysis():
     
     try: 
         req = json.loads(req.content)
-        req['score'] = 100*req['score']
+        req['score'] = 300*req['score']
         return Response(response=json.dumps(req), **arg)
     except: 
         return Response(response=json.dumps({'emotion': 0.0, 'score': 0.0, 'keysections': [], 'class': 'unknown'}), **arg)
