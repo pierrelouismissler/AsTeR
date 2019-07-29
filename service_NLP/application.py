@@ -27,6 +27,12 @@ def filter_key(function):
 
     return decorated_function
 
+@application.route('/health', methods=['GET'])
+def health():
+
+    arg = {'status': 200, 'mimetype': 'application/json'}
+    return Response(response=json.dumps({}), **arg)
+
 @application.route('/run', methods=['POST'])
 @filter_key
 def run_service():
