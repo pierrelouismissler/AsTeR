@@ -20,17 +20,17 @@ recognition.onresult = function(event) {
 
 recognition.onstart = function() { 
   instructions.text('Voice recognition is ON.');
-}
+};
 
 recognition.onspeechend = function() {
   instructions.text('No activity.');
-}
+};
 
 recognition.onerror = function(event) {
   if(event.error == 'no-speech') {
     instructions.text('Try again.');  
   }
-}
+};
 
 $('#start-btn').on('click', function(e) {
   if (Content.length) {
@@ -41,4 +41,4 @@ $('#start-btn').on('click', function(e) {
 
 Textbox.on('input', function() {
   Content = $(this).val();
-})
+});
