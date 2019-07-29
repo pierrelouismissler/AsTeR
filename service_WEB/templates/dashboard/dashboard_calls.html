@@ -11,7 +11,7 @@
             <nav aria-label="simulation_pages">
                 <ul class="pagination justify-content-center">
                     <li class="page-item"><a class="page-link" href="/dashboard">Simulation Visualization</a></li>
-                    <li class="page-item"><a class="page-link" href="/dashboard/simulate_calls">Try AsTeR API</a></li>
+                    <li class="page-item"><a class="page-link" href="/dashboard/simulate_calls">Try our API</a></li>
                 </ul>
             </nav>
         </div>
@@ -26,9 +26,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="row text-center">
-                <p><a class="btn btn-secondary start-btn" id="start-btn" role="button" style="width:180px; height:40px; border-radius:10px;display:inline-block;text-align:center;margin-left:50px;margin-top:10px;">LAUNCH RECORDING</a></p>
-                <p><a class="btn btn-secondary" id="launch-analysis" role="button" style="width:180px; height:40px; border-radius:10px;display:inline-block;text-align:center;margin-right:50px;position:absolute;right:0px;margin-top:10px;    ">LAUNCH ANALYSIS</a></p>
+                <div class="row text-center" id='calls'>
+                <button type="button" id="start-btn" data-toggle="button" class="btn btn-outline-success activated" style="width:180px; height:40px;border-radius:10px;display:inline-block;text-align:center;margin-left:180px;margin-top:10px;">Launch Recording</button>
+                <button type="button" id="launch-analysis" data-toggle="button" class="btn btn-outline-success activated" style="width:180px; height:40px; border-radius:10px;display:inline-block;text-align:center;margin-right:180px;position:absolute;right:0px;margin-top:10px;">Launch Analysis</button>
                 </div>
             </div>
             <div class="col-lg-2" style="margin-top:10px;"></div>
