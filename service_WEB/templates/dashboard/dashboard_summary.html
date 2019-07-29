@@ -96,23 +96,25 @@
                 </div>
                 <hr>
                 <h1 class="text-center">Incoming calls</h1>
-                <table class="table" id="emergency_calls">
-                    <thead>
-                    <tr>
-                        <th scope="col">Phone number</th>
-                        <th scope="col">Emergency</th>
-                    </tr>
-                    </thead>
-                </table>
+                <div class="table-container">
+                    <table class="table" id="emergency_calls">
+                        <thead>
+                        <tr>
+                            <th scope="col">Phone number</th>
+                            <th scope="col">Emergency</th>
+                        </tr>
+                        </thead>
+                    </table>
 
-                <script>
-                    function startSimulation(elmnt) {
-                        {#elmnt.button('loading');#}
-                        var valueInterval = setInterval("update_values();", 3000);
-                        var markerInterval = setInterval("display_markers();", 3000);
-                        setTimeout(function stopSimulation() {clearInterval(valueInterval); clearInterval(markerInterval)}, 4000);
-                    }
-                </script>
+                    <script>
+                        function startSimulation(elmnt) {
+                            {#elmnt.button('loading');#}
+                            var valueInterval = setInterval("update_values();", 1000);
+                            var markerInterval = setInterval("display_markers();", 1000);
+                            setTimeout(function stopSimulation() {clearInterval(valueInterval); clearInterval(markerInterval)}, 10000);
+                        }
+                    </script>
+                </div>
             </div>
         </div>
     </main>
