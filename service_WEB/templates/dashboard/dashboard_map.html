@@ -151,7 +151,6 @@
                   all_markers.length = 0;
                   used_ids.length = 0;
                 }*/
-        {#$('#simulation-btn').on('click', function(e) {#}
 
         // Update the list of calls
         function update_values() {
@@ -173,6 +172,41 @@
                     return "calls_top";
                 }
             }
+
+            function returnClass(call) { /* Similar to function above, can be merged in the future*/
+                if (call.priority < 1) {
+                    return "table-success";
+                } else if (call.priority < 2) {
+                    return "table-danger";
+                } else if (call.priority < 3) {
+                    return "table-active";
+                }
+            }
+
+            function returnIndex(table, current_priority) {
+                var rows, i, x;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    x = rows[i].getElementsByTagName("TD")[1];
+                    if (Number(x.innerHTML) < current_priority) {
+                        return i
+                    }
+                }
+                return i
+            }
+
+            function addCallToTable(table, call) {
+                const index = 0; /* index can be set such as to keep the table in order*/
+                let row = table.insertRow(index);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                cell1.innerHTML = call.phone_number;
+                cell2.innerHTML = call.priority.toFixed(2); /* Replace call priority with class or something else*/
+
+                row.className = returnClass(call);
+                row.className = returnClass(call);
+            }
+
             // Defines markers for the calls
             var emergency_calls = [];
             for (i = 0; i < map_parameters.calls.length; i++) {
@@ -187,6 +221,7 @@
                         '<div id="bodyContent">' +
                         '<p><b>Estimated Priority: </b>' + call.priority.toFixed(2) + '</p></div></div>'
                 });
+                addCallToTable(document.getElementById("emergency_calls"), call)
             }
 
             // Display each emergency call
