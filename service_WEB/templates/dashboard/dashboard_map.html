@@ -33,7 +33,7 @@
             function set_icon_parameters(color) {
                 var icon_parameters = {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: 7,
+                    scale: 4,
                     fillOpacity: 0.8,
                     strokeOpacity: 0.8,
                     strokeWeight: 0.8
@@ -46,15 +46,15 @@
             // Creates the icons array.
             icons = {
                 calls_low: {
-                    name: 'Calls - Low',
-                    icon: set_icon_parameters('#4b9e2d')
+                    name: 'Low priority',
+                    icon: set_icon_parameters('#3e8a28')
                 },
                 calls_medium: {
-                    name: 'Calls - Medium',
+                    name: 'Medium priority',
                     icon: set_icon_parameters('#de0006')
                 },
                 calls_top: {
-                    name: 'Calls - Top',
+                    name: 'High priority',
                     icon: set_icon_parameters('#000000')
                 }
             };
@@ -68,7 +68,8 @@
                 var name = type.name;
                 var color = type.icon.fillColor;
                 var div = document.createElement('div');
-                div.innerHTML = '<svg height="20" width="20"><circle cx="10" cy="10" r="7.5" stroke="black" stroke-width="1" fill="'+color+'"/></svg><b>' + name + '</b>';
+                div.className = 'd align-top';
+                div.innerHTML = '<svg height="20" width="20"><circle cx="10" cy="10" r="7.5" stroke="black" stroke-width="0" fill="'+color+'"/></svg><b>' + name + '</b>';
                 legend.appendChild(div);
             }
 
