@@ -7,6 +7,7 @@
         var map;
         var earthquakeMap;
         var icons;
+        var increment = 1;
         var used_ids = [];
         var all_markers = [];
         var currentinfowindow = null;
@@ -153,17 +154,22 @@
                 }*/
         {#$('#simulation-btn').on('click', function(e) {#}
 
+
         // Update the list of calls
+        setInterval("update_values();", 1000)
         function update_values() {
             $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
-            $.getJSON($SCRIPT_ROOT + "/calls_content",
+            $.getJSON($SCRIPT_ROOT + "/calls_content?timestamp=" + increment,
                 function (data) {
                     map_parameters.calls = data['calls'];
                 });
+            increment = 10 + increment;
         }
 
         // Display the markers
+        setInterval("display_markers();", 1000);
         function display_markers() {
+
             function define_emergency_type(call) {
                 if (call.priority < 1) {
                     return "calls_low";
@@ -173,46 +179,41 @@
                     return "calls_top";
                 }
             }
+
             // Defines markers for the calls
-            var emergency_calls = [];
             for (i = 0; i < map_parameters.calls.length; i++) {
+
                 var call = map_parameters.calls[i];
-                used_ids.push(call.call_id);
-                emergency_calls.push({
-                    position: new google.maps.LatLng(call.latitude, call.longitude),
-                    name: call.phone_number,
-                    type: define_emergency_type(call),
-                    content: '<div id="content"><div id="siteNotice"></div>' +
-                        '<h5 id="firstHeading" class="firstHeading">On +' + call.phone_number + '</h5>' +
-                        '<div id="bodyContent">' +
-                        '<p><b>Estimated Priority: </b>' + call.priority.toFixed(2) + '</p></div></div>'
-                });
-            }
 
-            // Display each emergency call
-            emergency_calls.forEach(function (call) {
-                var marker = new google.maps.Marker({
-                    position: call.position,
-                    title: call.name,
-                    icon: icons[call.type].icon,
-                    map: map
-                });
-                all_markers.push(marker);
+                if (used_ids.indexOf(call.call_id) == -1) {
 
-                var content = call.content;
-                var infowindow = new google.maps.InfoWindow();
+                    var marker = new google.maps.Marker({
+                        position: new google.maps.LatLng(call.latitude, call.longitude),
+                        title: define_emergency_type(call),
+                        icon: icons[define_emergency_type(call)].icon,
+                        map: map
+                    });
+                    all_markers.push(marker);
+                    used_ids.push(call.call_id);
 
-                marker.addListener('click', (function () {
-                    return function () {
-                        infowindow.setContent(content);
-                        if (currentinfowindow)
-                            currentinfowindow.close();
-                        infowindow.open(map, marker);
-                        currentinfowindow = infowindow;
-                    };
-                })(marker, content, infowindow));
-            });
-        }
+                    var content = '<div id="content"><div id="siteNotice"></div>' +
+                                  '<h5 id="firstHeading" class="firstHeading"> +' + call.phone_number + '</h5>' +
+                                  '<div id="bodyContent">' +
+                                  '<p><b>Estimated Priority: </b>' + call.priority.toFixed(2) + '</p></div></div>';
+                    var infowindow = new google.maps.InfoWindow();
+
+                    marker.addListener('click', (function () {
+                        return function () {
+                            infowindow.setContent(content);
+                            if (currentinfowindow)
+                                currentinfowindow.close();
+                            infowindow.open(map, marker);
+                            currentinfowindow = infowindow;
+                        };
+                    })(marker, content, infowindow));
+                };
+            };
+        };
 
         // Defines the callback function referenced in the jsonp file.
         function eqfeed_callback(data) {

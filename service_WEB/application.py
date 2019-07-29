@@ -123,10 +123,11 @@ def dashboard_summary():
         dic.update({key_name: idx})
         return dic
 
-    times = datetime.now().minute*60 + datetime.now().second
-    units = [formatting(k, v, key_name='unit_id') for k, v in list_units(API_KEY, SQL_URL).items()]
-    paths = [format_path(unit) for unit in units if unit['path'] != 'none']
-    calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
+    # times = datetime.now().minute*60 + datetime.now().second
+    # units = [formatting(k, v, key_name='unit_id') for k, v in list_units(API_KEY, SQL_URL).items()]
+    # paths = [format_path(unit) for unit in units if unit['path'] != 'none']
+    # calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
+    units, calls, paths = [], [], []
 
     map_parameters = {
         'identifier': "emergency_map",
@@ -163,7 +164,7 @@ def return_content():
         dic.update({key_name: idx})
         return dic
 
-    times = (datetime.now().minute*60 + datetime.now().second) * 2
+    times = int(request.args.get('timestamp'))
     calls = [formatting(k, v, key_name='call_id') for k, v in list_calls(API_KEY, SQL_URL, time=times).items()]
     return jsonify(calls=calls)
 
