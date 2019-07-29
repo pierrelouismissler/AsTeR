@@ -31,3 +31,11 @@
     margin-top: 10px;
   }
 }
+
+div.table-container {
+  width: 100%;
+  /*height: auto;*/
+  max-height: calc(100vh - 65px);
+  overflow: auto;
+
+}
