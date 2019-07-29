@@ -34,7 +34,7 @@
             function set_icon_parameters(color) {
                 var icon_parameters = {
                     path: google.maps.SymbolPath.CIRCLE,
-                    scale: 7,
+                    scale: 4,
                     fillOpacity: 0.8,
                     strokeOpacity: 0.8,
                     strokeWeight: 0.8
@@ -47,15 +47,15 @@
             // Creates the icons array.
             icons = {
                 calls_low: {
-                    name: 'Calls - Low',
-                    icon: set_icon_parameters('#4b9e2d')
+                    name: 'Low priority',
+                    icon: set_icon_parameters('#3e8a28')
                 },
                 calls_medium: {
-                    name: 'Calls - Medium',
+                    name: 'Medium priority',
                     icon: set_icon_parameters('#de0006')
                 },
                 calls_top: {
-                    name: 'Calls - Top',
+                    name: 'High priority',
                     icon: set_icon_parameters('#000000')
                 }
             };
@@ -69,7 +69,8 @@
                 var name = type.name;
                 var color = type.icon.fillColor;
                 var div = document.createElement('div');
-                div.innerHTML = '<svg height="20" width="20"><circle cx="10" cy="10" r="7.5" stroke="black" stroke-width="1" fill="'+color+'"/></svg><b>' + name + '</b>';
+                div.className = 'd align-top';
+                div.innerHTML = '<svg height="20" width="20"><circle cx="10" cy="10" r="7.5" stroke="black" stroke-width="0" fill="'+color+'"/></svg><b>' + name + '</b>';
                 legend.appendChild(div);
             }
 
@@ -152,7 +153,6 @@
                   all_markers.length = 0;
                   used_ids.length = 0;
                 }*/
-        {#$('#simulation-btn').on('click', function(e) {#}
 
 
         // Update the list of calls
@@ -180,12 +180,48 @@
                 }
             }
 
+            function returnClass(call) { /* Similar to function above, can be merged in the future*/
+                if (call.priority < 1) {
+                    return "table-success";
+                } else if (call.priority < 2) {
+                    return "table-danger";
+                } else if (call.priority < 3) {
+                    return "table-active";
+                }
+            }
+
+            function returnIndex(table, current_priority) {
+                var rows, i, x;
+                rows = table.rows;
+                for (i = 1; i < (rows.length - 1); i++) {
+                    x = rows[i].getElementsByTagName("TD")[1];
+                    if (Number(x.innerHTML) < current_priority) {
+                        return i
+                    }
+                }
+                return i
+            }
+
+            function addCallToTable(table, call) {
+                const index = returnIndex(table, call.priority);
+                let row = table.insertRow(index);
+                let cell1 = row.insertCell(0);
+                let cell2 = row.insertCell(1);
+                cell1.innerHTML = call.phone_number;
+                cell2.innerHTML = call.priority.toFixed(2); /* Replace call priority with class or something else*/
+
+                row.className = returnClass(call);
+                row.className = returnClass(call);
+            }
+
             // Defines markers for the calls
             for (i = 0; i < map_parameters.calls.length; i++) {
 
                 var call = map_parameters.calls[i];
 
                 if (used_ids.indexOf(call.call_id) == -1) {
+
+                    addCallToTable(document.getElementById("emergency_calls"), call);
 
                     var marker = new google.maps.Marker({
                         position: new google.maps.LatLng(call.latitude, call.longitude),

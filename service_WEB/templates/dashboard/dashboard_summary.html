@@ -95,64 +95,26 @@
                     </script>
                 </div>
                 <hr>
-                <h1 class="text-center">Calls</h1>
-                <hr>
-                
-                <table class="table">
+                <h1 class="text-center">Incoming calls</h1>
+                <table class="table" id="emergency_calls">
                     <thead>
                     <tr>
                         <th scope="col">Phone number</th>
                         <th scope="col">Emergency</th>
                     </tr>
                     </thead>
-                    <tbody>
-                    <tr class="table-active">
-                        <th scope="row">Active</th>
-                        <td>Cell</td>
-                    </tr>
-                    <tr class="table-success">
-                        <th scope="row">Success</th>
-                        <td>Cell</td>
-                    </tr>
-                    <tr class="table-danger">
-                        <th scope="row">Danger</th>
-                        <td>Cell</td>
-                    </tr>
-                    <tr class="table-warning">
-                        <th scope="row">Warning</th>
-                        <td>Cell</td>
-                    </tr>
-                    <tr class="table-dark">
-                        <th scope="row">Dark</th>
-                        <td>Cell</td>
-                    </tr>
-                    </tbody>
                 </table>
 
-
-            <script>
-
-                function startSimulation(elmnt) {
-
-                    {#elmnt.button('loading');#}
-                    setInterval("update_values();", 3000);
-                    setInterval("display_markers();", 3000);
-                }
-
-                function myCreateFunction() {
-                    var table = document.getElementById("myTable");
-                    var row = table.insertRow(0);
-                    var cell1 = row.insertCell(0);
-                    var cell2 = row.insertCell(1);
-                    cell1.innerHTML = "NEW PHONE CALL";
-                    cell2.innerHTML = "NEW PHONE CALL";
-                }
-
-            </script>
-
+                <script>
+                    function startSimulation(elmnt) {
+                        {#elmnt.button('loading');#}
+                        var valueInterval = setInterval("update_values();", 3000);
+                        var markerInterval = setInterval("display_markers();", 3000);
+                        setTimeout(function stopSimulation() {clearInterval(valueInterval); clearInterval(markerInterval)}, 4000);
+                    }
+                </script>
+            </div>
         </div>
-        </div>
-
     </main>
 
 {% endblock %}
