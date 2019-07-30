@@ -6,11 +6,23 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <style scoped>
+            @media (max-width: 768px) {
+                .navbar-dark .navbar-nav .active>.nav-link {
+                    color: #000;}
+                .navbar-dark .navbar-nav .nav-link {
+                    color: rgba(0,0,0,.5);}
+                .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                    color: rgba(0,0,0,.75);
+                }
+            }
+        </style>
         <ul class="navbar-nav mr-auto">
             <li {%- if request.path == "/home/" or request.path == "/"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>
                 <a class="nav-link" href="/">Home </a>
             </li>
-            <li {%- if request.path == "/about"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>
+            <li {%- if request.path == "/about"%} class="nav-item active" 
+                {% else %} class="nav-item"{% endif %} >
                 <a class="nav-link" href="/about">About Us</a>
             </li>
         </ul>
