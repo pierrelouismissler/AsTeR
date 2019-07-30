@@ -12,6 +12,10 @@ This open-source project started on April 27th. During the IBM Call for Code hac
 
 For our first example, we considered the city of San Francisco and simulated the dispatch of forces on the field. What would happen during the Big One? How would the city react? What are the resources available for us to mitigate the aftermath? ...
 
+## Roadmap
+
+![ROADMAP](./figures/roadmap.png)
+
 ## General System Architecture
 
 ![ARCHI](./figures/architecture.jpg)
