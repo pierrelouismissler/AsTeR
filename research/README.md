@@ -1,6 +1,6 @@
 # Machine Learning Model
 
-This notebook presents our strategy to train our vocabulary on disaster-specific data to ultimately improve the quality of our priority score. Given the limited labeled data sets on emergency calls, we decided to use a labeled Twitter data set that was presented by Muhammad Imran, Prasenjit Mitra, Carlos Castillo: Twitter as a Lifeline: Human-annotated Twitter Corpora for NLP of Crisis-related Messages. In Proceedings of the 10th Language Resources and Evaluation Conference (LREC), pp. 1638-1643. May 2016, Portorož, Slovenia. The dataset can be found at https://crisisnlp.qcri.org/lrec2016/lrec2016.html.
+This notebook presents our strategy to train our vocabulary on disaster-specific data to ultimately improve the quality of our priority score. Given the limited labeled data sets on emergency calls, we decided to use a labeled Twitter data set on natural disasters that was presented by Muhammad Imran, Prasenjit Mitra, Carlos Castillo: Twitter as a Lifeline: Human-annotated Twitter Corpora for NLP of Crisis-related Messages. In Proceedings of the 10th Language Resources and Evaluation Conference (LREC), pp. 1638-1643. May 2016, Portorož, Slovenia. The dataset can be found at https://crisisnlp.qcri.org/lrec2016/lrec2016.html.
 
 ## The notebook presents the following main steps:
 
