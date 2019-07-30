@@ -131,8 +131,13 @@ body {
 
 .card-body {
   padding-bottom: 3rem;
-  background-color: #fafafa;
+  background-color: #f8f9fd;
   border-radius: 20px;
 }
 
 
+.vcenter {
+    display: flex;
+    align-items: center;
+}
+}
