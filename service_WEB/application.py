@@ -61,7 +61,7 @@ def index():
                 -Message from www.project-aster.com-
 
                 %s
-                """ % (form.name.data, form.subject.data, form.email.data, form.message.data)
+                """ % (form.name.data, form.email.data, form.subject.data, form.message.data)
             mail.send(msg)
             flash('Thank you for your message. We will get back to you shortly.', 'success')
             return redirect(url_for('index'))
