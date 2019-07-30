@@ -6,7 +6,24 @@ This notebook presents our strategy to train our vocabulary on disaster-specific
 
 - Data Preprocessing and Cleaning: Load the data, merge single files into one dataframe and remove Twitter specific labels and signs.
 - Train a Random Forest Classifier on the vectorized text data. We train one against all in for two different types of classes: 
-  - (1) Content and (2) Category.
-- The output is a list of features and their corresponding feature importance for Content and Category, respectively.
-
-More text in plain format
+  - (1) Content
+    - 'other_useful_information', 
+    - 'infrastructure_and_utilities_damage', 
+    - 'injured_or_dead_people', 
+    - 'not_related_or_irrelevant', 
+    - 'donation_needs_or_offers_or_volunteering_services', 
+    - 'caution_and_advice', 'sympathy_and_emotional_support', 
+    - 'missing_trapped_or_found_people', 
+    - 'displaced_people_and_evacuations', 
+    - 'affected_people', 
+    - 'disease_signs_or_symptoms', 
+    - 'prevention', 
+    - 'disease_transmission', 
+    - 'treatment', 
+    - 'deaths_reports'
+  - (2) Category.
+    - 'storm', 
+    - 'eq', 
+    - 'flood', 
+    - 'virus'
+- The output is a list of features and their corresponding feature importance for Content and Category, respectively. This information then serves as an input to determine the priority score of an incoming call.
