@@ -4,6 +4,7 @@
 
 import os
 import json
+import yaml
 import requests
 import numpy as np
 import pandas as pd
@@ -33,14 +34,16 @@ class Commander:
         except: pass
 
         # Overwrite the files
-        if os.path.exits(out): 
+        if os.path.exists(out): 
             os.remove(self.voice_path)
             os.rename(out, self.voice_path)
 
     def get_transcript(self, api_type='IBM'):
 
         fle = {'audio_file': open(self.voice_path, 'rb')}
-        req = requests.post(self.config['url'], files=fle, params={'api_type': api_type})
+        hea = {'apikey': self.config['key']}
+        url = '/'.join([self.config['url'], 'run'])
+        req = requests.post(url, headers=hea, files=fle, params={'api_type': api_type})
 
         try: return json.loads(req.content)
         except: return None
@@ -70,3 +73,13 @@ class Commander:
         plt.setp((ax.get_yticklabels() + ax.get_yticklines() + list(ax.spines.values())), visible=False)
         plt.show()
         ax.bar(istop, level, width=1000, align='edge', color='lightblue', alpha=0.5)
+
+if __name__ == '__main__':
+
+    # config = {'url': 'http://127.0.0.1:8080', }
+    config = {'url': 'http://servicestt-appreciative-swan.mybluemix.net'}
+    with open('service_STT/configs/api_keys.yaml') as raw: lst = yaml.safe_load(raw)
+    config.update({'key': lst['keys'][0]})
+    a_path = 'calls/call_0.wav'
+    values = Commander(a_path, config=config).get_transcript(api_type='IBM')
+    print(values)

@@ -1,0 +1,54 @@
+thead {
+  display: block;
+  width: 100%;
+  border: 0px solid green; 
+  height: 493px; 
+  overflow-y: scroll;
+}
+
+thead.tr {
+  display: block;
+  width: 100%;
+}
+
+.sidebar {
+  padding: 90px 0 0; /* Height of navbar */
+  box-shadow: inset 0px 0 0 rgba(0, 0, 0, .1);
+}
+
+.sidebar-brand-icon{
+  padding: 0 0 5rem 0; /* Height of navbar */
+}
+
+.sidebar .nav-link {
+  font-weight: 500;
+  color: #333;
+}
+
+.sidebar-heading {
+  font-size: .75rem;
+  text-transform: uppercase;
+}
+
+.sidebar-brand-icon{
+  padding-top: -2em;
+}
+
+[role="main"] {
+  padding-top: 133px; /* Space for fixed navbar */
+}
+
+@media (min-width: 768px) {
+  [role="main"] {
+    padding-top: 48px; /* Space for fixed navbar */
+    margin-top: 10px;
+  }
+}
+
+div.table-container {
+  width: 100%;
+  /*height: auto;*/
+  max-height: calc(100vh - 65px);
+  overflow: auto;
+
+}

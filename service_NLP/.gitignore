@@ -1,0 +1,20 @@
+# Author:  DINDIN Meryll
+# Date:    27 July 2019
+# Project: AsTeR
+
+# Development files
+__pycache__/
+
+# Sensitive material
+configs/api_keys.yaml
+configs/key_ibm.json
+configs/key_rapidai.json
+
+# Heavy file
+models/rf_model.jb
+models/stopwords.jb
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml

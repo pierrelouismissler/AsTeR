@@ -9,7 +9,11 @@ __pycache__/
 
 # Heavy material
 .tmp/
+graphs/
 database.db
 
 # Sensitive material
+configs/host.key
+configs/host.cert
+configs/api_keys.yaml
 configs/credentials.yaml

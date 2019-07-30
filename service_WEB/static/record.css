@@ -1,0 +1,26 @@
+body {
+  background: #1e2440;
+  color: #000000;
+  font-size: 16px;
+  vertical-align: middle;
+}
+
+.record {
+  width: 35px;
+  height: 35px;
+  font-size: 0;
+  background-color: red;
+  border-radius: 35px;
+  margin: 18px;
+  outline: none;
+  text-align: center;
+}
+
+.record:focus {
+    outline: 0;
+}
+
+@media (max-width: 768px) {
+  .record {
+    margin-bottom: 10px;
+}}

@@ -1,0 +1,10 @@
+# Author:  DINDIN Meryll
+# Date:    10 July 2019
+# Project: AsTeR
+
+# Development files
+.gitignore
+__pycache__/
+
+# Sensitive material
+configs/host*

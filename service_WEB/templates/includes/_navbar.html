@@ -1,51 +1,39 @@
-<nav class="navbar navbar-expand-md navbar-dark bg-dark">
-    <a class="navbar-brand" href="/">Aster
-    </a>
+<nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
+
+    <a class="navbar-brand" href="/"><img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-center" alt="logo_aster"> AsTeR</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <style scoped>
+            @media (max-width: 768px) {
+                .navbar-dark .navbar-nav .active>.nav-link {
+                    color: #000;}
+                .navbar-dark .navbar-nav .nav-link {
+                    color: rgba(0,0,0,.5);}
+                .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                    color: rgba(0,0,0,.75);
+                }
+            }
+        </style>
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-                <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+            <li {%- if request.path == "/home/" or request.path == "/"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>
+                <a class="nav-link" href="/">Home </a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/about">About</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="/team">Team</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="/" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Features</a>
-                    <div class="dropdown-menu" aria-labelledby="dropdown01">
-                        <a class="dropdown-item" href="/home">Call analysis</a>
-                        <a class="dropdown-item" href="/home">Unit dispatching</a>
-                        <a class="dropdown-item" href="/home">Feedback integration</a>
-                        <a class="dropdown-item" href="/home">Backup plans</a>
-                    </div>
+            <li {%- if request.path == "/about"%} class="nav-item active" 
+                {% else %} class="nav-item"{% endif %} >
+                <a class="nav-link" href="/about">About Us</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
-            {% if session.logged_in %} {# show dashboard and logout buttons #}
-                <li class="nav-item">
-                    <a class="nav-link" href="/dashboard">Dashboard</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/logout">Log out</a>
-                </li>
-            {% else %} {# show register and login buttons #}
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/login">Sign In</a>
-                </li>
-            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" target="_blank" href="https://github.com/Coricos/AsTeR"><img src="/static/img/home/github_logo.png"  width="15" height="15" class="d-inline-block align-center"> GitHub</a>
+            </li>
+            <li {% if "dashboard" in request.path %} class="nav-item text-nowrap active" {% else %} class="nav-item text-nowrap"{% endif %}>
+                <a class="nav-link" href="/dashboard">Simulation</a>
+            </li>
         </ul>
-{#        <form class="form-inline my-2 my-lg-0">#}
-{#            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">#}
-{#            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>#}
-{#        </form>#}
     </div>
 </nav>
+

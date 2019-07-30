@@ -1,6 +1,9 @@
 {%  extends 'layout.html' %}
 
 {%  block body %}
+    {% if error != NULL %}
+        {{ flash("Oops! You haven't been registered. Please check your information.", 'danger')  }}
+    {% endif %}
 
     <title>Register</title>
 
@@ -12,25 +15,20 @@
         <p>Please complete the information below to register.</p>
 {#        {%  from 'includes/_formhelpers.html' import render_field %}#}
         <form class="form-register" method="POST" action="">
-{#            <label for="inputName" class="sr-only">Name</label>#}
-{#            <input type="text" id="inputName" name="name" class="form-control" placeholder="Name" value="{{ request.form.name }}">#}
-{#            <label for="inputEmail" class="sr-only">Email</label>#}
-{#            <input type="email" id="inputEmail" name="email" class="form-control" placeholder="Email" value="{{ request.form.email }}">#}
-{#            <label for="inputUsername" class="sr-only">Username</label>#}
-{#            <input type="text" id="inputUsername" name="username" class="form-control" placeholder="Username" value="{{ request.form.username }}">#}
-{#            <label for="inputPassword" class="sr-only">Password</label>#}
-{#            <input type="password" id="inputPassword" name="password" class="form-control" placeholder="Password" value="{{ request.form.password }}">#}
-{#            <label for="inputConfirm" class="sr-only">Confirm password</label>#}
-{#            <input type="password" id="inputConfirm" name="confirm" class="form-control" placeholder="Confirm password" value="{{ request.form.confirm }}">#}
-
             <div class="form-group row">
-                <label for="inputName" class="col-sm-2 col-form-label">Name:</label>
+                <label for="inputFirstName" class="col-sm-2 col-form-label">First name:</label>
                 <div class="col-auto">
-                    <input type="text" id="inputName" name="name" class="form-control" aria-describedby="nameHelpInline" placeholder="Name" value="{{ request.form.name }}">
+                    <input type="text" id="inputFirstName" name="first_name" class="form-control" aria-describedby="nameHelpInline" placeholder="First name" value="{{ request.form.first_name }}">
                 </div>
 {#                <small id="nameHelpInline" class="form-text text-muted">#}
 {#                    Must be 8-20 characters long.#}
 {#                </small>#}
+            </div>
+            <div class="form-group row">
+                <label for="inputLastName" class="col-sm-2 col-form-label">Last name:</label>
+                <div class="col-auto">
+                    <input type="text" id="inputLastName" name="last_name" class="form-control" aria-describedby="nameHelpInline" placeholder="Last name" value="{{ request.form.last_name }}">
+                </div>
             </div>
             <div class="form-group row">
                 <label for="inputEmail" class="col-sm-2 col-form-label">Email:</label>
@@ -61,7 +59,6 @@
                     <button type="submit" class="btn btn-primary">Register</button>
                 </div>
             </div>
-{#            <p><input type="submit" class="btn btn-primary" value="Register"></p>#}
         </form>
     </body>
 

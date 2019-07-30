@@ -1,8 +1,14 @@
 {# Messages if we are redirecting and we need to get flashed #}
+
 {% with messages = get_flashed_messages(with_categories=true) %}
     {% if messages %}
         {% for category, message in messages %}
-            <div class="alert alert-{{ category }}">{{ message }}</div>
+            <div style="margin-bottom: -1rem">
+                <div class="alert alert-{{ category }} alert-dismissible" role="alert">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    {{ message }}
+                </div>
+            </div>
         {% endfor %}
     {% endif %}
 {% endwith %}

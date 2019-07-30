@@ -1,0 +1,54 @@
+
+<!-- Sidebar -->
+<ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
+
+
+    <!-- Sidebar - Brand -->
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+        <div class="sidebar-brand-icon">
+            <img class="align-items-center justify-content-center" src="/static/img/logo.png" alt="Aster logo" width="70%" height="70%">
+        </div>
+    </a>
+    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/home">
+        <div class="sidebar-brand-text mx-3">Aster Emergencies</div>
+    </a>
+
+    <!-- Divider -->
+    <hr class="sidebar-divider my-0">
+
+    <!-- Nav Item - Dashboard -->
+    <li {%- if request.path == "/dashboard/summary"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>
+        <a class="nav-link" href="/dashboard/summary">
+            <i class="fa fa-fw fa-dashboard"></i>
+            <span>Summary</span></a>
+    </li>
+
+    <!-- Heading -->
+    <hr class="sidebar-divider my-0">
+    <li {%- if request.path == "/dashboard/calls"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>
+        <a class="nav-link" href="/dashboard/calls">
+            <i class="fa fa-fw fa-phone"></i>
+            <span>Review Calls</span>
+        </a>
+    </li>
+
+    <!-- Heading -->
+    <hr class="sidebar-divider my-0">
+    <li {%- if request.path == "/dashboard/units"%} class="nav-item active" {% else %} class="nav-item"{% endif %}>
+        <a class="nav-link" href="/dashboard/units">
+            <i class="fa fa-fw fa-users"></i>
+            <span>Units Details</span>
+        </a>
+        <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+            <div class="bg-white py-2 collapse-inner rounded">
+                <h6 class="collapse-header">Custom Utilities:</h6>
+                <a class="collapse-item" href="utilities-color.html">Colors</a>
+                <a class="collapse-item" href="utilities-border.html">Borders</a>
+                <a class="collapse-item" href="utilities-animation.html">Animations</a>
+                <a class="collapse-item" href="utilities-other.html">Other</a>
+            </div>
+        </div>
+    </li>
+
+    <hr class="sidebar-divider my-0">
+</ul>

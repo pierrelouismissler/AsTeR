@@ -12,3 +12,4 @@ __pycache__/
 .tmp/
 database.db
 figures/
+configs/simulation.json

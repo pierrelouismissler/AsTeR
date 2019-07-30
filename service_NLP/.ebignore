@@ -1,0 +1,7 @@
+# Author:  DINDIN Meryll
+# Date:    28 July 2019
+# Project: AsTeR
+
+# Development phase
+*.ipynb
+.ipynb_checkpoints/
