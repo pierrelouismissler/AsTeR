@@ -5,7 +5,8 @@ This notebook presents our strategy to train our vocabulary on disaster-specific
 ## The notebook presents the following main steps:
 
 - Data Preprocessing and Cleaning: Load the data, merge single files into one dataframe and remove Twitter specific labels and signs.
-- Train a Random Forest Classifier on the vectorized text data. We train one against all in for two different types of classes: (1) Content and (2) Category.
+- Train a Random Forest Classifier on the vectorized text data. We train one against all in for two different types of classes: 
+  - (1) Content and (2) Category.
 - The output is a list of features and their corresponding feature importance for Content and Category, respectively.
 
 More text in plain format
