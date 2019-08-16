@@ -1,17 +1,6 @@
 # (Dis)AsTeR - Natural Language Processing Service
 
-This submodule specifically implements the NLP API as we need it. The current micro-service is integrated on the web through a *Cloud Foundry Python Application*, which gives us some flexibility regarding network architecture. Ultimately, this service is the first one to be used after an emergency call is received, and will be plugged to the micro-service *service_NLP* to determine its priority / keywords. 
-
-## Clound Foundry Application
-
-```bash
-cf api https://api.ng.bluemix.net
-cf auth xxx xxx
-cf push
-cf logs serviceSTT --recent
-```
-
-![SERVICE](./figures/service.png)
+This submodule specifically implements the NLP API as we need it. The current micro-service is integrated on the web through a *AWS Beanstalk Application*, which gives us some flexibility regarding network architecture. Ultimately, this service is the first one to be used after an emergency call is received, and will be plugged to the micro-service *service_NLP* to determine its priority / keywords. 
 
 ## API Usage
 
