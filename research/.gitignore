@@ -1,0 +1,13 @@
+# Author:  DINDIN Meryll
+# Date:    27 August 2019
+# Project: AsTeR
+
+# Dataset
+data/
+
+# Compiled python
+__pycache__/
+
+# Heavy models and vocabularies
+experiments/*/*.jb
+experiments/*/*.pq
