@@ -11,7 +11,7 @@ configs/key_ibm.json
 configs/key_rapidai.json
 
 # Heavy file
-models/rf_model.jb
+models/ml_model.jb
 models/stopwords.jb
 
 # Elastic Beanstalk Files
