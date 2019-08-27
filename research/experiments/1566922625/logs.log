@@ -1,0 +1,61 @@
+09:17:05 | INFO    > Launch training for LGB model
+09:17:05 | INFO    > Use 8 concurrent threads
+
+09:17:06 | INFO    > # Bayesian Optimization
+09:17:06 | INFO    > Random Parameters
+09:17:57 | INFO    >   1/ 50 > Last Score : 0.706632
+09:18:10 | INFO    >   2/ 50 > Last Score : 0.597321
+09:18:38 | INFO    >   3/ 50 > Last Score : 0.661914
+09:18:41 | INFO    >   4/ 50 > Last Score : 0.317131
+09:19:06 | INFO    >   5/ 50 > Last Score : 0.591488
+09:19:14 | INFO    >   6/ 50 > Last Score : 0.407647
+09:19:39 | INFO    >   7/ 50 > Last Score : 0.745085
+09:19:51 | INFO    >   8/ 50 > Last Score : 0.745949
+09:19:53 | INFO    >   9/ 50 > Last Score : 0.561892
+09:20:07 | INFO    >  10/ 50 > Last Score : 0.650897
+09:20:39 | INFO    >  11/ 50 > Last Score : 0.734068
+09:20:44 | INFO    >  12/ 50 > Last Score : 0.660186
+09:20:54 | INFO    >  13/ 50 > Last Score : 0.740549
+09:20:56 | INFO    >  14/ 50 > Last Score : 0.311298
+09:21:09 | INFO    >  15/ 50 > Last Score : 0.737956
+09:21:30 | INFO    >  16/ 50 > Last Score : 0.658674
+09:21:33 | INFO    >  17/ 50 > Last Score : 0.732340
+09:22:00 | INFO    >  18/ 50 > Last Score : 0.739469
+09:22:05 | INFO    >  19/ 50 > Last Score : 0.022899
+09:22:11 | INFO    >  20/ 50 > Last Score : 0.715489
+09:22:18 | INFO    >  21/ 50 > Last Score : 0.721538
+09:22:22 | INFO    >  22/ 50 > Last Score : 0.721754
+09:22:29 | INFO    >  23/ 50 > Last Score : 0.453230
+09:23:03 | INFO    >  24/ 50 > Last Score : 0.742709
+09:23:28 | INFO    >  25/ 50 > Last Score : 0.683733
+09:23:52 | INFO    >  26/ 50 > Last Score : 0.729747
+09:24:00 | INFO    >  27/ 50 > Last Score : 0.736876
+09:24:04 | INFO    >  28/ 50 > Last Score : 0.738172
+09:24:14 | INFO    >  29/ 50 > Last Score : 0.736228
+09:24:19 | INFO    >  30/ 50 > Last Score : 0.356448
+09:24:24 | INFO    >  31/ 50 > Last Score : 0.623893
+09:24:29 | INFO    >  32/ 50 > Last Score : 0.343271
+09:24:42 | INFO    >  33/ 50 > Last Score : 0.739685
+09:25:20 | INFO    >  34/ 50 > Last Score : 0.738604
+09:25:35 | INFO    >  35/ 50 > Last Score : 0.680277
+09:25:51 | INFO    >  36/ 50 > Last Score : 0.689782
+09:25:56 | INFO    >  37/ 50 > Last Score : 0.736444
+09:26:30 | INFO    >  38/ 50 > Last Score : 0.744005
+09:26:35 | INFO    >  39/ 50 > Last Score : 0.741197
+09:26:47 | INFO    >  40/ 50 > Last Score : 0.737308
+09:27:18 | INFO    >  41/ 50 > Last Score : 0.738604
+09:27:28 | INFO    >  42/ 50 > Last Score : 0.748326
+09:27:33 | INFO    >  43/ 50 > Last Score : 0.657377
+09:27:39 | INFO    >  44/ 50 > Last Score : 0.311298
+09:27:46 | INFO    >  45/ 50 > Last Score : 0.739901
+09:27:55 | INFO    >  46/ 50 > Last Score : 0.736876
+09:28:30 | INFO    >  47/ 50 > Last Score : 0.642471
+09:28:33 | INFO    >  48/ 50 > Last Score : 0.674444
+09:28:57 | INFO    >  49/ 50 > Last Score : 0.693238
+09:29:14 | INFO    >  50/ 50 > Last Score : 0.740981
+09:29:14 | INFO    > Best Score : 0.748326
+09:29:14 | INFO    > End Random Search 
+
+09:29:14 | INFO    > Best Score : 0.748326
+09:29:14 | INFO    > End Suggested Search 
+
