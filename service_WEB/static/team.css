@@ -3,7 +3,7 @@
 /* Padding below the footer and lighter body text */
 
 body {
-    height: 100%;
+    height: auto;
     display: -ms-flexbox;
     /*display: flex;*!*/
     -ms-flex-align: center;
@@ -88,6 +88,42 @@ main {
 
 @media (min-width: 62em) {
   .featurette-heading {
-    margin-top: 7rem;
+    margin-top: 1rem;
   }
 }
+
+
+
+/* control image height */
+.card-img-top-250 {
+    max-height: 230px;
+    overflow:hidden;
+    border-radius: 5px;
+}
+
+.card-body {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 40%;
+  height: 450px;
+  margin-right: 10px;
+  background: #f5f5f5;
+  background-clip: border-box;
+  border: 1px solid rgba(0,0,0,.125);
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+@media (max-width: 700px) {
+.carousel-cell {
+  width: 80%;
+  }
