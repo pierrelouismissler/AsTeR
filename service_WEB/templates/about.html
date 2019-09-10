@@ -1,95 +1,96 @@
 {%  extends 'layout.html' %}
 
 {%  block body %}
+<script src="/static/includes/flickity.pkgd.min.js"></script>
+<link href="/static/team.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/flickity.min.css">
 
-    <link href="/static/team.css" rel="stylesheet">
 
-    <body class="text-center" style="margin-top:60px;">
-    <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
-        <main role="main" class="inner cover" align="justify">
+<body style="margin-top:60px;">
+  <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover" align="justify">
 
-            <h1 class="cover-heading" align="center" style='padding-bottom: 40px;'>About Aster</h1>
-                <p class="lead" >Aster is an open source project that was started by UC Berkeley students on
-                    April 27th 2019. During the IBM Call for Code hackathon at UC Berkeley, we decided to build a disaster
-                    manager platform to dispatch the right resources at the right time given as many inputs as there
-                    are available. </p>
-                <p class="lead">Forest fires are frequent in California and natural disasters rise in intensity
-                    due to climate change. Ageing technologies used in unit dispatching struggle to keep the pace and
-                    do not allow efficient over-time monitoring and scalability. This is the context in which Aster
-                    was born.</p>
+          <h1 class="cover-heading" align="center" style='padding-bottom: 40px;'>About Aster</h1>
+              <p class="lead" >Aster is an open source project that was started by UC Berkeley students on
+                  April 27th 2019. During the IBM Call for Code hackathon at UC Berkeley, we decided to build a disaster
+                  manager platform to dispatch the right resources at the right time given as many inputs as there
+                  are available. </p>
+              <p class="lead">Forest fires are frequent in California and natural disasters rise in intensity
+                  due to climate change. Ageing technologies used in unit dispatching struggle to keep the pace and
+                  do not allow efficient over-time monitoring and scalability. This is the context in which Aster
+                  was born.</p>
 
+          <hr>
+
+          <h1 class="cover-heading" align="center" style='padding-top: 40px; padding-bottom: 40px;'>Our Story</h1>
+              <p class="lead"> We are a group of passionnate engineers who began to work together at UC Berkeley. The different
+                  backgrounds of our team give us the ability to find helpful and powerful ideas to develop. We know what it’s like
+                  to have epic enthusiasm and inspiration for a tech concept and we are extremely pleased to bring it to life. From
+                  our different paths, it's always enjoyable to work as a team and share the talent and the skills with a significant
+                  purpose.</p>
+              <p class="lead">What gives us the will to work on this project? We were all chocked by the enormous fires in Califonia
+                  in 2018 and by the hurricane Irma in 2017. When you see these natural disasters, as young engineers, we wanted to be able
+                  to help the victims, the emergency services and all persons impacted by these catastrophes. The IBM Call for Code hackathon
+                  has been the perfect place to brainstrom and implement our idea of dispatching platform. Building a impactful and meaningful
+                  solution to help emergency services reflects exactly our way of thinking today and what we want to accomplish tomorrow.
+              </p>
+
+          <hr>
+          
+
+
+  <h1 class="cover-heading" align="center" style='padding-top: 0px; padding-bottom: 20px;'>They are talking about us</h1>
+  <!-- Flickity HTML init -->
+  <div class="main-carousel"  style="margin-top:20px; padding-bottom: 20px;">
+    <div class="carousel-cell">
+      <div class="card-img-top-250">
+          <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">
+          <img class="img-fluid" src="/static/img/about/medium_article.jpg" alt="Carousel 1">
+      </div>
+      <div class="card-body">
+          <p>The project is introduced by Meryll Dindin in this <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">article</a>. He identifies the problem and provides the technical information of our solutions. With schematics, we can understand easily the architecture of our platforms between the user, the databases and the algorithms. The article can be seen as the best explanation of what we do.
+        </p>
+      </div>
+
+    </div>
+    <div class="carousel-cell">
+      <div class="card-img-top-250">
+          <a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
+          <img class="img-fluid" src="/static/img/about/cta_article_2.png"  alt="Carousel 2">
+      </div>
+      <div class="card-body">
+          <p>The<a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
+          article written by the Consumer Technology Association (CTA)
+          </a> about the vision of AsTeR to help the emergency services and the people during natural disasters. The experience of Thomas Galeon as firefighters is related as the basis of our idea exploration and our project is now more focused on collecting and prioritizing information to facilitate decision making during natural disasters.  </p>
+      </div>
+    </div>
+
+
+    <div class="carousel-cell">
+      <div class="card-img-top-250">
+          <a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank">
+          <img class="img-fluid" src="/static/img/about/ibm_blog.jpg" style="width: 100%;" alt="Carousel 3">
+      </div>
+      <div class="card-body">
+          <p>IBM Developer staff relates the numerous events they hosted in different colleges and countries. Through the article <a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank">"We’ve been everywhere: Developers all over the world are making a difference"</a>, they introduce our project as "a disaster management platform, dispatching the right resources at the right time".</p>
+      </div>
+    </div>
+    <div class="carousel-cell">
+       <div class="card-img-top-250">
+          <a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank"><img class="img-fluid" src="/static/img/about/article_interview_hackathon_1.png"  style="height: auto;" alt="Carousel 3">
+      </div>
+      <div class="card-body">
+          <p><a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank">
+          Interview of Thomas Galeon </a> about his perspective of the hackathon and what it meant to him, being a former firefighter and first responder himself. </p>
+
+      </div>
+    </div>
+  </div>
+  <br>
+
+<!-- TEAMS -->
             <hr>
-
-            <h1 class="cover-heading" align="center" style='padding-top: 40px; padding-bottom: 40px;'>Our Story</h1>
-                <p class="lead"> We are a group of passionnate engineers who began to work together at UC Berkeley. The different
-                    backgrounds of our team give us the ability to find helpful and powerful ideas to develop. We know what it’s like
-                    to have epic enthusiasm and inspiration for a tech concept and we are extremely pleased to bring it to life. From
-                    our different paths, it's always enjoyable to work as a team and share the talent and the skills with a significant
-                    purpose.</p>
-                <p class="lead">What gives us the will to work on this project? We were all chocked by the enormous fires in Califonia
-                    in 2018 and by the hurricane Irma in 2017. When you see these natural disasters, as young engineers, we wanted to be able
-                    to help the victims, the emergency services and all persons impacted by these catastrophes. The IBM Call for Code hackathon
-                    has been the perfect place to brainstrom and implement our idea of dispatching platform. Building a impactful and meaningful
-                    solution to help emergency services reflects exactly our way of thinking today and what we want to accomplish tomorrow.
-                </p>
-
-            <hr>
-
-            <h1 class="cover-heading" align="center" style='padding-top: 40px; padding-bottom: 40px;'>They are talking about us</h1>
-                <div class="row featurette">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-6 order-md-3" style='margin-top: 50px; text-align: left;'>
-                        <p class="lead" style="padding-left:30px;">The entire project is introduced by Meryll Dindin in this <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">article</a>. He identifies the problem and provides the technical information of our solutions. With schematics, we can understand easily the architecture of our platforms between the user, the databases and the algorithms. <p class='lead' style="padding-left:30px;">The article can be seen as the best explanation of what we do.</p>
-                    </p>
-                    </div>
-                    <div class="col-md-5 order-md-1">
-                        <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank"><img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/about/medium_article.JPG" alt="blog ibm"></a>
-                    </div>
-                </div>
-                <hr class="featurette-divider">
-                <div class="row featurette">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-6">
-                        <p> </p>
-                        <p class="lead" style='margin-top: 0px; text-align: right;'>
-                            The<a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
-                            article written by the Consumer Technology Association (CTA)
-                            </a> about the vision of AsTeR to help the emergency services and the people during natural disasters. The experience of Thomas Galeon as firefighters is related as the basis of our idea exploration and our project is now more focused on collecting and prioritizing information to facilitate decision making during natural disasters.  </p>
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-4" >
-                        <p> </p>
-                        <a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank"><img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/about/cta_article.png" alt="Article in CES" ></a>
-                    </div>
-                </div>
-                <hr class="featurette-divider">
-                <div class="row featurette">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5 order-md-3" style='margin-top: 25px; text-align: left;'>
-                        <p class="lead" style="padding-left:30px;">IBM Developer staff relates the numerous events they hosted in different colleges and countries. Through the article <a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank">"We’ve been everywhere: Developers all over the world are making a difference"</a>, they introduce our project as "a disaster management platform, dispatching the right resources at the right time".</p>
-                    </div>
-                    <!-- <div class="col-md-1 order-md-2"></div> -->
-                    <div class="col-md-5 order-md-1">
-                        <a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank"><img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/about/ibm_blog.PNG" alt="blog ibm"></a>
-                    </div>
-                </div>
-                <hr class="featurette-divider">
-                <div class="row featurette">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <p> </p>
-                        <p class="lead" style='margin-top: 60px; text-align: right;'><a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank">
-                            Interview of Thomas Galeon </a> about his perspective of the hackathon and what it meant to him, being a former firefighter and first responder himself. </p>
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-5">
-                        <a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank"><img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/about/article_interview_hackathon.JPG" alt="Article in ibm blog"></a>
-                    </div>
-                </div>
-
-            <hr>
-
-            <h1 class="cover-heading" align="center" style="margin-bottom: 1em; padding-top: 40px; padding-bottom: 40px;">The ones who made this possible.</h1>
+            <h1 class="cover-heading" align="center" style="margin-bottom: 1em; padding-top: 60px; padding-bottom: 40px;">The ones who made this possible.</h1>
             <div class="container marketing">
                 <div class="row">
                 <div class="col-lg-4">
@@ -171,5 +172,17 @@
             </div>
         </main>
     </div>
-    </body>
+</body>
+
+
+<script>
+$('.main-carousel').flickity({
+  // options
+  groupCells: true,
+  autoPlay: true,
+  wrapAround: true
+});
+</script>
+
+
 {% endblock %}
