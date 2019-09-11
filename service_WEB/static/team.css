@@ -29,10 +29,11 @@ main {
     display:inline-block;
     float:none;
     /* reset the text-align */
-    /*text-align:left;*/
+    text-align:left;
     /* inline-block space fix */
-    margin-right:-4px;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /* MARKETING CONTENT
@@ -127,3 +128,11 @@ main {
 .carousel-cell {
   width: 80%;
   }
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0rem;
+  color: #5a5a5a;
+}
+}
