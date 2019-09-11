@@ -3,15 +3,16 @@
 {%  block body %}
 <script src="/static/includes/flickity.pkgd.min.js"></script>
 <link href="/static/team.css" rel="stylesheet">
+<link href="/static/team_pictures.css" rel="stylesheet">
 <link rel="stylesheet" href="/static/flickity.min.css">
 
 
-<body style="margin-top:60px;">
-  <div class="cover-container d-flex w-90 h-100 p-3 mx-auto flex-column">
+<body style="margin-top:30px;">
+  <div class="cover-container d-flex w-85 h-100 p-3 mx-auto flex-column">
       <main role="main" class="inner cover" align="justify">
 
           <h1 class="cover-heading" align="center" style='padding-bottom: 40px;'>About AsTeR</h1>
-              <p class="lead" >Aster is an open source project that was started by UC Berkeley students on
+              <p class="lead" >AsTeR is an open source project that was started by UC Berkeley students on
                   April 27th 2019. During the IBM Call for Code hackathon at UC Berkeley, we decided to build a disaster
                   manager platform to dispatch the right resources at the right time given as many inputs as there
                   are available. </p>
@@ -38,8 +39,9 @@
           <hr>
           
 
+
   <h1 class="cover-heading" align="center" style='padding-top: 0px; padding-bottom: 20px;'>They are talking about us</h1>
-<!-- Article card carousel -->
+  <!-- Flickity HTML init -->
   <div class="main-carousel"  style="margin-top:20px; padding-bottom: 20px;">
     <div class="carousel-cell">
       <div class="card-img-top-250">
@@ -87,88 +89,121 @@
   </div>
   <br>
 
+
 <!-- TEAMS -->
             <hr>
             <h1 class="cover-heading" align="center" style="margin-bottom: 1em; padding-top: 60px; padding-bottom: 40px;">The ones who made this possible.</h1>
+          <div class="card__collection clear-fix">
             <div class="container marketing">
                 <div class="row">
                 <div class="col-lg-4">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image4" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/meryll.png"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image4)"/>
-                    </svg>
-
-                    <h2>Meryll Dindin</h2>
-                    <p>Co-founder - Thrive Education</p>
-                    <a href="https://github.com/Coricos" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:meryll_dindin@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/dindin-meryll/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-                    
-
-                <div class="col-lg-4">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image3" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/florian.jpg"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image3)"/>
-                    </svg>
-                    <h2>Florian Fesch</h2>
-                    <p>Data Scientist</p>
-                    <a href="https://github.com/florianfesch" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:florian.fesch@berkeley.edu " target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/florianfesch/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-                    
-
-                <div class="col-lg-4">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image2" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/thomas.jpg"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image2)"/>
-                    </svg>
-
-                    <h2>Thomas Galeon</h2>
-                    <p>Solution Engineer - Google</p>
-                    <a href="https://github.com/TheGaga" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:thomas.galeon@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/thomas-galeon/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-
-                <div class="col-md-6 col-centered">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image1" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/pierre-louis.png"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image1)"/>
-                    </svg>
-
-                    <h2>Pierre-Louis Missler</h2>
-                    <p>Consultant - Data Analyst</p>
-                    <a href="https://github.com/pierrelouismissler" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:pierrelouis_missler@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/pierrelouismissler/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-
-                <div class="col-md-6 col-centered">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image5" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/oskar.jpg"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image5)"/>
-                    </svg>
-
-                    <h2>Oskar Radermecker</h2>
-                    <p>Data Scientist - Varian Medical Systems</p>
-                    <a href="https://github.com/oskaradermecker" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:oskar_radermecker@berkeley.edu " target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/oradermecker/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
+                  <div class="cards cards--three">
+                    <img src="/static/img/team/meryll.png" class="img-responsive" alt="">
+                    <span class="cards--three__rect-1">
+                      <span class="shadow-1"></span>
+                      <h2>Meryll Dindin</h2>
+                      <p>Co-founder - Thrive Education</p>
+                    </span>
+                    <span class="cards--three__rect-2">
+                      <span class="shadow-2"></span>
+                    </span>
+                    <span class="cards--three__circle"></span>
+                    <ul class="cards--three__list">
+                      <li><a href="https://github.com/Coricos" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                      <li><a href="mailto:meryll_dindin@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                      <li><a href="https://www.linkedin.com/in/dindin-meryll/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                    </ul>
+                  </div>
+              
             </div>
+
+              <div class="col-lg-4 col-centered">
+                <div class="cards cards--three">
+                <img src="/static/img/team/florian.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Florian Fesch</h2>
+                  <p>Data Scientist</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/florianfesch" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:florian.fesch@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/florianfesch/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+              
             </div>
+
+              <div class="col-lg-4">
+               <div class="cards cards--three">
+                <img src="/static/img/team/thomas.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Thomas Galeon</h2>
+                  <p>Solution Engineer - Google</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/TheGagamailto:thomas.galeon@berkeley.edu" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:thomas.galeon@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/thomas-galeon/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-centered" >
+               <div class="cards cards--three">
+                <img src="/static/img/team/pierre-louis2.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Pierre-Louis Missler</h2>
+                  <p>Consultant - Data Analyst</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/pierrelouismissler" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:pierrelouis_missler@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/pierrelouismissler/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+            </div>
+
+
+              <div class="col-md-6 col-centered">
+                <div class="cards cards--three col-centered" style="text-align: center;">
+                <img src="/static/img/team/oskar.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Oskar Radermecker</h2>
+                  <p style="font-size: 12px; margin-left: -20px;">Data Scientist - Varian Medical Systems</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/oskaradermecker" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:oskar_radermecker@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/oradermecker/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+                
+            </div>
+          </div>
+        </div>
+            </div>
+
         </main>
     </div>
 </body>
@@ -182,6 +217,5 @@ $('.main-carousel').flickity({
   wrapAround: true
 });
 </script>
-
 
 {% endblock %}
