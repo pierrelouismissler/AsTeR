@@ -7,10 +7,111 @@
     <script src="/static/includes/flickity.pkgd.min.js"></script>
     <link href="/static/contact.css" rel="stylesheet">
     <link href="/static/home.css" rel="stylesheet">
-    <link href="/static/popup.css" rel="stylesheet">
+    <!-- <link href="/static/popup.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="static/jquery.fancybox.min.css">
 
     <link rel="stylesheet" href="/static/flickity.min.css">
+
+<style type="text/css">
+    .box {
+  width: 70%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  /*border: 2px solid #fff;
+  border-radius: 20px/50px;*/
+  background-clip: padding-box;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  background-color: #858796;
+  border: 1px solid;
+  border-radius: .35rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  color: #fff;
+  background-color: #717384;
+  border-color: #6b6d7d;
+  text-decoration: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 80%;
+  }
+  .popup{
+    width: 80%;
+  }
+}
+</style>
+
+
+
+
+
 
     <main>
         <div id="homeCarousel" class="carousel slide" data-ride="carousel">
@@ -281,7 +382,7 @@
 
 
 <!-- CONTACT -->
-        <div class="box">
+        <div class="box" style="width: 60%;">
             <div class="container-marketing">
                 <div class="row">
                     <div class="col-md-4 col-centered">
@@ -304,9 +405,9 @@
         <div id="popup1" class="overlay">
             <div class="popup">
                 <a class="close" href="#home">&times;</a>
-       
+            <div class="content">
 <!-- CONTACT POPUP-->
-                <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column text-center" align="justify">
+                <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center" align="justify">
 
                     <h1 class="cover-heading text-center" style="margin-bottom: 20px;">Contact Us</h1>
 
@@ -326,7 +427,7 @@
                     <div class="container-marketing">
                         <div class="container-marketing">
                             <div class="row">
-                                <div class="col-md-1"></div>
+                                
                                 <div class="col-md-10 col-centered">
                                     <form action="{{ url_for('index') }}" method=post name="contact" role="form">
                                         <div class="ml-form mb-4 ">
@@ -350,7 +451,7 @@
                         </div>
                     </div>
                 </div>
-
+                </div>
              </div>
         </div>
     </main>
