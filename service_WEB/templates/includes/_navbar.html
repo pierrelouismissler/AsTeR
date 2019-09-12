@@ -10,16 +10,23 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 ​
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+    <div class="collapse navbar-collapse " id="navbarsExampleDefault">
         <style scoped>
             @media (max-width: 768px) {
-                .navbar-dark .navbar-nav .active>.nav-link {
-                    color: #000;}
-                .navbar-dark .navbar-nav .nav-link {
-                    color: rgba(0,0,0,.5);}
-                .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
-                    color: rgba(0,0,0,.75);
+                .navbar-nav{
+                    max-width: auto;
+                    background-color: rgba(173,174,177,.75);
+                    color: white;
+                    text-align: center;
+                    border-radius: 3px;
+                    margin-top: 10px;
                 }
+                .navbar-dark .navbar-nav .active>.nav-link {
+                    color: black;}
+                .navbar-dark .navbar-nav .nav-link {
+                    color: rgba(255,255,255,.5);}
+                .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                    color: rgba(255,255,255,.75); }
             }
         </style>
         <ul class="navbar-nav mr-auto">
@@ -34,7 +41,7 @@
                 <a class="nav-link" href="https://youtu.be/_SBBrj9y26M" data-fancybox >Watch Demo</a>
             </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" style="margin-top: 0px;">
             <li class="nav-item">
                 <a class="nav-link" target="_blank" href="https://github.com/Coricos/AsTeR"><img src="/static/img/home/github_logo.png"  width="15" height="15" class="d-inline-block align-center"> GitHub</a>
             </li>
