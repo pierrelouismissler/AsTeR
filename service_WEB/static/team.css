@@ -97,9 +97,10 @@ main {
 
 /* control image height */
 .card-img-top-250 {
-    max-height: 230px;
+    max-height: 300px;
     overflow:hidden;
-    border-radius: 5px;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 
 .card-body {
@@ -115,7 +116,7 @@ main {
 
 .carousel-cell {
   width: 40%;
-  height: 450px;
+  height: 500px;
   margin-right: 10px;
   background: #f5f5f5;
   background-clip: border-box;
@@ -127,6 +128,7 @@ main {
 @media (max-width: 700px) {
 .carousel-cell {
   width: 80%;
+  height: 580px;
   }
 body {
   height: 100%;
@@ -134,5 +136,11 @@ body {
   padding: 0;
   padding-bottom: 0rem;
   color: #5a5a5a;
+}
+.card-img-top-250 {
+    max-height: 300px;
+    overflow:hidden;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
 }
 }
