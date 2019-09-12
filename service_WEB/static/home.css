@@ -4,13 +4,17 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
   padding-bottom: 0rem;
   color: #5a5a5a;
 }
 
+main {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -84,7 +88,7 @@ body {
   margin-left: .75rem;
 }
 .marketing .col-lg-4 .marketing-pics {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Featurettes
