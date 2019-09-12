@@ -7,6 +7,7 @@
     <script src="/static/includes/flickity.pkgd.min.js"></script>
     <link href="/static/contact.css" rel="stylesheet">
     <link href="/static/home.css" rel="stylesheet">
+    <link href="/static/popup.css" rel="stylesheet">
     <link rel="stylesheet" href="static/jquery.fancybox.min.css">
 
     <link rel="stylesheet" href="/static/flickity.min.css">
@@ -222,7 +223,7 @@
             </div>
         </div>
 
-        <div class="main-carousel"  style="margin-top:20px; padding-bottom: 20px;">
+        <div class="main-carousel"  style="margin: 1vw 1vw 1vw 1vw;; padding-bottom: 20px;">
             <div class="carousel-cell">
               <div class="card-img-top-250">
                   <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">
@@ -274,74 +275,82 @@
               </div>
             </div>
           </div>
+        <br>
+          <hr>
 
 
-
-
-
-
-
-
-
-
-
-
-        <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column text-center" align="justify">
-
-            <h1 class="cover-heading text-center">Contact Us</h1>
-
-            {% for message in form.name.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% for message in form.email.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% for message in form.subject.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% for message in form.message.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-
+<!-- CONTACT -->
+        <div class="box">
             <div class="container-marketing">
                 <div class="row">
-                    <div class="col-md-6 col-centered">
+                    <div class="col-md-4 col-centered">
                         <img src="/static/img/contact/marker_1.png" width="45" height="45">
                         <p>San Francisco, CA, USA</p>
                     </div>
-                    <div class="col-md-6 col-centered">
+                    <div class="col-md-4 col-centered" style="margin-top: 30px; margin-bottom: 50px;">
+                        
+                    <a class="button" href="#popup1">Contact Us</a>
+                       
+                    </div>
+                    <div class="col-md-4 col-centered">
                         <img src="/static/img/contact/enveloppe.png" width="45" height="45">
                         <p>aster0project@gmail.com</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="container-marketing">
-                    <div class="row">
-                        <div class="col-md"></div>
-                        <div class="col-md-10">
-                            <form action="{{ url_for('index') }}" method=post name="contact" role="form">
-                                <div class="ml-form mb-4 mt-3">
-                                    {{ form.name(class="form-control", placeholder="Your name", **{'data-validation':'required'}) }}
-                                </div>
-                                <div class="md-form mb-4">
-                                    {{ form.email(class="form-control", placeholder="Your email address", **{'data-validation':'required'}) }}
-                                </div>
-                                <div class="md-form mb-4">
-                                    {{ form.subject(class="form-control", placeholder="Subject ", **{'data-validation':'required'}) }}
-                                </div>
-                                <div class="md-form mb-4">
-                                    {{ form.message(class="form-control", placeholder="Write your message here! Surprise us!", **{'data-validation':'required'}) }}
-                                </div >
-                                <div class="mt-4">
-                                    {{ form.submit(class='btn btn-success') }}
-                                </div >
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <a class="close" href="#home">&times;</a>
+       
+<!-- CONTACT POPUP-->
+                <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column text-center" align="justify">
 
-                            </form>
+                    <h1 class="cover-heading text-center" style="margin-bottom: 20px;">Contact Us</h1>
+
+                    {% for message in form.name.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in form.email.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in form.subject.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in form.message.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+
+                    <div class="container-marketing">
+                        <div class="container-marketing">
+                            <div class="row">
+                                <div class="col-md-1"></div>
+                                <div class="col-md-10 col-centered">
+                                    <form action="{{ url_for('index') }}" method=post name="contact" role="form">
+                                        <div class="ml-form mb-4 ">
+                                            {{ form.name(class="form-control", placeholder="Your name", **{'data-validation':'required'}) }}
+                                        </div>
+                                        <div class="md-form mb-4">
+                                            {{ form.email(class="form-control", placeholder="Your email address", **{'data-validation':'required'}) }}
+                                        </div>
+                                        <div class="md-form mb-4">
+                                            {{ form.subject(class="form-control", placeholder="Subject ", **{'data-validation':'required'}) }}
+                                        </div>
+                                        <div class="md-form mb-4">
+                                            {{ form.message(class="form-control", placeholder="Write your message here! Surprise us!", **{'data-validation':'required'}) }}
+                                        </div >
+                                        <div class="mt-4">
+                                            {{ form.submit(class='btn btn-success') }}
+                                        </div >
+
+                                    </form>
+                                </div>
                         </div>
-                        <div class="col-md"></div>
                     </div>
                 </div>
-            </div>
+
+             </div>
         </div>
     </main>
 
@@ -360,6 +369,7 @@
           autoPlay: true,
           wrapAround: true
         });
+
     </script>
 
 {% endblock %}
