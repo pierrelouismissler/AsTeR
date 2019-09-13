@@ -24,7 +24,7 @@ application.config.update(
     MAIL_PORT=587,
     MAIL_USE_SSL=False,
     MAIL_USE_TLS=True,
-    MAIL_USERNAME='aster0project',
+    MAIL_USERNAME='aster.messages',
     MAIL_PASSWORD=MAIL_PASSWORD
 )
 mail = Mail(application)
