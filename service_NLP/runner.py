@@ -39,10 +39,12 @@ class KeyWd_RAI:
     def request(self, message):
         
         r_1 = requests.post(self.u_1, headers=self.h_1, data={"text": message, "wordnum": 10})
-        r_1 = json.loads(r_1.content)['keywords']
+        try: r_1 = json.loads(r_1.content)['keywords']
+        except: r_1 = []
         inp = {'documents': [{'language': 'en', 'id': 'string', 'text': message}]}
         r_2 = requests.post(self.u_2, headers=self.h_2, data=(str(inp)))
-        r_2 = json.loads(r_2.content)['documents'][0]['keyPhrases']
+        try: r_2 = json.loads(r_2.content)['documents'][0]['keyPhrases']
+        except: r_2 = []
         
         return r_1 + r_2
     
@@ -50,12 +52,12 @@ class GetClass:
     
     def __init__(self, directory='models'):
         
-        self.r_f = joblib.load('/'.join([directory, 'rf_model.jb']))
+        self.r_f = joblib.load('/'.join([directory, 'ml_model.jb']))
         self.vec = joblib.load('/'.join([directory, 'vectorizer.jb']))
         
     def request(self, message):
         
-        return self.r_f.predict(self.vec.transform([message]))[0]
+        return self.r_f.predict(self.vec.transform([message]).astype('float'))[0]
     
 class AnalyzeTranscript:
     

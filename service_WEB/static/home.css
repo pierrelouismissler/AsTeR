@@ -4,13 +4,17 @@
 /* Padding below the footer and lighter body text */
 
 body {
-  height: 100%;
+  height: auto;
   margin: 0;
   padding: 0;
   padding-bottom: 0rem;
   color: #5a5a5a;
 }
 
+main {
+    padding-top: 3rem;
+    padding-bottom: 3rem;
+}
 
 /* CUSTOMIZE THE CAROUSEL
 -------------------------------------------------- */
@@ -84,7 +88,7 @@ body {
   margin-left: .75rem;
 }
 .marketing .col-lg-4 .marketing-pics {
-    margin-bottom: 1rem;
+  margin-bottom: 1rem;
 }
 
 /* Featurettes
@@ -139,4 +143,51 @@ body {
 .vcenter {
     display: flex;
     align-items: center;
+}
+
+
+/* control image height */
+.card-img-top-250 {
+    max-height: 300px;
+    overflow:hidden;
+    border-radius: 5px;
+}
+
+.card-body1 {
+    -webkit-box-flex: 1;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    padding: 1.25rem;
+  }
+
+.carousel {
+  background: #EEE;
+}
+
+.carousel-cell {
+  width: 40%;
+  height: 600px;
+  margin-right: 10px;
+  background: #f5f5f5;
+  background-clip: border-box;
+  border: 2px solid rgba(0,0,0,.125);
+  border-radius: 5px;
+  counter-increment: carousel-cell;
+}
+
+@media (max-width: 700px) {
+.carousel-cell {
+  width: 80%;
+  height: 650px;
+  }
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  padding-bottom: 0rem;
+  color: #5a5a5a;
+}
+h2.featurette-heading {
+  font-size: 20px;
+}
 }

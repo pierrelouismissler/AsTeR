@@ -1,6 +1,5 @@
 watson_developer_cloud==2.7.0
 rev_ai==2.3.0
-Werkzeug==0.14.1
 Flask==1.0.2
 protobuf==3.8.0
 PyYAML==5.1.1

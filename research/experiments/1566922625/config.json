@@ -1,0 +1,13 @@
+{
+    "best_score": 0.7483257723050335,
+    "id": "1566922625",
+    "model": "LGB",
+    "optimization": "bayesian",
+    "random_state": 42,
+    "strategy": "single",
+    "test_size": 0.2,
+    "threads": 8,
+    "trial_init": 50,
+    "trial_opti": 0,
+    "validation_metric": "acc"
+}

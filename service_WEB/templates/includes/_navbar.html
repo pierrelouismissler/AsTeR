@@ -1,20 +1,32 @@
+<script src="/static/includes/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="/static/includes/jquery.fancybox.min.js"></script>
+<link rel="stylesheet" href="static/jquery.fancybox.min.css">
+​
+​
 <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-
+​
     <a class="navbar-brand" href="/"><img src="/static/img/logo.png" width="30" height="30" class="d-inline-block align-center" alt="logo_aster"> AsTeR</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExampleDefault">
+​
+    <div class="collapse navbar-collapse " id="navbarsExampleDefault">
         <style scoped>
             @media (max-width: 768px) {
-                .navbar-dark .navbar-nav .active>.nav-link {
-                    color: #000;}
-                .navbar-dark .navbar-nav .nav-link {
-                    color: rgba(0,0,0,.5);}
-                .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
-                    color: rgba(0,0,0,.75);
+                .navbar-nav{
+                    max-width: auto;
+                    background-color: rgba(173,174,177,.75);
+                    color: white;
+                    text-align: center;
+                    border-radius: 3px;
+                    margin-top: 10px;
                 }
+                .navbar-dark .navbar-nav .active>.nav-link {
+                    color: black;}
+                .navbar-dark .navbar-nav .nav-link {
+                    color: rgba(255,255,255,.5);}
+                .navbar-dark .navbar-nav .nav-link:focus, .navbar-dark .navbar-nav .nav-link:hover {
+                    color: rgba(255,255,255,.75); }
             }
         </style>
         <ul class="navbar-nav mr-auto">
@@ -25,8 +37,11 @@
                 {% else %} class="nav-item"{% endif %} >
                 <a class="nav-link" href="/about">About Us</a>
             </li>
+            <li class="nav-item"> 
+                <a class="nav-link" href="https://youtu.be/_SBBrj9y26M" data-fancybox >Watch Demo</a>
+            </li>
         </ul>
-        <ul class="nav navbar-nav navbar-right">
+        <ul class="nav navbar-nav navbar-right" style="margin-top: 0px;">
             <li class="nav-item">
                 <a class="nav-link" target="_blank" href="https://github.com/Coricos/AsTeR"><img src="/static/img/home/github_logo.png"  width="15" height="15" class="d-inline-block align-center"> GitHub</a>
             </li>
@@ -36,4 +51,3 @@
         </ul>
     </div>
 </nav>
-

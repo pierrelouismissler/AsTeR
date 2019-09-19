@@ -1,138 +1,221 @@
 {%  extends 'layout.html' %}
 
 {%  block body %}
+<script src="/static/includes/flickity.pkgd.min.js"></script>
+<link href="/static/team.css" rel="stylesheet">
+<link href="/static/team_pictures.css" rel="stylesheet">
+<link rel="stylesheet" href="/static/flickity.min.css">
 
-    <link href="/static/team.css" rel="stylesheet">
 
-    <body class="text-center" style="margin-top:60px;">
-    <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column">
-        <main role="main" class="inner cover" align="justify">
+<body style="margin-top:30px;">
+  <div class="cover-container d-flex w-85 h-100 p-3 mx-auto flex-column">
+      <main role="main" class="inner cover" align="justify">
 
-            <h1 class="cover-heading" align="center" style='padding-bottom: 40px;'>About Aster</h1>
-                <p class="lead" >Aster is an open source project that was started by UC Berkeley students on
-                    April 27th 2019. During the IBM Call for Code hackathon at UC Berkeley, we decided to build a disaster
-                    manager platform to dispatch the right resources at the right time given as many inputs as there
-                    are available. </p>
-                <p class="lead">Forest fires are frequent in California and natural disasters rise in intensity
-                    due to climate change. Ageing technologies used in unit dispatching struggle to keep the pace and
-                    do not allow efficient over-time monitoring and scalability. This is the context in which Aster
-                    was born.</p>
+          <h1 class="cover-heading" align="center" style='padding-bottom: 40px;'>About AsTeR</h1>
+              <p class="lead" style="margin: 1vw 8vw 1vw 8vw;">AsTeR is an open source project that was started by UC Berkeley students on
+                  April 27th 2019. During the IBM Call for Code hackathon at UC Berkeley, we decided to build a disaster
+                  manager platform to dispatch the right resources at the right time given as many inputs as there
+                  are available. </p>
+              <p class="lead" style="margin: 1vw 8vw 1vw 8vw;">Forest fires are frequent in California and natural disasters rise in intensity
+                  due to climate change. Ageing technologies used in unit dispatching struggle to keep the pace and
+                  do not allow efficient over-time monitoring and scalability. This is the context in which AsTeR
+                  was born.</p>
 
+          <hr>
+
+          <h1 class="cover-heading" align="center" style='padding-top: 40px; padding-bottom: 40px;'>Our Story</h1>
+              <p class="lead" style="margin: 1vw 8vw 1vw 8vw;"> We are a group of passionnate engineers who began to work together at UC Berkeley. The different
+                  backgrounds of our team give us the ability to find helpful and powerful ideas to develop. We know what it’s like
+                  to have epic enthusiasm and inspiration for a tech concept and we are extremely pleased to bring it to life. From
+                  our different paths, it's always enjoyable to work as a team and share the talent and the skills with a significant
+                  purpose.</p>
+              <p class="lead" style="margin: 1vw 8vw 1vw 8vw;">What gives us the will to work on this project? We were all chocked by the enormous fires in Califonia
+                  in 2018 and by the hurricane Irma in 2017. When you see these natural disasters, as young engineers, we wanted to be able
+                  to help the victims, the emergency services and all persons impacted by these catastrophes. The IBM Call for Code hackathon
+                  has been the perfect place to brainstrom and implement our idea of dispatching platform. Building a impactful and meaningful
+                  solution to help emergency services reflects exactly our way of thinking today and what we want to accomplish tomorrow.
+              </p>
+
+          <hr>
+          
+
+
+  <h1 class="cover-heading" align="center" style='padding-top: 0px; padding-bottom: 20px;'>They are talking about us</h1>
+  <!-- Flickity HTML init -->
+  <div class="main-carousel"  style="margin-top:20px; padding-bottom: 20px;">
+    <div class="carousel-cell">
+      <div class="card-img-top-250">
+          <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">
+          <img class="w-100" src="/static/img/home/article_medium.png" style="height: 300px;  margin-top: 0px;" alt="Carousel 1">
+      </div>
+      <div class="card-body">
+          <p>The project is introduced by Meryll Dindin in this <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">article</a>. He identifies the problem and provides the technical information of our solutions. With schematics, we can understand easily the architecture of our platforms between the user, the databases and the algorithms. The article can be seen as the best explanation of what we do.
+        </p>
+      </div>
+
+    </div>
+    <div class="carousel-cell">
+      <div class="card-img-top-250">
+          <a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
+          <img class="w-100" src="/static/img/about/cta_article_2.png"  style="height: 300px;  margin-top: 0px;" alt="Carousel 2">
+      </div>
+      <div class="card-body">
+          <p>The<a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
+          article written by the Consumer Technology Association (CTA)
+          </a> about the vision of AsTeR to help the emergency services and the people during natural disasters. The experience of Thomas Galeon as firefighters is related as the basis of our idea exploration and our project is now more focused on collecting and prioritizing information to facilitate decision making during natural disasters.  </p>
+      </div>
+    </div>
+
+
+    <div class="carousel-cell">
+      <div class="card-img-top-250">
+          <a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank">
+          <img class="w-100" src="/static/img/about/ibm_blog_resized.PNG" style="height: 300px;  margin-top: 0px;" alt="Carousel 3">
+      </div>
+      <div class="card-body">
+          <p>IBM Developer staff relates the numerous events they hosted in different colleges and countries. Through the article <a href="https://developer.ibm.com/callforcode/blogs/weve-been-everywhere/" target="_blank">"We’ve been everywhere: Developers all over the world are making a difference"</a>, they introduce our project as "a disaster management platform, dispatching the right resources at the right time".</p>
+      </div>
+    </div>
+    <div class="carousel-cell">
+       <div class="card-img-top-250">
+          <a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank"><img class="w-100" src="/static/img/about/article_interview_hackathon_1.PNG"  style="height: 300px;" alt="Carousel 3">
+      </div>
+      <div class="card-body">
+          <p><a href="https://www.ibm.com/blogs/jobs/2019/06/18/code-and-response-codeathon-providing-coders-with-the-opportunity-to-tackle-real-world-issues/" target="_blank">
+          Interview of Thomas Galeon </a> about his perspective of the hackathon and what it meant to him, being a former firefighter and first responder himself. </p>
+
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+<!-- TEAMS -->
             <hr>
-
-            <h1 class="cover-heading" align="center" style='padding-top: 40px; padding-bottom: 40px;'>Our Story</h1>
-                <p class="lead"> We are a group of passionnate engineers who began to work together at UC Berkeley. The different
-                    backgrounds of our team give us the ability to find helpful and powerful ideas to develop. We know what it’s like
-                    to have epic enthusiasm and inspiration for a tech concept and we are extremely pleased to bring it to life. From
-                    our different paths, it's always enjoyable to work as a team and share the talent and the skills with a significant
-                    purpose.</p>
-                <p class="lead">What gives us the will to work on this project? We were all chocked by the enormous fires in Califonia
-                    in 2018 and by the hurricane Irma in 2017. When you see these natural disasters, as young engineers, we wanted to be able
-                    to help the victims, the emergency services and all persons impacted by these catastrophes. The IBM Call for Code hackathon
-                    has been the perfect place to brainstrom and implement our idea of dispatching platform. Building a impactful and meaningful
-                    solution to help emergency services reflects exactly our way of thinking today and what we want to accomplish tomorrow.
-                </p>
-
-            <hr>
-
-            <h1 class="cover-heading" align="center" style='padding-top: 40px; padding-bottom: 40px;'>They are talking about us</h1>
-                <div class="row featurette">
-                    <div class="col-md-1"></div>
-                    <div class="col-md-6">
-                        <p> </p>
-                        <p class="lead" style='margin-top: 50px; text-align: right;'><a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
-                            Article from the Consumer Technology Association (CES) website
-                        </a> talking about the vision of AsTeR to help the emergency services and the people during natural disasters. </p>
-                    </div>
-                    <div class="col-md-1"></div>
-                    <div class="col-md-3">
-                        <a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank"><img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/about/ces_article.png" alt="Article in CES"></a>
-                    </div>
-                </div>
-
-            <hr>
-
-            <h1 class="cover-heading" align="center" style="margin-bottom: 1em; padding-top: 40px; padding-bottom: 40px;">The ones who made this possible.</h1>
+            <h1 class="cover-heading" align="center" style="margin-bottom: 1em; padding-top: 60px; padding-bottom: 40px;">The ones who made this possible.</h1>
+          <div class="card__collection clear-fix">
             <div class="container marketing">
                 <div class="row">
                 <div class="col-lg-4">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image4" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/meryll.png"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image4)"/>
-                    </svg>
-
-                    <h2>Meryll Dindin</h2>
-                    <p>Co-founder - Thrive Education</p>
-                    <a href="https://github.com/Coricos" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:meryll_dindin@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/dindin-meryll/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-                    
-
-                <div class="col-lg-4">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image3" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/florian.jpg"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image3)"/>
-                    </svg>
-                    <h2>Florian Fesch</h2>
-                    <p>Data Scientist</p>
-                    <a href="https://github.com/florianfesch" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:florian.fesch@berkeley.edu " target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/florianfesch/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-                    
-
-                <div class="col-lg-4">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image2" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/thomas.jpg"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image2)"/>
-                    </svg>
-
-                    <h2>Thomas Galeon</h2>
-                    <p>Solution Engineer - Google</p>
-                    <a href="https://github.com/TheGaga" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:thomas.galeon@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/thomas-galeon/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-
-                <div class="col-md-6 col-centered">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image1" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/pierre-louis.png"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image1)"/>
-                    </svg>
-
-                    <h2>Pierre-Louis Missler</h2>
-                    <p>Consultant - Data Analyst</p>
-                    <a href="https://github.com/pierrelouismissler" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:pierrelouis_missler@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/pierrelouismissler/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
-
-                <div class="col-md-6 col-centered">
-                    <svg width="140" height="140">
-                        <defs>
-                            <pattern id="image5" patternUnits="userSpaceOnUse" height="140" width="140">
-                                <image x="0" y="0" height="140" width="140" xlink:href="/static/img/team/oskar.jpg"></image>
-                            </pattern>
-                        </defs>
-                        <circle id='top' cx="70" cy="70" r="70" fill="url(#image5)"/>
-                    </svg>
-
-                    <h2>Oskar Radermecker</h2>
-                    <p>Data Scientist - Varian Medical Systems</p>
-                    <a href="https://github.com/oskaradermecker" target="_blank"><img src="/static/img/home/github_logo.png"  width="20" height="20"></a> &middot; <a href="mailto:oskar_radermecker@berkeley.edu " target="_blank"><img src="/static/img/contact/enveloppe.png"  width="20" height="20"></a> &middot; <a href="https://www.linkedin.com/in/oradermecker/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="20" height="20"></a>
-                </div>
+                  <div class="cards cards--three">
+                    <img src="/static/img/team/meryll.png" class="img-responsive" alt="">
+                    <span class="cards--three__rect-1">
+                      <span class="shadow-1"></span>
+                      <h2>Meryll Dindin</h2>
+                      <p>Co-founder - Thrive Education</p>
+                    </span>
+                    <span class="cards--three__rect-2">
+                      <span class="shadow-2"></span>
+                    </span>
+                    <span class="cards--three__circle"></span>
+                    <ul class="cards--three__list">
+                      <li><a href="https://github.com/Coricos" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                      <li><a href="mailto:meryll_dindin@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                      <li><a href="https://www.linkedin.com/in/dindin-meryll/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                    </ul>
+                  </div>
+              
             </div>
+
+              <div class="col-lg-4 col-centered">
+                <div class="cards cards--three">
+                <img src="/static/img/team/florian.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Florian Fesch</h2>
+                  <p>Data Scientist</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/florianfesch" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:florian.fesch@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/florianfesch/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+              
             </div>
+
+              <div class="col-lg-4">
+               <div class="cards cards--three">
+                <img src="/static/img/team/thomas.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Thomas Galeon</h2>
+                  <p>Solution Engineer - Google</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/TheGagamailto:thomas.galeon@berkeley.edu" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:thomas.galeon@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/thomas-galeon/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="col-md-2"></div>
+            <div class="col-md-4 col-centered" >
+               <div class="cards cards--three">
+                <img src="/static/img/team/pierre-louis2_resized.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Pierre-Louis Missler</h2>
+                  <p>Consultant - Data Analyst</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/pierrelouismissler" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:pierrelouis_missler@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/pierrelouismissler/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+            </div>
+
+
+              <div class="col-md-6 col-centered">
+                <div class="cards cards--three col-centered" style="text-align: center;">
+                <img src="/static/img/team/oskar.jpg" class="img-responsive" alt="">
+                <span class="cards--three__rect-1">
+                  <span class="shadow-1"></span>
+                  <h2>Oskar Radermecker</h2>
+                  <p style="font-size: 12px; margin-left: -20px;">Data Scientist - Varian Medical Systems</p>
+                </span>
+                <span class="cards--three__rect-2">
+                  <span class="shadow-2"></span>
+                </span>
+                <span class="cards--three__circle"></span>
+                <ul class="cards--three__list">
+                  <li><a href="https://github.com/oskaradermecker" target="_blank"><img src="/static/img/home/github_logo.png"  width="25" height="25"></a></li>
+                  <li><a href="mailto:oskar_radermecker@berkeley.edu" target="_blank"><img src="/static/img/contact/enveloppe.png"  width="25" height="25"></a></li>
+                  <li><a href="https://www.linkedin.com/in/oradermecker/" target="_blank"><img src="/static/img/about/linkedin_logo.png"  width="25" height="25"></a></li>
+                </ul>
+              </div>
+                
+            </div>
+          </div>
+        </div>
+            </div>
+
         </main>
     </div>
-    </body>
+</body>
+
+
+<script>
+$('.main-carousel').flickity({
+  // options
+  groupCells: true,
+  autoPlay: true,
+  wrapAround: true
+});
+</script>
+
 {% endblock %}

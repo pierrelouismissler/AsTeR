@@ -2,12 +2,116 @@
 
 
 {% block body%}
-    <link href="/static/contact.css" rel="stylesheet">
     <script src="/static/includes/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/static/includes/jquery.fancybox.min.js"></script>
-
+    <script src="/static/includes/flickity.pkgd.min.js"></script>
+    <link href="/static/contact.css" rel="stylesheet">
     <link href="/static/home.css" rel="stylesheet">
+    <!-- <link href="/static/popup.css" rel="stylesheet"> -->
     <link rel="stylesheet" href="static/jquery.fancybox.min.css">
+
+    <link rel="stylesheet" href="/static/flickity.min.css">
+
+<style type="text/css">
+    .box {
+  width: 70%;
+  margin: 0 auto;
+  background: rgba(255,255,255,0.2);
+  padding: 35px;
+  /*border: 2px solid #fff;
+  border-radius: 20px/50px;*/
+  background-clip: padding-box;
+  text-align: center;
+  text-decoration: none;
+}
+
+.button {
+  font-size: 1em;
+  padding: 10px;
+  color: #fff;
+  background-color: #858796;
+  border: 1px solid;
+  border-radius: .35rem;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.3s ease-out;
+}
+.button:hover {
+  color: #fff;
+  background-color: #717384;
+  border-color: #6b6d7d;
+  text-decoration: none;
+}
+
+.overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.7);
+  transition: opacity 500ms;
+  visibility: hidden;
+  opacity: 0;
+}
+.overlay:target {
+  visibility: visible;
+  opacity: 1;
+}
+
+.popup {
+  margin: 70px auto;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 40%;
+  position: relative;
+  transition: all 5s ease-in-out;
+}
+
+.popup h2 {
+  margin-top: 0;
+  color: #333;
+  font-family: Tahoma, Arial, sans-serif;
+}
+.popup .close {
+  position: absolute;
+  top: 20px;
+  right: 30px;
+  transition: all 200ms;
+  font-size: 30px;
+  font-weight: bold;
+  text-decoration: none;
+  color: #333;
+}
+.popup .close:hover {
+  color: #06D85F;
+}
+.popup .content {
+  max-height: 30%;
+  overflow: auto;
+  margin-right: 10%;
+  margin-left: 10%;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 700px){
+  .box{
+    width: 80%;
+  }
+  .popup{
+    width: 80%;
+  }
+}
+</style>
+
+
+
+
+
 
     <main>
         <div id="homeCarousel" class="carousel slide" data-ride="carousel">
@@ -80,8 +184,8 @@
         <!-- Marketing messaging
         ================================================== -->
 
-        <div class="container marketing" id=features>
-
+        <div  id=features>
+            <div class="container marketing w-85">
             <div class="row" style="padding-top:8rem;">
                 <div class="col-lg-4">
                     <img class="marketing-pics" src="/static/img/home/svg/voice-message.svg" alt="Voice analysis" width="100" height="100">
@@ -218,120 +322,137 @@
                     </div>
                 </div>
             </div>
-            <!-- Featurettes
-            ================================================== -->
-            <!-- Wrap the rest of the page in another container to center all the content. -->
-
-            <hr class="featurette-divider">
-            <div class="row featurette" style="margin-top: 8rem;">
-                <div class="col-md-7">
-                    <h2 class="featurette-heading" style="margin-top: 80px; padding-right:30px; text-align: right;">Response after a Natural Disaster</h2>
-                    <h2 class="featurette-heading" style="margin-top: -5px; padding-right:30px; text-align: right;" ><span class="text-muted">AsTeR: a powerful solution</span></h2>
-                    <p class="lead" style="text-align: right; padding-right:30px;">Climate change had made extreme weather events more intense and more long-lived. (Independent, 2017, UK)</p>
-                </div>
-                <div class="col-md-5">
-                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/home/natural-disasters-by-type_1.png" alt="natural-disasters-by-type">
-                </div>
-            </div>
-            <hr class="featurette-divider">
-            <div class="row featurette">
-                <div class="col-md-7 order-md-2" style="margin-top: 60px;">
-                    <h2 class="featurette-heading" style="padding-left:30px;">Emergency services, a matter of priorities</h2>
-                    <h2 class="featurette-heading" style="margin-top: -5px; padding-left:30px; text-align: left;" ><span class="text-muted">AsTeR: a responsive tool</span></h2>
-                    <p class="lead" style="padding-left:30px;">Interviews and fields studies give our team the needs and the means to have an impact.</p>
-                </div>
-                <div class="col-md-5 order-md-1">
-                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"  src="/static/img/home/dispatch_center.jpg" alt="berkeley-dispatch-center">
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-7">
-                    <h2 class="featurette-heading" style="margin-top: 10px; padding-right:30px; text-align: right;">Ingenuity leading us to a pilot</h2>
-                    <h2 class="featurette-heading" style="margin-top: -5px; padding-right:30px; text-align: right;" ><span class="text-muted">AsTeR: a functional service</span></h2>
-                    <p class="lead" style="text-align: right; padding-right:30px;">We develop a functional solution to analyze calls and dispatch emergency services in real-time.
-                        Let's make the emergency response faster with AsTeR. </p>
-                </div>
-                <div class="col-md-5">
-                    <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="/static/img/home/logo_aster.png" alt="AsTeR">
-                </div>
-            </div>
-
-            <hr class="featurette-divider">
-
-            <div class="row featurette">
-                <div class="col-md-7 order-md-2">
-                    <h2 class="featurette-heading" style="margin-top: 50px; ">They are talking about us</h2>
-                    <h2 class="featurette-heading" style="margin-top: -5px; text-align: left;" ><span class="text-muted">AsTeR: the future is here</span></h2>
-                    <p class="lead" ><a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
-                        Article from the Consumer Technology Association (CES) website
-                    </a> talking about the vision of AsTeR to help the emergency services and the people during natural disasters. </p>
-                </div>
-                <div class="col-md-5">
-                    <a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank"><img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" width="80%" height="80%" src="/static/img/about/ces_article.png" alt="Article in CES"></a>
-                </div>
-            </div>
-            <hr class="featurette-divider">
+        </div>
         </div>
 
-        <div class="cover-container d-flex w-75 h-100 p-3 mx-auto flex-column text-center" align="justify">
+        <div class="main-carousel"  style="margin: 8vw 2vw 1vw 2vw;; padding-bottom: 20px;">
+            <div class="carousel-cell">
+              <div class="card-img-top-250">
+                  <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">
+                  <img class="w-100" src="/static/img/home/article_medium.png" style="height: 300px;  margin-top: 0px;" alt="Carousel 1"></a>
+              </div>
+              <div class="card-body1">
+                    <h2 class="featurette-heading" style="margin-top: 0px;">Ingenuity leading to a pilot</h2>
+                    <h2 class="featurette-heading" style="margin-top: 0px;"><span class="text-muted">AsTeR: a functional service</span></h2>
+                  <p>The project is introduced by Meryll Dindin in this <a href="https://medium.com/@merylldin/project-aster-ibm-call-for-code-30d959614be7" target="_blank">article</a>. He identifies the problem and provides the technical information of our solutions. With schematics, we can understand easily the architecture of our platforms between the user, the databases and the algorithms. The article can be seen as the best explanation of what we do.
+                </p>
+              </div>
 
-            <h1 class="cover-heading text-center">Contact Us</h1>
+            </div>
+            <div class="carousel-cell">
+              <div class="card-img-top-250">
+                  <a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
+                  <img class="w-100" style="height: 300px;" src="/static/img/about/cta_article_2.png"  alt="Carousel 2"></a>
+              </div>
+              <div class="card-body1">
+                    <h2 class="featurette-heading" style="margin-top: 0px; ">They are talking about us</h2>
+                    <h2 class="featurette-heading" style="margin-top: 0px; text-align: left;" ><span class="text-muted">AsTeR: the future is here</span></h2>
+                  <p>The<a href="https://cta.tech/News/Blog/Articles/2019/May/These-Berkeley-College-Students-Are-Using-Artifici.aspx" target="_blank">
+                  article written by the Consumer Technology Association (CTA)
+                  </a> about the vision of AsTeR to help the emergency services and the people during natural disasters. The experience of Thomas Galeon as firefighters is related as the basis of our idea exploration and our project is now more focused on collecting and prioritizing information to facilitate decision making during natural disasters.  </p>
+              </div>
+            </div>
 
-            {% for message in form.name.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% for message in form.email.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% for message in form.subject.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
-            {% for message in form.message.errors %}
-                <div class="flash">{{ message }}</div>
-            {% endfor %}
 
+            <div class="carousel-cell">
+              <div class="card-img-top-250">
+                  <img class="w-100" src="/static/img/home/natural-disasters-by-type_resized.png" style="height: 300px;border-top-left-radius: 5px; border-top-right-radius:5px; margin-top: 0px;" alt="Carousel 3"></a>
+              </div>
+              <div class="card-body1">
+                    <h2 class="featurette-heading" style="margin-top: 0px;">Response after a Natural Disaster</h2>
+                    <h2 class="featurette-heading" style="margin-top: 0px;" ><span class="text-muted">AsTeR: a powerful solution</span></h2>
+                    <p>Climate change had made extreme weather events more intense and more long-lived. (Independent, 2017, UK)</p>
+              </div>
+            </div>
+            <div class="carousel-cell">
+               <div class="card-img-top-250">
+                  <img class="w-100" src="/static/img/home/dispatch_center.jpg"  style="height: 300px;  margin-top: 0px;" alt="Dispatch center"></a>
+              </div>
+              <div class="card-body1">
+                <h2 class="featurette-heading" style="margin-top: 0px;">Emergency services, a matter of priorities</h2>
+                <h2 class="featurette-heading" style="margin-top: 0px;" ><span class="text-muted">AsTeR: a responsive tool</span></h2>
+                <p>Interviews and fields studies give our team the needs and the means to have an impact.</p>
+                  
+
+              </div>
+            </div>
+          </div>
+        <br>
+          <hr>
+
+
+<!-- CONTACT -->
+        <div class="box" style="width: 60%;">
             <div class="container-marketing">
                 <div class="row">
-                    <div class="col-md-6 col-centered">
+                    <div class="col-md-4 col-centered">
                         <img src="/static/img/contact/marker_1.png" width="45" height="45">
                         <p>San Francisco, CA, USA</p>
                     </div>
-                    <div class="col-md-6 col-centered">
+                    <div class="col-md-4 col-centered" style="margin-top: 30px; margin-bottom: 50px;">
+                        
+                    <a class="button" href="#popup1">Contact Us</a>
+                       
+                    </div>
+                    <div class="col-md-4 col-centered">
                         <img src="/static/img/contact/enveloppe.png" width="45" height="45">
                         <p>aster0project@gmail.com</p>
                     </div>
                 </div>
+            </div>
+        </div>
 
-                <div class="container-marketing">
-                    <div class="row">
-                        <div class="col-md"></div>
-                        <div class="col-md-10">
-                            <form action="{{ url_for('index') }}" method=post name="contact" role="form">
-                                <div class="ml-form mb-4 mt-3">
-                                    {{ form.name(class="form-control", placeholder="Your name", **{'data-validation':'required'}) }}
-                                </div>
-                                <div class="md-form mb-4">
-                                    {{ form.email(class="form-control", placeholder="Your email address", **{'data-validation':'required'}) }}
-                                </div>
-                                <div class="md-form mb-4">
-                                    {{ form.subject(class="form-control", placeholder="Subject ", **{'data-validation':'required'}) }}
-                                </div>
-                                <div class="md-form mb-4">
-                                    {{ form.message(class="form-control", placeholder="Write your message here! Surprise us!", **{'data-validation':'required'}) }}
-                                </div >
-                                <div class="mt-4">
-                                    {{ form.submit(class='btn btn-success') }}
-                                </div >
+        <div id="popup1" class="overlay">
+            <div class="popup">
+                <a class="close" href="#home">&times;</a>
+            <div class="content">
+<!-- CONTACT POPUP-->
+                <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column text-center" align="justify">
 
-                            </form>
+                    <h1 class="cover-heading text-center" style="margin-bottom: 20px;">Contact Us</h1>
+
+                    {% for message in form.name.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in form.email.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in form.subject.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in form.message.errors %}
+                        <div class="flash">{{ message }}</div>
+                    {% endfor %}
+
+                    <div class="container-marketing">
+                        <div class="container-marketing">
+                            <div class="row">
+                                
+                                <div class="col-md-10 col-centered" style="padding: 0;flex: 100%;">
+                                    <form action="{{ url_for('index') }}" method=post name="contact" role="form">
+                                        <div class="ml-form mb-4 ">
+                                            {{ form.name(class="form-control", placeholder="Your name", **{'data-validation':'required'}) }}
+                                        </div>
+                                        <div class="md-form mb-4">
+                                            {{ form.email(class="form-control", placeholder="Your email address", **{'data-validation':'required'}) }}
+                                        </div>
+                                        <div class="md-form mb-4">
+                                            {{ form.subject(class="form-control", placeholder="Subject ", **{'data-validation':'required'}) }}
+                                        </div>
+                                        <div class="md-form mb-4">
+                                            {{ form.message(class="form-control", placeholder="Write your message here! Surprise us!", **{'data-validation':'required'}) }}
+                                        </div >
+                                        <div class="mt-4">
+                                            {{ form.submit(class='btn btn-success') }}
+                                        </div >
+
+                                    </form>
+                                </div>
                         </div>
-                        <div class="col-md"></div>
                     </div>
                 </div>
-            </div>
+                </div>
+             </div>
         </div>
     </main>
 
@@ -343,6 +464,14 @@
         $("#call_analysis").css({'width': '80%', 'height': '95%', background: '#f8f9fd'});
         $("#unit_dispatching").css({'width': '80%', 'height': '95%', background: '#f8f9fd'});
         $("#feedback_integration").css({'width': '80%', 'height': '95%', background: '#f8f9fd'});
+
+        $('.main-carousel').flickity({
+          // options
+          groupCells: true,
+          autoPlay: true,
+          wrapAround: true
+        });
+
     </script>
 
 {% endblock %}
